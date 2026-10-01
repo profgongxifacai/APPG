@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
-  <defs><mask id="ov7-m" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><rect width="100" height="100" fill="#000"/><path d="M84 64 h-23 a19 19 0 0 1 0 -38 h14 a9 9 0 0 1 9 9 Z" fill="#fff"/></mask></defs>
+  <defs><mask id="ov7-m" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><rect width="100" height="100" fill="#000"/><path d="M84 58 h-23 a19 19 0 0 1 0 -38 h14 a9 9 0 0 1 9 9 Z" fill="#fff"/></mask></defs>
   <rect width="100" height="100" rx="22" fill="#FBF3E6"/>
-  <path d="M16 45 a19 19 0 0 1 19 -19 h4 a19 19 0 0 1 0 38 h-5 v13 a9 9 0 0 1 -18 0 Z" fill="#FF7A1A"/>
-  <path d="M84 64 h-23 a19 19 0 0 1 0 -38 h14 a9 9 0 0 1 9 9 Z" fill="#5B2A86"/>
-  <g mask="url(#ov7-m)"><path d="M16 45 a19 19 0 0 1 19 -19 h4 a19 19 0 0 1 0 38 h-5 v13 a9 9 0 0 1 -18 0 Z" fill="#2A0E3F"/></g>
+  <path d="M16 39 a19 19 0 0 1 19 -19 h4 a19 19 0 0 1 0 38 h-5 v13 a9 9 0 0 1 -18 0 Z" fill="#FF7A1A"/>
+  <path d="M84 58 h-23 a19 19 0 0 1 0 -38 h14 a9 9 0 0 1 9 9 Z" fill="#5B2A86"/>
+  <g mask="url(#ov7-m)"><path d="M16 39 a19 19 0 0 1 19 -19 h4 a19 19 0 0 1 0 38 h-5 v13 a9 9 0 0 1 -18 0 Z" fill="#2A0E3F"/></g>
 </svg>
