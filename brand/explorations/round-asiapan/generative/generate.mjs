@@ -368,7 +368,7 @@ const add = (code, name, note, content) => { files[code] = content; meta.push({ 
 }
 
 // =========================================================== GN8 비단 문직 亞
-// Satin-damask weave: warp (crimson) floats outside, weft (ivory) floats inside 亞; binding points per 5-satin.
+// Satin-damask weave: warp (crimson) floats outside, weft (ivory) floats inside 亞; binding points per 8-shaft satin.
 {
   const code = 'GN8';
   const c = 2, N = 50; const r = rng(8);
@@ -390,7 +390,7 @@ const add = (code, name, note, content) => { files[code] = content; meta.push({ 
       const sh = mixHex('A3213A', '8A1830', r());
       warp += `<rect x="${f(i * c + pad)}" y="${f(j * c + 0.25)}" width="${f(th)}" height="${f((e - j + 1) * c - 0.5)}" rx="${f(th / 2)}" fill="${sh}"/>`; j = e + 1; }
   }
-  add(code, '비단 문직 亞', '날실·씨실 모든 실(汎)이 오매듭 수자직으로 엮여, 씨실이 떠오른 자리만 亞가 되는 비단 다마스크', svg(code, '#4C0D1B', warp + weft));
+  add(code, '비단 문직 亞', '날실·씨실 모든 실(汎)이 8매 수자직으로 엮여, 씨실이 떠오른 자리만 亞가 되는 비단 다마스크', svg(code, '#4C0D1B', warp + weft));
 }
 
 // =========================================================== GN9 亞의 亞

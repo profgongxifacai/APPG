@@ -2,8 +2,8 @@
 <defs>
 <linearGradient id="t6-bg" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#272A6E"/><stop offset="1" stop-color="#0B0C29"/></linearGradient>
 <linearGradient id="t6-sh" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="0.12"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient><filter id="t6-b4" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter><filter id="t6-b2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2"/></filter><filter id="t6-b1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1"/></filter><filter id="t6-b0_5" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.5"/></filter>
-<radialGradient id="t6-glow" cx="74" cy="38" r="30" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFB04A" stop-opacity=".45"/><stop offset="1" stop-color="#FFB04A" stop-opacity="0"/></radialGradient>
-<linearGradient id="t6-gl" x1="0" y1="18" x2="0" y2="80" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#DCDDFB"/><stop offset="1" stop-color="#ABADF0"/></linearGradient>
+<radialGradient id="t6-glow" cx="75" cy="37" r="34" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFB04A" stop-opacity=".6"/><stop offset="1" stop-color="#FFB04A" stop-opacity="0"/></radialGradient>
+<linearGradient id="t6-gl" x1="0" y1="18" x2="0" y2="80" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#E3E4FF"/><stop offset=".8" stop-color="#B7B2F5"/><stop offset="1" stop-color="#9AA8F2"/></linearGradient>
 <linearGradient id="t6-am" x1="0" y1="34" x2="0" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFF1C2"/><stop offset=".5" stop-color="#FFB547"/><stop offset="1" stop-color="#F07A12"/></linearGradient>
 
 <clipPath id="t6-tile"><rect width="100" height="100" rx="22"/></clipPath>
