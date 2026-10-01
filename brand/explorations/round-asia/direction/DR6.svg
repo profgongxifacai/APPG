@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
   <title>DR6</title>
   <defs><clipPath id="dr6-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
-  <rect width="100" height="100" rx="22" fill="#0C4B4E"/>
-  <g fill="none" stroke="#F4EFE4" stroke-width="9" stroke-linecap="round">
-    <line x1="20" y1="24" x2="74" y2="50"/><line x1="20" y1="50" x2="74" y2="50"/><line x1="20" y1="76" x2="74" y2="50"/>
+  <rect width="100" height="100" rx="22" fill="#1E3FA0"/>
+  <g fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="square">
+    <line x1="22" y1="26" x2="66" y2="50"/><line x1="22" y1="50" x2="66" y2="50"/><line x1="22" y1="74" x2="66" y2="50"/>
   </g>
-  <circle cx="76" cy="50" r="11" fill="#D6A73A"/>
+  <rect x="62" y="38" width="24" height="24" fill="#F2B705"/>
 </svg>

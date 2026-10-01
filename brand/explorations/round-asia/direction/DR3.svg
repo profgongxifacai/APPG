@@ -1,9 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
   <title>DR3</title>
   <defs><clipPath id="dr3-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
-  <rect width="100" height="100" rx="22" fill="#1E3FA0"/>
-  <g clip-path="url(#dr3-tile)">
-    <polygon points="0,0 50,0 80,50 50,100 0,100" fill="#15171C"/>
-    <polyline points="50,-6 80,50 50,106" fill="none" stroke="#D9311F" stroke-width="10"/>
-  </g>
+  <rect width="100" height="100" rx="22" fill="#E4D8BE"/>
+  <rect x="39" y="15" width="22" height="22" fill="#15171C"/>
+  <rect x="39" y="63" width="22" height="22" fill="#D9311F"/>
+  <rect x="15" y="39" width="22" height="22" fill="#FFFFFF"/>
+  <rect x="63" y="39" width="22" height="22" fill="#1E3FA0"/>
+  <rect x="39" y="39" width="22" height="22" fill="#F2B705"/>
 </svg>

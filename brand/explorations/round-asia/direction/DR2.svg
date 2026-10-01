@@ -2,7 +2,6 @@
   <title>DR2</title>
   <defs><clipPath id="dr2-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
   <rect width="100" height="100" rx="22" fill="#15171C"/>
-  <path d="M22 68 H40 L62 46 H78" fill="none" stroke="#D6A73A" stroke-width="11" stroke-linejoin="round"/>
-  <circle cx="22" cy="68" r="9" fill="#15171C" stroke="#D6A73A" stroke-width="6"/>
-  <circle cx="78" cy="46" r="11" fill="#D9311F"/>
+  <path d="M-4 64 H34 L54 44 H104" fill="none" stroke="#D6A73A" stroke-width="14" stroke-linejoin="miter" clip-path="url(#dr2-tile)"/>
+  <circle cx="54" cy="44" r="10" fill="#D9311F"/>
 </svg>

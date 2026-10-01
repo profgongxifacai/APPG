@@ -1,7 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
   <title>DR4</title>
   <defs><clipPath id="dr4-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
-  <rect width="100" height="100" rx="22" fill="#15171C"/>
-  <rect x="0" y="60" width="100" height="40" fill="#0C4B4E" clip-path="url(#dr4-tile)"/>
-  <polygon points="16,60 84,60 84,40" fill="#F2B705"/>
+  <rect width="100" height="100" rx="22" fill="#0C4B4E"/>
+  <rect x="18" y="18" width="8" height="8" fill="#24686A"/><rect x="18" y="46" width="8" height="8" fill="#24686A"/><rect x="18" y="74" width="8" height="8" fill="#24686A"/><rect x="46" y="18" width="8" height="8" fill="#24686A"/><rect x="46" y="46" width="8" height="8" fill="#24686A"/><rect x="46" y="74" width="8" height="8" fill="#24686A"/><rect x="74" y="18" width="8" height="8" fill="#24686A"/><rect x="74" y="46" width="8" height="8" fill="#24686A"/><rect x="74" y="74" width="8" height="8" fill="#24686A"/>
+  <path d="M22 78 V50 H50 V22 H78" fill="none" stroke="#F4EFE4" stroke-width="11" stroke-linejoin="miter"/>
+  <rect x="13" y="69" width="18" height="18" fill="#F4EFE4"/>
+  <rect x="69" y="13" width="18" height="18" fill="#D9311F"/>
 </svg>
