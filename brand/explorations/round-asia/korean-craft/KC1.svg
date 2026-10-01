@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
 <defs><clipPath id="kc1c"><rect width="100" height="100" rx="22"/></clipPath></defs>
-<rect width="100" height="100" rx="22" fill="#171614"/>
+<rect width="100" height="100" rx="22" fill="#F4EEE1"/>
 <g clip-path="url(#kc1c)">
-<rect x="0" y="0" width="60" height="40" fill="#C9302C"/>
-<rect x="64" y="0" width="36" height="26" fill="#F4EEE1"/>
-<rect x="64" y="30" width="36" height="36" fill="#1F4A9C"/>
-<rect x="0" y="44" width="30" height="56" fill="#F0B429"/>
-<rect x="34" y="44" width="26" height="22" fill="#F4EEE1"/>
-<rect x="34" y="70" width="66" height="30" fill="#C9302C"/>
+<polygon points="0,0 56,0 56,34 0,46" fill="#233F7A"/>
+<polygon points="0,50 24,44.86 24,100 0,100" fill="#E9AF35"/>
+<polygon points="28,44 56,38 56,100 28,100" fill="#D4445C"/>
+<rect x="60" y="0" width="40" height="26" fill="#4E9C8A"/>
+<rect x="60" y="30" width="40" height="32" fill="#6A2C4E"/>
+<rect x="60" y="66" width="40" height="34" fill="#233F7A"/>
 </g>
 </svg>

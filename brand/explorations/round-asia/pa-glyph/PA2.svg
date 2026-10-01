@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+  <title>Panasia PA2</title>
+  <rect id="pa2-tile" width="100" height="100" rx="22" fill="#E2412B"/>
+  <line x1="22" y1="25" x2="78" y2="25" stroke="#F4EDDC" stroke-width="9.5" stroke-linecap="round"/>
+  <line x1="17" y1="76" x2="83" y2="76" stroke="#F4EDDC" stroke-width="9.5" stroke-linecap="round"/>
+  <line x1="41.5" y1="25" x2="41.5" y2="76" stroke="#F4EDDC" stroke-width="9.5" stroke-linecap="round"/>
+  <line x1="58.5" y1="25" x2="58.5" y2="76" stroke="#F4EDDC" stroke-width="9.5" stroke-linecap="round"/>
+  <line x1="21.5" y1="41" x2="26.5" y2="59" stroke="#F4EDDC" stroke-width="9.5" stroke-linecap="round"/>
+  <line x1="78.5" y1="41" x2="73.5" y2="59" stroke="#F4EDDC" stroke-width="9.5" stroke-linecap="round"/>
+</svg>

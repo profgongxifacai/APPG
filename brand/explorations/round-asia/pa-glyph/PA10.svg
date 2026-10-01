@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+  <title>Panasia PA10</title>
+  <rect id="pa10-tile" width="100" height="100" rx="22" fill="#2E5D51"/>
+  <rect x="-5" y="17" width="110" height="7" fill="#F4EDDC"/>
+  <rect x="-5" y="76" width="110" height="7" fill="#F4EDDC"/>
+  <rect x="36.5" y="23.99" width="7" height="17.51" fill="#F4EDDC"/>
+  <rect x="56.5" y="23.99" width="7" height="17.51" fill="#F4EDDC"/>
+  <rect x="36.5" y="58.5" width="7" height="17.51" fill="#F4EDDC"/>
+  <rect x="56.5" y="58.5" width="7" height="17.51" fill="#F4EDDC"/>
+  <rect x="19" y="34.5" width="24.5" height="7" fill="#F4EDDC"/>
+  <rect x="56.5" y="34.5" width="24.5" height="7" fill="#F4EDDC"/>
+  <rect x="19" y="58.5" width="24.5" height="7" fill="#F4EDDC"/>
+  <rect x="56.5" y="58.5" width="24.5" height="7" fill="#F4EDDC"/>
+  <rect x="19" y="34.5" width="7" height="31" fill="#F4EDDC"/>
+  <rect x="74" y="34.5" width="7" height="31" fill="#F4EDDC"/>
+</svg>

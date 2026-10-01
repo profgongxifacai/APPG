@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+  <title>Panasia PA8</title>
+  <rect id="pa8-tile" width="100" height="100" rx="22" fill="#16171B"/>
+  <rect x="20" y="18" width="60" height="15" fill="#F6B40E"/>
+  <rect x="37" y="39" width="9" height="22" fill="#F6B40E"/>
+  <rect x="54" y="39" width="9" height="22" fill="#F6B40E"/>
+  <polygon points="17,39 26.5,39 32.5,61 23,61" fill="#F6B40E"/>
+  <polygon points="73.5,39 83,39 77,61 67.5,61" fill="#F6B40E"/>
+  <rect x="14" y="67" width="72" height="15" fill="#F6B40E"/>
+</svg>

@@ -1,8 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
 <rect width="100" height="100" rx="22" fill="#F4EEE1"/>
-<rect x="38" y="38" width="24" height="24" fill="#C9302C"/>
-<rect x="16" y="16" width="42.5" height="18.5" fill="#1F4A9C"/>
-<rect x="62" y="16" width="22" height="42.5" fill="#171614"/>
-<rect x="38" y="62" width="46" height="22" fill="#F0B429"/>
-<rect x="16" y="38" width="18.5" height="46" fill="#1F4A9C"/>
+<polygon points="14,14 50,14 14,50" fill="#233F7A" stroke="#F4EEE1" stroke-width="3.6" stroke-linejoin="round"/>
+<polygon points="86,14 86,50 50,14" fill="#233F7A" stroke="#F4EEE1" stroke-width="3.6" stroke-linejoin="round"/>
+<polygon points="86,86 50,86 86,50" fill="#233F7A" stroke="#F4EEE1" stroke-width="3.6" stroke-linejoin="round"/>
+<polygon points="14,86 14,50 50,86" fill="#233F7A" stroke="#F4EEE1" stroke-width="3.6" stroke-linejoin="round"/>
+<polygon points="50,14 68,32 32,32" fill="#D4445C" stroke="#F4EEE1" stroke-width="3.6" stroke-linejoin="round"/>
+<polygon points="86,50 68,68 68,32" fill="#D4445C" stroke="#F4EEE1" stroke-width="3.6" stroke-linejoin="round"/>
+<polygon points="50,86 32,68 68,68" fill="#D4445C" stroke="#F4EEE1" stroke-width="3.6" stroke-linejoin="round"/>
+<polygon points="14,50 32,32 32,68" fill="#D4445C" stroke="#F4EEE1" stroke-width="3.6" stroke-linejoin="round"/>
+<polygon points="32,32 68,32 68,68 32,68" fill="#E9AF35" stroke="#F4EEE1" stroke-width="3.6" stroke-linejoin="round"/>
 </svg>
