@@ -30,8 +30,8 @@
 <circle cx="50" cy="50" r="19.5" fill="url(#lx8-pool)" filter="url(#lx8-in)"/>
 <circle cx="50" cy="50.4" r="19.6" fill="none" stroke="#E6727B" stroke-width="0.5" opacity="0.35"/>
 <g fill="#A82A35" filter="url(#lx8-bevel2)">
-  <path d="M40 37 H35 V63 H40 V59.6 H38.6 V40.4 H40 Z"/>
-  <path d="M60 37 H65 V63 H60 V59.6 H61.4 V40.4 H60 Z"/>
-  <path d="M50 44.5 L55.5 50 L50 55.5 L44.5 50 Z"/>
+  <path d="M41 36.5 H34.5 V63.5 H41 V59.3 H39 V40.7 H41 Z"/>
+  <path d="M59 36.5 H65.5 V63.5 H59 V59.3 H61 V40.7 H59 Z"/>
+  <path d="M50 43.8 L56.2 50 L50 56.2 L43.8 50 Z"/>
 </g>
 </svg>

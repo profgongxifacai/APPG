@@ -6,31 +6,35 @@
     <linearGradient id="t4-rod" x1="47.8" y1="0" x2="52.2" y2="0" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#7A7690"/><stop offset=".35" stop-color="#FFFFFF"/><stop offset="1" stop-color="#8F8AA8"/>
     </linearGradient>
-    <linearGradient id="t4-u" x1="0" y1="27" x2="0" y2="48" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#B8B2FF"/><stop offset=".5" stop-color="#7467F5"/><stop offset=".52" stop-color="#4A3DD0"/><stop offset="1" stop-color="#2C2194"/>
+    <linearGradient id="t4-u" x1="0" y1="25" x2="0" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C4BFFF"/><stop offset=".5" stop-color="#7A6DF7"/><stop offset=".54" stop-color="#5546DA"/><stop offset="1" stop-color="#2A1F8E"/>
     </linearGradient>
-    <linearGradient id="t4-l" x1="0" y1="52" x2="0" y2="73" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#FFE6B5"/><stop offset=".5" stop-color="#FFB547"/><stop offset=".52" stop-color="#E58A1F"/><stop offset="1" stop-color="#A9560C"/>
+    <linearGradient id="t4-l" x1="0" y1="51" x2="0" y2="76" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFEBC2"/><stop offset=".5" stop-color="#FFB547"/><stop offset=".54" stop-color="#EB8E22"/><stop offset="1" stop-color="#A3520A"/>
     </linearGradient>
-    <linearGradient id="t4-side" x1="22" y1="0" x2="78" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#000" stop-opacity=".25"/><stop offset=".3" stop-color="#000" stop-opacity="0"/><stop offset=".72" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/>
+    <linearGradient id="t4-side" x1="23" y1="0" x2="77" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000" stop-opacity=".22"/><stop offset=".28" stop-color="#000" stop-opacity="0"/><stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/>
     </linearGradient>
     <filter id="t4-blur3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
-    <filter id="t4-blur1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation=".9"/></filter>
+    <filter id="t4-blur1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1"/></filter>
+    <filter id="t4-blur05" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation=".4"/></filter>
   </defs>
   <rect width="100" height="100" rx="22" fill="url(#t4-bg)"/>
-  <ellipse cx="50" cy="83" rx="22" ry="3" fill="#3B2F8F" opacity=".3" filter="url(#t4-blur3)"/>
-  <rect x="47.8" y="14" width="4.4" height="72" rx="2.2" fill="url(#t4-rod)"/>
-  <!-- upper bead -->
+  <ellipse cx="50" cy="84" rx="22" ry="3" fill="#3B2F8F" opacity=".3" filter="url(#t4-blur3)"/>
+  <rect x="47.8" y="13" width="4.4" height="74" rx="2.2" fill="url(#t4-rod)"/>
+  <ellipse cx="50" cy="51" rx="18" ry="2" fill="#2A1F6E" opacity=".35" filter="url(#t4-blur1)"/>
   <g>
-    <path d="M50 27 Q54 27 72 35.5 Q78 37.5 78 37.5 Q78 37.5 72 39.5 Q54 48 50 48 Q46 48 28 39.5 Q22 37.5 22 37.5 Q22 37.5 28 35.5 Q46 27 50 27 Z" fill="url(#t4-u)"/>
-    <path d="M50 27 Q54 27 72 35.5 Q78 37.5 78 37.5 Q78 37.5 72 39.5 Q54 48 50 48 Q46 48 28 39.5 Q22 37.5 22 37.5 Q22 37.5 28 35.5 Q46 27 50 27 Z" fill="url(#t4-side)"/>
-    <path d="M30 35 Q44 29 50 28.6" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".9" filter="url(#t4-blur1)"/>
+    <path d="M50 25 C56 25 66 31 73 34.5 C77.5 36.5 77.5 39.5 73 41.5 C66 45 56 50 50 50 C44 50 34 45 27 41.5 C22.5 39.5 22.5 36.5 27 34.5 C34 31 44 25 50 25 Z" fill="url(#t4-u)"/>
+    <path d="M50 25 C56 25 66 31 73 34.5 C77.5 36.5 77.5 39.5 73 41.5 C66 45 56 50 50 50 C44 50 34 45 27 41.5 C22.5 39.5 22.5 36.5 27 34.5 C34 31 44 25 50 25 Z" fill="url(#t4-side)"/>
+    <path d="M25.5 37.6 Q50 39.6 74.5 37.6" fill="none" stroke="#E4E0FF" stroke-width="1" opacity=".7" filter="url(#t4-blur05)"/>
+    <ellipse cx="38" cy="31.5" rx="7" ry="2.2" fill="#fff" opacity=".85" filter="url(#t4-blur1)" transform="rotate(-18 38 31.5)"/>
+    <path d="M36 46 Q44 49.2 50 49.3" fill="none" stroke="#B9B2FF" stroke-width="1.2" stroke-linecap="round" opacity=".6" filter="url(#t4-blur05)"/>
   </g>
-  <!-- lower bead -->
   <g>
-    <path d="M50 52 Q54 52 72 60.5 Q78 62.5 78 62.5 Q78 62.5 72 64.5 Q54 73 50 73 Q46 73 28 64.5 Q22 62.5 22 62.5 Q22 62.5 28 60.5 Q46 52 50 52 Z" fill="url(#t4-l)"/>
-    <path d="M50 52 Q54 52 72 60.5 Q78 62.5 78 62.5 Q78 62.5 72 64.5 Q54 73 50 73 Q46 73 28 64.5 Q22 62.5 22 62.5 Q22 62.5 28 60.5 Q46 52 50 52 Z" fill="url(#t4-side)"/>
-    <path d="M30 60 Q44 54 50 53.6" fill="none" stroke="#FFF6E0" stroke-width="1.6" stroke-linecap="round" opacity=".95" filter="url(#t4-blur1)"/>
+    <path d="M50 51 C56 51 66 57 73 60.5 C77.5 62.5 77.5 65.5 73 67.5 C66 71 56 76 50 76 C44 76 34 71 27 67.5 C22.5 65.5 22.5 62.5 27 60.5 C34 57 44 51 50 51 Z" fill="url(#t4-l)"/>
+    <path d="M50 51 C56 51 66 57 73 60.5 C77.5 62.5 77.5 65.5 73 67.5 C66 71 56 76 50 76 C44 76 34 71 27 67.5 C22.5 65.5 22.5 62.5 27 60.5 C34 57 44 51 50 51 Z" fill="url(#t4-side)"/>
+    <path d="M25.5 63.6 Q50 65.6 74.5 63.6" fill="none" stroke="#FFF3D6" stroke-width="1" opacity=".7" filter="url(#t4-blur05)"/>
+    <ellipse cx="38" cy="57.5" rx="7" ry="2.2" fill="#fff" opacity=".85" filter="url(#t4-blur1)" transform="rotate(-18 38 57.5)"/>
+    <path d="M36 72 Q44 75.2 50 75.3" fill="none" stroke="#FFD9A0" stroke-width="1.2" stroke-linecap="round" opacity=".6" filter="url(#t4-blur05)"/>
   </g>
 </svg>

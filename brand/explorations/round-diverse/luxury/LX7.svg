@@ -17,7 +17,7 @@
 </filter>
 </defs>
 <rect width="100" height="100" rx="22" fill="url(#lx7-cel)"/>
-<rect width="100" height="100" rx="22" fill="#000" filter="url(#lx7-crackle)" opacity="0.35"/>
+<rect width="100" height="100" rx="22" fill="#000" filter="url(#lx7-crackle)" opacity="0.22"/>
 <rect width="100" height="100" rx="22" fill="url(#lx7-glaze)"/>
 <g filter="url(#lx7-in)">
   <path d="M27 74.5 V29 H73 V71 H41 V43 H59 V57 H50" fill="none" stroke="#1C3933" stroke-width="7.4" stroke-linejoin="miter" stroke-linecap="butt"/>
