@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+<defs>
+<linearGradient id="lx7-cel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D3E3D8"/><stop offset="0.5" stop-color="#A9C7B7"/><stop offset="1" stop-color="#83A898"/></linearGradient>
+<radialGradient id="lx7-glaze" cx="0.28" cy="0.18" r="0.6"><stop offset="0" stop-color="#ffffff" stop-opacity="0.55"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+<filter id="lx7-crackle" x="0" y="0" width="100%" height="100%">
+  <feTurbulence type="turbulence" baseFrequency="0.09" numOctaves="2" seed="9"/>
+  <feColorMatrix values="0 0 0 0 0.18  0 0 0 0 0.32  0 0 0 0 0.28  -12 0 0 0 1.3"/>
+  <feComposite in2="SourceAlpha" operator="in"/>
+</filter>
+<filter id="lx7-in" x="-10%" y="-10%" width="120%" height="120%">
+  <feOffset dx="0" dy="0.9"/>
+  <feGaussianBlur stdDeviation="0.6" result="ob"/>
+  <feComposite operator="out" in="SourceGraphic" in2="ob" result="inv"/>
+  <feFlood flood-color="#000000" flood-opacity="0.55" result="c"/>
+  <feComposite operator="in" in="c" in2="inv" result="sh"/>
+  <feComposite operator="over" in="sh" in2="SourceGraphic"/>
+</filter>
+</defs>
+<rect width="100" height="100" rx="22" fill="url(#lx7-cel)"/>
+<rect width="100" height="100" rx="22" fill="#000" filter="url(#lx7-crackle)" opacity="0.35"/>
+<rect width="100" height="100" rx="22" fill="url(#lx7-glaze)"/>
+<g filter="url(#lx7-in)">
+  <path d="M27 74.5 V29 H73 V71 H41 V43 H59 V57 H50" fill="none" stroke="#1C3933" stroke-width="7.4" stroke-linejoin="miter" stroke-linecap="butt"/>
+</g>
+<path d="M27 74.5 V29 H73 V71 H41 V43 H59 V57 H50" fill="none" stroke="#F3EEDF" stroke-width="0.6" stroke-linejoin="miter" opacity="0.85"/>
+</svg>

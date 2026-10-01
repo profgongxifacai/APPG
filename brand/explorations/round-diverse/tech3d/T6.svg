@@ -25,16 +25,17 @@
   <rect width="100" height="100" rx="22" fill="url(#t6-bgglow)"/>
   <ellipse cx="50" cy="78" rx="22" ry="4" fill="#000" opacity=".6" filter="url(#t6-blur3)"/>
   <!-- glowing core cube -->
-  <circle cx="50" cy="51" r="14" fill="#FF7A59" opacity=".55" filter="url(#t6-blur3)"/>
-  <g>
-    <path d="M50 41 L58.7 46 L50 51 L41.3 46 Z" fill="#FFE2C8"/>
-    <path d="M41.3 46 L50 51 V61 L41.3 56 Z" fill="#FF9A68"/>
-    <path d="M50 51 L58.7 46 V56 L50 61 Z" fill="#E8573C"/>
-  </g>
+  <circle cx="50" cy="51" r="15" fill="#FF6B4A" opacity=".75" filter="url(#t6-blur3)"/>
   <!-- glass faces -->
   <path d="M50 26 L70.8 38 L50 50 L29.2 38 Z" fill="url(#t6-top)"/>
   <path d="M29.2 38 L50 50 V74 L29.2 62 Z" fill="url(#t6-left)"/>
   <path d="M50 50 L70.8 38 V62 L50 74 Z" fill="url(#t6-right)"/>
+  <g opacity=".92">
+    <path d="M50 41 L58.7 46 L50 51 L41.3 46 Z" fill="#FFF1E2"/>
+    <path d="M41.3 46 L50 51 V61 L41.3 56 Z" fill="#FFA05E"/>
+    <path d="M50 51 L58.7 46 V56 L50 61 Z" fill="#FF5A3C"/>
+  </g>
+
   <!-- edges -->
   <g fill="none" stroke-linejoin="round" stroke-linecap="round">
     <path d="M29.2 38 L50 50 L70.8 38 M50 50 V74" stroke="#E8FFFB" stroke-width="1" opacity=".9"/>

@@ -8,7 +8,7 @@
 <rect width="100" height="100" filter="url(#ea4-weave2)" opacity="0.35"/>
 <g filter="url(#ea4-resist)" fill="url(#ea4-w)">
 <path d="M22,77 V60 A28,28 0 0 1 48.9,32.02 V44.54 A15.5,15.5 0 0 0 34.5,60 V77 Z"/>
-<path d="M78,77 V60 A28,28 0 0 0 51.1,32.02 V44.54 A15.5,15.5 0 0 1 65.5,60 V77 Z" transform="translate(0 -1.6)"/>
+<path d="M78,77 V60 A28,28 0 0 0 51.1,32.02 V44.54 A15.5,15.5 0 0 1 65.5,60 V77 Z" transform="translate(0 -1.2)"/>
 </g>
 </g>
 </svg>

@@ -5,8 +5,8 @@
 <rect width="100" height="100" fill="url(#ea6-bg)"/>
 <rect width="100" height="100" filter="url(#ea6-mot)" opacity="0.7"/>
 <rect width="100" height="100" filter="url(#ea6-grain)" opacity="0.5"/>
-<g transform="translate(-2 1) rotate(-14 50 50)"><rect x="27" y="27" width="46" height="46" rx="1.2" fill="#F4EEE2" fill-opacity="0.5" filter="url(#ea6-paper)"/></g>
-<g transform="translate(0 0) rotate(2 50 50)"><rect x="27" y="27" width="46" height="46" rx="1.2" fill="#F4EEE2" fill-opacity="0.55" filter="url(#ea6-paper)"/></g>
-<g transform="translate(2 -1) rotate(17 50 50)"><rect x="27" y="27" width="46" height="46" rx="1.2" fill="#F4EEE2" fill-opacity="0.62" filter="url(#ea6-paper)"/></g>
+<g transform="translate(0 0) rotate(-18 50 50)"><rect x="28" y="28" width="44" height="44" rx="1.2" fill="#F6F0E4" fill-opacity="0.36" stroke="#FFF8EC" stroke-opacity="0.7" stroke-width="0.5" filter="url(#ea6-paper)"/></g>
+<g transform="translate(0 0) rotate(0 50 50)"><rect x="28" y="28" width="44" height="44" rx="1.2" fill="#F6F0E4" fill-opacity="0.36" stroke="#FFF8EC" stroke-opacity="0.7" stroke-width="0.5" filter="url(#ea6-paper)"/></g>
+<g transform="translate(0 0) rotate(18 50 50)"><rect x="28" y="28" width="44" height="44" rx="1.2" fill="#F6F0E4" fill-opacity="0.42" stroke="#FFF8EC" stroke-opacity="0.7" stroke-width="0.5" filter="url(#ea6-paper)"/></g>
 </g>
 </svg>

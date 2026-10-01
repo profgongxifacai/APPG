@@ -17,7 +17,7 @@
     <linearGradient id="t1-spec" x1="0" y1="24" x2="0" y2="76" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/>
     </linearGradient>
-    <radialGradient id="t1-orb" cx="46" cy="46" r="10" fx="46.5" fy="45.5" gradientUnits="userSpaceOnUse">
+    <radialGradient id="t1-orb" cx="46" cy="46" r="11" fx="46" fy="45.5" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#FFF8DA"/><stop offset=".45" stop-color="#FFC75A"/><stop offset="1" stop-color="#E86A1E"/>
     </radialGradient>
     <filter id="t1-blur3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
@@ -33,8 +33,8 @@
   </g>
   <!-- glow orb -->
   <circle cx="50" cy="50" r="15" fill="#FFB547" opacity=".55" filter="url(#t1-blur3)"/>
-  <circle cx="50" cy="50" r="9" fill="url(#t1-orb)"/>
-  <ellipse cx="47" cy="46.5" rx="3.2" ry="2.2" fill="#fff" opacity=".85" filter="url(#t1-blur1)"/>
+  <circle cx="50" cy="50" r="10" fill="url(#t1-orb)"/>
+  <ellipse cx="46.6" cy="46" rx="3.4" ry="2.2" fill="#fff" opacity=".85" filter="url(#t1-blur1)"/>
   <!-- glass brackets -->
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path d="M39 26 H31 Q26 26 26 31 V69 Q26 74 31 74 H39" stroke="url(#t1-glass)" stroke-width="9"/>
