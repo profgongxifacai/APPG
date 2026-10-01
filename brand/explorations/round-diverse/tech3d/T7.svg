@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+  <defs>
+    <linearGradient id="t7-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#CDE8FF"/><stop offset="1" stop-color="#86BCF5"/>
+    </linearGradient>
+    <linearGradient id="t7-face" x1="0" y1="24" x2="0" y2="78" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFB27A"/><stop offset=".5" stop-color="#FF7F4A"/><stop offset="1" stop-color="#EC5530"/>
+    </linearGradient>
+    <linearGradient id="t7-side" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C2411F"/><stop offset="1" stop-color="#8E2A12"/>
+    </linearGradient>
+    <radialGradient id="t7-pearl" cx="50" cy="69" r="7" fx="47.5" fy="66.5" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset=".7" stop-color="#F1EEFA"/><stop offset="1" stop-color="#BFC2DA"/>
+    </radialGradient>
+    <filter id="t7-blur3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.6"/></filter>
+    <filter id="t7-blur1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation=".9"/></filter>
+  </defs>
+  <rect width="100" height="100" rx="22" fill="url(#t7-bg)"/>
+  <ellipse cx="52" cy="78" rx="28" ry="4" fill="#2B5C9A" opacity=".45" filter="url(#t7-blur3)"/>
+  <!-- extrusion -->
+  <g fill="url(#t7-side)">
+    <path transform="translate(2.6 2.6)" d="M27 76 V48 A23 23 0 0 1 73 48 V76 H61 V48 A11 11 0 0 0 39 48 V76 Z"/>
+    <path transform="translate(1.3 1.3)" d="M27 76 V48 A23 23 0 0 1 73 48 V76 H61 V48 A11 11 0 0 0 39 48 V76 Z"/>
+  </g>
+  <!-- pearl in the gate -->
+  <ellipse cx="50.5" cy="76.4" rx="6.5" ry="1.4" fill="#7A2A14" opacity=".4" filter="url(#t7-blur1)"/>
+  <circle cx="50" cy="69" r="7" fill="url(#t7-pearl)"/>
+  <!-- face -->
+  <path d="M27 76 V48 A23 23 0 0 1 73 48 V76 H61 V48 A11 11 0 0 0 39 48 V76 Z" fill="url(#t7-face)"/>
+  <path d="M28.6 60 V48 A21.4 21.4 0 0 1 58 28" fill="none" stroke="#FFE3CC" stroke-width="1.4" stroke-linecap="round" opacity=".9" filter="url(#t7-blur1)"/>
+  <path d="M39 48 A11 11 0 0 1 61 48" fill="none" stroke="#B83A18" stroke-width="1" opacity=".5"/>
+</svg>

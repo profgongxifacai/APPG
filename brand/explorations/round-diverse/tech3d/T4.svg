@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+  <defs>
+    <linearGradient id="t4-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F4F5FF"/><stop offset="1" stop-color="#D5DBF7"/>
+    </linearGradient>
+    <linearGradient id="t4-f1" x1="24" y1="0" x2="76" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#7B79F0"/><stop offset="1" stop-color="#4F4BD8"/></linearGradient>
+    <linearGradient id="t4-s1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3D38B8"/><stop offset=".35" stop-color="#5450D6"/><stop offset="1" stop-color="#2B278F"/></linearGradient>
+    <linearGradient id="t4-f2" x1="24" y1="0" x2="76" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#7CC8FF"/><stop offset="1" stop-color="#3B8FF0"/></linearGradient>
+    <linearGradient id="t4-s2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2E7BD8"/><stop offset=".35" stop-color="#4AA2F5"/><stop offset="1" stop-color="#1E5FB8"/></linearGradient>
+    <radialGradient id="t4-f3" cx="44" cy="36" r="30" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".7" stop-color="#EEF3FF"/><stop offset="1" stop-color="#D3DCF5"/></radialGradient>
+    <linearGradient id="t4-s3" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#B9C3E6"/><stop offset=".35" stop-color="#E3E8F8"/><stop offset="1" stop-color="#97A2CC"/></linearGradient>
+    <filter id="t4-blur3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="t4-blur1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter>
+  </defs>
+  <rect width="100" height="100" rx="22" fill="url(#t4-bg)"/>
+  <ellipse cx="50" cy="75" rx="27" ry="10" fill="#3B3F8F" opacity=".35" filter="url(#t4-blur3)"/>
+  <path d="M24 64 V71 A26 13 0 0 0 76 71 V64 A26 13 0 0 1 24 64 Z" fill="url(#t4-s1)"/>
+  <ellipse cx="50" cy="64" rx="26" ry="13" fill="url(#t4-f1)"/>
+  <ellipse cx="50" cy="64" rx="25.2" ry="12.3" fill="none" stroke="#fff" stroke-width=".7" opacity=".55"/>
+  <ellipse cx="50" cy="59" rx="24" ry="9" fill="#1A1660" opacity=".35" filter="url(#t4-blur1)"/>
+  <path d="M24 52 V59 A26 13 0 0 0 76 59 V52 A26 13 0 0 1 24 52 Z" fill="url(#t4-s2)"/>
+  <ellipse cx="50" cy="52" rx="26" ry="13" fill="url(#t4-f2)"/>
+  <ellipse cx="50" cy="52" rx="25.2" ry="12.3" fill="none" stroke="#fff" stroke-width=".7" opacity=".55"/>
+  <ellipse cx="50" cy="47" rx="24" ry="9" fill="#0E3C7A" opacity=".35" filter="url(#t4-blur1)"/>
+  <path d="M24 40 V47 A26 13 0 0 0 76 47 V40 A26 13 0 0 1 24 40 Z" fill="url(#t4-s3)"/>
+  <ellipse cx="50" cy="40" rx="26" ry="13" fill="url(#t4-f3)"/>
+  <ellipse cx="50" cy="40" rx="25.2" ry="12.3" fill="none" stroke="#fff" stroke-width=".7" opacity=".55"/>
+  <ellipse cx="50" cy="40" rx="14" ry="7" fill="none" stroke="#B7C2E8" stroke-width="1.6" opacity=".9"/>
+  <ellipse cx="50" cy="40.6" rx="14" ry="7" fill="none" stroke="#fff" stroke-width=".8"/>
+</svg>

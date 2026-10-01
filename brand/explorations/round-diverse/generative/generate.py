@@ -125,30 +125,27 @@ def gn3():
     L = (-0.55, -0.6, 0.58)  # light dir
     ln = math.sqrt(sum(v * v for v in L))
     L = tuple(v / ln for v in L)
-    pitch = 2.1
+    pitch = 2.18
     dots = []
-    row = 0
-    y = 50 - R - pitch
-    while y <= 50 + R + pitch:
-        off = (pitch / 2) if row % 2 else 0
-        x = 50 - R - pitch + off
-        while x <= 50 + R + pitch:
+    # polar dot matrix: concentric rings -> perfectly circular silhouette
+    rings = int(R / pitch)
+    for k in range(rings + 1):
+        rr = R - k * pitch          # outermost ring sits exactly on R
+        if rr < 0.2:
+            cnt, rr = 1, 0.0
+        else:
+            cnt = max(1, round(TAU * rr / pitch))
+        for j in range(cnt):
+            a = (j + 0.5 * (k % 2)) / cnt * TAU
+            x, y = 50 + rr * math.cos(a), 50 + rr * math.sin(a)
             dx, dy = (x - 50) / R, (y - 50) / R
-            d2 = dx * dx + dy * dy
-            if d2 <= 1:
-                dz = math.sqrt(1 - d2)
-                lam = max(0.0, dx * L[0] + dy * L[1] + dz * L[2])
-                v = 0.3 + 0.7 * lam ** 0.9
-                # crisp rim so silhouette survives
-                rim = 1 - d2
-                if rim < 0.06:
-                    v = max(v, 0.55)
-                r = pitch * 0.5 * min(1.0, v) * 0.98
-                if r > 0.18:
-                    dots.append(f"M{f(x - r)} {f(y)}a{f(r)} {f(r)} 0 1 0 {f(2 * r)} 0a{f(r)} {f(r)} 0 1 0 {f(-2 * r)} 0")
-            x += pitch
-        y += pitch * math.sqrt(3) / 2
-        row += 1
+            dz = math.sqrt(max(0.0, 1 - dx * dx - dy * dy))
+            lam = max(0.0, dx * L[0] + dy * L[1] + dz * L[2])
+            v = 0.16 + 0.84 * lam ** 1.1
+            if k == 0:
+                v = max(v, 0.62)   # crisp rim so the silhouette survives
+            r = pitch * 0.5 * min(1.0, v) * 0.96
+            dots.append(f"M{f(x - r)} {f(y)}a{f(r)} {f(r)} 0 1 0 {f(2 * r)} 0a{f(r)} {f(r)} 0 1 0 {f(-2 * r)} 0")
     body = f'<path d="{"".join(dots)}" fill="#A6F5C9"/>'
     return svg("GN3", "#0B3B2D", body)
 
@@ -396,7 +393,7 @@ def gn7():
 # GN8 — complete graph K_n ("mystic rose"): every node meets every node
 # =============================================================================
 def gn8():
-    n = 18
+    n = 13
     R = 35
     pts = [(50 + R * math.cos(i / n * TAU - math.pi / 2), 50 + R * math.sin(i / n * TAU - math.pi / 2)) for i in range(n)]
     # group chords by span so far/near chords can take different weights
@@ -407,9 +404,9 @@ def gn8():
             groups.setdefault(span, []).append(f"M{f(pts[i][0])} {f(pts[i][1])}L{f(pts[j][0])} {f(pts[j][1])}")
     body = []
     for span, segs in sorted(groups.items()):
-        op = 0.35 + 0.55 * (span / (n // 2))
+        op = 0.55 + 0.45 * (span / (n // 2))
         body.append(f'<path d="{"".join(segs)}" stroke-opacity="{f(op)}"/>')
-    g = f'<g fill="none" stroke="#1B1E24" stroke-width=".32">{"".join(body)}</g>'
+    g = f'<g fill="none" stroke="#14171C" stroke-width=".42">{"".join(body)}</g>'
     ring = f'<circle cx="50" cy="50" r="{R}" fill="none" stroke="#1B1E24" stroke-width="1.1"/>'
     nodes = "".join(f'<circle cx="{f(x)}" cy="{f(y)}" r="1.7"/>' for x, y in pts)
     hub = '<circle cx="50" cy="50" r="2.6" fill="#E5482B"/>'
@@ -419,12 +416,12 @@ def gn8():
 META = [
     {"code": "GN1", "name": "방사 일륜", "note": "216개의 테이퍼 광선이 하나의 원환을 이루는 금빛 태양 — 전체(pan)이자 동방의 해"},
     {"code": "GN2", "name": "모아레 쌍원", "note": "두 동심원 군이 겹쳐 간섭무늬를 만드는 주홍 원판 — 두 세계가 만나는 지점"},
-    {"code": "GN3", "name": "하프톤 구체", "note": "헥스 도트 매트릭스의 크기만으로 빛을 받는 구(지구)를 그린 민트 하프톤"},
+    {"code": "GN3", "name": "하프톤 구체", "note": "동심원 도트 매트릭스의 점 크기만으로 빛을 받는 구(지구)를 그린 민트 하프톤"},
     {"code": "GN4", "name": "하모노그래프", "note": "회전 진자 두 개의 감쇠 궤적이 9천 점으로 겹쳐 짠 로제트 — 리듬과 순환"},
     {"code": "GN5", "name": "쌍극 흐름장", "note": "두 극을 잇는 전기장 역선이 원 안을 채우는 흐름장 — 연결의 물리학"},
     {"code": "GN6", "name": "보로노이 원판", "note": "필로택시스 시드로 나눈 84개 보로노이 셀이 하나의 원을 이루는 네트워크"},
     {"code": "GN7", "name": "괄호 스캔라인", "note": "스캔라인 굵기를 SDF로 변조해 워드마크의 [ · ]가 떠오르는 라인필드"},
-    {"code": "GN8", "name": "완전 그래프", "note": "18개 노드가 서로 모두 연결된 K18 미스틱 로즈 — 'pan'의 모든-대-모든 연결"},
+    {"code": "GN8", "name": "완전 그래프", "note": "13개 노드가 서로 모두 연결된 K13 미스틱 로즈 — 'pan'의 모든-대-모든 연결"},
 ]
 
 
