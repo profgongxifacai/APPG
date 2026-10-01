@@ -215,8 +215,8 @@ const add = (code, name, note, content) => { files[code] = content; meta.push({ 
   }
   // 백 = the 모시 field (translucent ramie, tonal patches); 청·적·황·흑 silk patches build 亞.
   // Some glyph patches are cut on the diagonal into two triangles, as in 조각보 (never in Mondrian).
-  const OB = ['#2A4C9A', '#B8312F', '#DDA020', '#26232A']; // 청 적 황 흑
-  const PALE = ['#ECE5D5', '#E4DBC6', '#F1ECE0', '#DDD2BB', '#E8E0CD'];
+  const OB = ['#2A4C9A', '#B8312F', '#E09E14', '#26232A']; // 청 적 황 흑
+  const PALE = ['#EFEBE3', '#E6E1D6', '#F4F1EB', '#DFD9CC', '#EAE5DB'];
   let last = -1, body = '', seamsIn = '', seamsOut = '';
   const pick = () => { let k; do { k = Math.floor(r() * OB.length); } while (k === last); last = k; return OB[k]; };
   for (const p of patches) {
@@ -234,9 +234,9 @@ const add = (code, name, note, content) => { files[code] = content; meta.push({ 
     } else body += `<rect ${rect} fill="${pick()}"/>`;
     seamsIn += `<rect ${rect}/>`;
   }
-  body += `<g fill="none" stroke="#BFB295" stroke-width=".55">${seamsOut}</g>`;
+  body += `<g fill="none" stroke="#C9C0AE" stroke-width=".55">${seamsOut}</g>`;
   body += `<g fill="none" stroke="#F7F2E6" stroke-width=".75" stroke-linejoin="round">${seamsIn}</g>`;
-  add(code, '오방 조각보 亞', '모시(백) 바탕 위 청·적·황·흑 비단 조각을 사선까지 이어 붙인 亞 — 오방 다섯 방위(汎)가 한 장의 아시아', svg(code, '#E8E0CD', body));
+  add(code, '오방 조각보 亞', '모시(백) 바탕 위 청·적·황·흑 비단 조각을 사선까지 이어 붙인 亞 — 오방 다섯 방위(汎)가 한 장의 아시아', svg(code, '#EAE5DB', body));
 }
 
 // =========================================================== GN4 판 등고선
@@ -380,6 +380,8 @@ const add = (code, name, note, content) => { files[code] = content; meta.push({ 
   const th = c * 0.8, pad = (c - th) / 2;
   for (let j = 0; j < N; j++) { // weft runs
     let i = 0; while (i < N) { if (!weftTop(i, j)) { i++; continue; } let e = i; while (e + 1 < N && weftTop(e + 1, j)) e++;
+      if (e === i && D((i + 0.5) * c, (j + 0.5) * c) > 0) { // a lone binding point in the warp-faced ground: small, in shadow
+        weft += `<rect x="${f(i * c + 0.55)}" y="${f(j * c + 0.6)}" width="${f(c - 1.1)}" height="${f(c - 1.2)}" rx=".4" fill="#D7A9A0"/>`; i = e + 1; continue; }
       const sh = mixHex('F4EAD6', 'E3D3B4', r());
       weft += `<rect x="${f(i * c + 0.25)}" y="${f(j * c + pad)}" width="${f((e - i + 1) * c - 0.5)}" height="${f(th)}" rx="${f(th / 2)}" fill="${sh}"/>`; i = e + 1; }
   }
@@ -410,7 +412,7 @@ const add = (code, name, note, content) => { files[code] = content; meta.push({ 
       X = e + 1;
     }
   }
-  add(code, '亞의 亞', '亞의 픽셀 하나하나가 다시 亞 — 부분이 전체를 담는 자기유사 구조, 전체(pan)가 곧 아시아', svg(code, '#F4F1EA', `<g fill="#C6D1EE">${under}</g><g fill="#1F3C8F">${body}</g>`));
+  add(code, '亞의 亞', '亞의 픽셀 하나하나가 다시 亞 — 부분이 전체를 담는 자기유사 구조, 전체(pan)가 곧 아시아', svg(code, '#F4F1EA', `<g fill="#8AA0DA">${under}</g><g fill="#162E78">${body}</g>`));
 }
 
 // =========================================================== GN10 동류 ㅍ
@@ -420,7 +422,7 @@ const add = (code, name, note, content) => { files[code] = content; meta.push({ 
   const code = 'GN10';
   const G = [R(24, 26, 76, 35), R(34, 35, 43, 65), R(57, 35, 66, 65), R(18, 65, 82, 74)];
   const Dob = sdf([...G, R(40, 33, 60, 67)]); // obstacle = ㅍ with its closed counter filled
-  const h = 0.4, n = Math.round(100 / h) + 1, k = 7, kap = 0.55;
+  const h = 0.4, n = Math.round(100 / h) + 1, k = 12, kap = 0.55;
   const F = new Float64Array(n * n);
   for (let j = 0; j < n; j++) for (let i = 0; i < n; i++) {
     const x = i * h, y = j * h, d = Math.max(Dob(x, y), 0);

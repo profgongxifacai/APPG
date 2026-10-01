@@ -3,10 +3,10 @@
 <defs>
 <clipPath id="EA6-clip"><rect width="100" height="100" rx="22"/></clipPath>
 <filter id="EA6-grain" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7"/><feColorMatrix values="0 0 0 0 0.25  0 0 0 0 0.2  0 0 0 0 0.12  0.6 0 0 0 -0.25"/></filter>
-<linearGradient id="EA6-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22325A"/><stop offset="1" stop-color="#16213D"/></linearGradient>
-<linearGradient id="EA6-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F0D99A"/><stop offset="0.45" stop-color="#CFA85A"/><stop offset="0.7" stop-color="#E6C77E"/><stop offset="1" stop-color="#B98F45"/></linearGradient>
+<linearGradient id="EA6-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#25211D"/><stop offset="1" stop-color="#15120F"/></linearGradient>
+<linearGradient id="EA6-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F5E2A8"/><stop offset="0.4" stop-color="#D2AA5A"/><stop offset="0.65" stop-color="#EDD08A"/><stop offset="1" stop-color="#B48A40"/></linearGradient>
 <clipPath id="EA6-g"><path d="M15 17H85V25.5H15ZM15 74.5H85V83H15ZM37.5 17H46.0V83H37.5ZM54 17H62.5V83H54ZM20 34.5H46.0V43.0H28.5V57H46.0V65.5H20ZM80.0 34.5H54V43.0H71.5V57H54V65.5H80.0Z"/></clipPath>
-<filter id="EA6-silk" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><feTurbulence type="fractalNoise" baseFrequency="0.02 0.9" numOctaves="2" seed="12"/><feColorMatrix values="0 0 0 0 0.6  0 0 0 0 0.7  0 0 0 0 0.9  0.5 0 0 0 -0.2"/></filter>
+<filter id="EA6-silk" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><feTurbulence type="fractalNoise" baseFrequency="0.02 0.9" numOctaves="2" seed="12"/><feColorMatrix values="0 0 0 0 0.6  0 0 0 0 0.5  0 0 0 0 0.4  0.4 0 0 0 -0.2"/></filter>
 <filter id="EA6-crinkle" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><feTurbulence type="fractalNoise" baseFrequency="0.35" numOctaves="3" seed="31"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.8  1.2 0 0 0 -0.55"/></filter>
 </defs>
 <g clip-path="url(#EA6-clip)">
