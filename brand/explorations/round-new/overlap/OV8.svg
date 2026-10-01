@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+  <defs><mask id="ov8-m" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><rect width="100" height="100" fill="#000"/><path d="M62 14 L88 72 L36 72 Z" fill="#fff" stroke="#fff" stroke-width="6" stroke-linejoin="round"/></mask></defs>
+  <rect width="100" height="100" rx="22" fill="#FFD23F"/>
+  <rect x="14" y="40" width="46" height="46" rx="6" fill="#111111"/>
+  <path d="M62 14 L88 72 L36 72 Z" fill="#FF006E" stroke="#FF006E" stroke-width="6" stroke-linejoin="round"/>
+  <g mask="url(#ov8-m)"><rect x="14" y="40" width="46" height="46" rx="6" fill="#FFFFFF"/></g>
+</svg>

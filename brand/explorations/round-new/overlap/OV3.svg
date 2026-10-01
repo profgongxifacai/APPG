@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+  <defs><mask id="ov3-m" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><rect width="100" height="100" fill="#000"/><line x1="72" y1="80" x2="45" y2="22" stroke="#fff" stroke-width="20" stroke-linecap="round"/></mask></defs>
+  <rect width="100" height="100" rx="22" fill="#F7F1E8"/>
+  <line x1="28" y1="80" x2="55" y2="22" stroke="#E63946" stroke-width="20" stroke-linecap="round"/>
+  <line x1="72" y1="80" x2="45" y2="22" stroke="#F4A261" stroke-width="20" stroke-linecap="round"/>
+  <g mask="url(#ov3-m)"><line x1="28" y1="80" x2="55" y2="22" stroke="#6B0F1F" stroke-width="20" stroke-linecap="round"/></g>
+</svg>
