@@ -1,16 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
   <title>Panasia GR7</title>
-  <rect id="gr7-tile" width="100" height="100" rx="22" fill="#F1E9DA"/>
-  <rect x="20" y="29.3" width="60" height="2.4" rx="1.2" fill="#1E1E1E"/>
-  <rect x="20.5" y="24" width="13" height="13" rx="3" fill="#1E1E1E"/>
-  <rect x="34.83" y="24" width="13" height="13" rx="3" fill="#1E1E1E"/>
-  <rect x="49.17" y="24" width="13" height="13" rx="3" fill="#D83A2E"/>
-  <rect x="20" y="48.8" width="60" height="2.4" rx="1.2" fill="#1E1E1E"/>
-  <rect x="20.5" y="43.5" width="13" height="13" rx="3" fill="#1E1E1E"/>
-  <rect x="34.83" y="43.5" width="13" height="13" rx="3" fill="#1E1E1E"/>
-  <rect x="63.5" y="43.5" width="13" height="13" rx="3" fill="#1E1E1E"/>
-  <rect x="20" y="68.3" width="60" height="2.4" rx="1.2" fill="#1E1E1E"/>
-  <rect x="20.5" y="63" width="13" height="13" rx="3" fill="#1E1E1E"/>
-  <rect x="49.17" y="63" width="13" height="13" rx="3" fill="#1E1E1E"/>
-  <rect x="63.5" y="63" width="13" height="13" rx="3" fill="#1E1E1E"/>
+  <rect id="gr7-tile" width="100" height="100" rx="22" fill="#141414"/>
+  <path d="M39.5 39.5H24.5A15 15 0 0 1 39.5 24.5Z" fill="#FFFFFF"/>
+  <rect x="42.5" y="24.5" width="15" height="15" rx="2.5" fill="#FFFFFF"/>
+  <rect x="24.5" y="42.5" width="15" height="15" rx="2.5" fill="#FFFFFF"/>
+  <path d="M39.5 60.5H24.5A15 15 0 0 0 39.5 75.5Z" fill="#FFFFFF"/>
+  <rect x="42.5" y="60.5" width="15" height="15" rx="2.5" fill="#FFFFFF"/>
+  <rect x="60.5" y="24.5" width="15" height="51" rx="2.5" fill="#C8FF3D"/>
 </svg>
