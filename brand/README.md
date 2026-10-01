@@ -1,6 +1,6 @@
 # Panasia 브랜드 가이드
 
-![로고 미리보기](panasia-logo/preview.png)
+![브랜드 시트](brand-sheet.png)
 
 ## 로고
 
