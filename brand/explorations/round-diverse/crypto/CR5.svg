@@ -2,5 +2,5 @@
 <defs>
 <linearGradient id="cr5-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2BFFC6"/><stop offset="1" stop-color="#0090FF"/></linearGradient></defs>
 <rect width="100" height="100" rx="22" fill="#061A2E"/>
-<path fill="url(#cr5-g)" fill-rule="evenodd" d="M25,80 V47 A25,25 0 0 1 75,47 V80 Z M50,38 a12,12 0 1 0 0.01,0 Z"/>
+<path fill="url(#cr5-g)" fill-rule="evenodd" d="M22,80 V50 A28,28 0 0 1 78,50 V80 Z M33,80 V50 A17,17 0 0 1 67,50 V80 Z"/><path fill="url(#cr5-g)" d="M40,80 V52 A10,10 0 0 1 60,52 V80 Z"/>
 </svg>

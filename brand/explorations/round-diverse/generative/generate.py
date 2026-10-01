@@ -69,29 +69,29 @@ def periodic_noise(theta, octaves=3, seed=0):
 # =============================================================================
 def gn1():
     cx = cy = 50
-    N = 216
+    N = 144
     R_OUT = 35.5
+    R_IN = 12.0
+    TWIST = math.radians(64)   # each ray leans: the burst reads as an iris / vortex
     parts = []
     for i in range(N):
         a = i / N * TAU - math.pi / 2
-        # inner radius breathes with periodic noise -> lively inner edge, clean outer edge
-        r_in = 15.5 + 4.0 * math.cos(6 * (a + math.pi / 2)) ** 2 * (1 if i % 2 == 0 else 0.55)
-        w_out = TAU * R_OUT / N * 0.46   # half-width at the rim
-        w_in = 0.05
-        ca, sa = math.cos(a), math.sin(a)
-        px, py = -sa, ca
-        p1 = (cx + ca * r_in + px * w_in, cy + sa * r_in + py * w_in)
-        p2 = (cx + ca * R_OUT + px * w_out, cy + sa * R_OUT + py * w_out)
-        p3 = (cx + ca * R_OUT - px * w_out, cy + sa * R_OUT - py * w_out)
-        p4 = (cx + ca * r_in - px * w_in, cy + sa * r_in - py * w_in)
-        parts.append(poly_d([p1, p2, p3, p4]))
+        b = a + TWIST
+        w_out = TAU * R_OUT / N * 0.43   # half-width at the rim (tapers to a hairline inside)
+        p_in = (cx + math.cos(a) * R_IN, cy + math.sin(a) * R_IN)
+        ob = (cx + math.cos(b) * R_OUT, cy + math.sin(b) * R_OUT)
+        tx, ty = -math.sin(b), math.cos(b)
+        p2 = (ob[0] + tx * w_out, ob[1] + ty * w_out)
+        p3 = (ob[0] - tx * w_out, ob[1] - ty * w_out)
+        parts.append(poly_d([p_in, p2, p3]))
     defs = (
         '<radialGradient id="gn1g" cx="50" cy="50" r="36" gradientUnits="userSpaceOnUse">'
-        '<stop offset=".3" stop-color="#FFE3A3"/><stop offset="1" stop-color="#E8A93A"/></radialGradient>'
+        '<stop offset=".3" stop-color="#FFE7B0"/><stop offset="1" stop-color="#E8A93A"/></radialGradient>'
     )
     body = (
         f'<path d="{"".join(parts)}" fill="url(#gn1g)"/>'
-        f'<circle cx="50" cy="50" r="4.2" fill="#FFE3A3"/>'
+        f'<circle cx="50" cy="50" r="{R_OUT}" fill="none" stroke="#E8A93A" stroke-width=".9"/>'
+        f'<circle cx="50" cy="50" r="4.4" fill="#FFE7B0"/>'
     )
     return svg("GN1", "#0E1A2B", body, defs)
 
@@ -155,29 +155,32 @@ def gn3():
 # =============================================================================
 def gn4():
     # rotary harmonograph: two circular pendulums, slightly detuned, damped
-    f1, f2 = 1.0, -3.006
-    d = 0.0019
+    f1, f2 = 1.0, -3.012
+    d = 0.0027
     pts = []
-    T = 1150
-    n = 9000
+    T = 430
+    n = 15000
     for i in range(n):
         t = i / n * T
         e = math.exp(-d * t)
-        x = (math.cos(f1 * t) + 0.62 * math.cos(f2 * t)) * e
-        y = (math.sin(f1 * t) + 0.62 * math.sin(f2 * t)) * e
+        x = (math.cos(f1 * t) + 0.8 * math.cos(f2 * t)) * e
+        y = (math.sin(f1 * t) + 0.8 * math.sin(f2 * t)) * e
         pts.append((50 + x, 50 + y))
     # scale to fit radius ~35
-    mx = max(math.hypot(x - 50, y - 50) for x, y in pts)
-    s = 35 / mx
-    pts = [(50 + (x - 50) * s, 50 + (y - 50) * s) for x, y in pts]
+    # centre on the bounding box, then fit to radius 35
+    xs, ys = [p[0] for p in pts], [p[1] for p in pts]
+    ox, oy = (min(xs) + max(xs)) / 2, (min(ys) + max(ys)) / 2
+    mx = max(math.hypot(x - ox, y - oy) for x, y in pts)
+    s = 36 / mx
+    pts = [(50 + (x - ox) * s, 50 + (y - oy) * s) for x, y in pts]
     defs = (
         '<linearGradient id="gn4g" x1="14" y1="14" x2="86" y2="86" gradientUnits="userSpaceOnUse">'
         '<stop offset="0" stop-color="#FF8FB8"/><stop offset=".5" stop-color="#C9A6FF"/>'
         '<stop offset="1" stop-color="#7FE3FF"/></linearGradient>'
     )
     body = (
-        f'<path d="{line_d(pts)}" fill="none" stroke="url(#gn4g)" stroke-width=".22" '
-        f'stroke-linejoin="round" stroke-opacity=".9"/>'
+        f'<path d="{line_d(pts)}" fill="none" stroke="url(#gn4g)" stroke-width=".2" '
+        f'stroke-linejoin="round" stroke-opacity=".92"/>'
     )
     return svg("GN4", "#17123D", body, defs)
 
@@ -414,10 +417,10 @@ def gn8():
 
 
 META = [
-    {"code": "GN1", "name": "방사 일륜", "note": "216개의 테이퍼 광선이 하나의 원환을 이루는 금빛 태양 — 전체(pan)이자 동방의 해"},
+    {"code": "GN1", "name": "방사 일륜", "note": "144개의 기울어진 테이퍼 광선이 소용돌이 원환을 이루는 금빛 일륜 — 전체(pan)이자 동방의 해"},
     {"code": "GN2", "name": "모아레 쌍원", "note": "두 동심원 군이 겹쳐 간섭무늬를 만드는 주홍 원판 — 두 세계가 만나는 지점"},
     {"code": "GN3", "name": "하프톤 구체", "note": "동심원 도트 매트릭스의 점 크기만으로 빛을 받는 구(지구)를 그린 민트 하프톤"},
-    {"code": "GN4", "name": "하모노그래프", "note": "회전 진자 두 개의 감쇠 궤적이 9천 점으로 겹쳐 짠 로제트 — 리듬과 순환"},
+    {"code": "GN4", "name": "하모노그래프", "note": "회전 진자 두 개의 감쇠 궤적이 1만5천 점으로 겹쳐 짠 로제트 — 리듬과 순환"},
     {"code": "GN5", "name": "쌍극 흐름장", "note": "두 극을 잇는 전기장 역선이 원 안을 채우는 흐름장 — 연결의 물리학"},
     {"code": "GN6", "name": "보로노이 원판", "note": "필로택시스 시드로 나눈 84개 보로노이 셀이 하나의 원을 이루는 네트워크"},
     {"code": "GN7", "name": "괄호 스캔라인", "note": "스캔라인 굵기를 SDF로 변조해 워드마크의 [ · ]가 떠오르는 라인필드"},
