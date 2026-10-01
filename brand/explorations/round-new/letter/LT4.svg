@@ -3,5 +3,5 @@
 <g fill="none" stroke="#14213D" stroke-width="13">
 <path d="M30 37C30 31 37 28.5 47 28.5C58 28.5 64 31 64 40V78.5"/>
 <path d="M64 48.5H48a11.75 11.75 0 0 0 0 23.5H64"/></g>
-<g stroke="#FFB347" stroke-width="2.6" stroke-linecap="round"><path d="M57 55.5L62 50.5"/><path d="M57 65L62 70"/></g>
+<g fill="#FFB347"><path d="M54.5 55L60.6 51.9L57.5 58Z"/><path d="M54.5 65.5L60.6 68.6L57.5 62.5Z"/></g>
 </svg>
