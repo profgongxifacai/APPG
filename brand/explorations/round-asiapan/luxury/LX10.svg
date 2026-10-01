@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+<title>Panasia LX10 — 亞형 크레스트</title>
+<defs>
+<radialGradient id="lx10-ox" cx="0.3" cy="0.2" r="0.95"><stop offset="0" stop-color="#7A1E22"/><stop offset="0.55" stop-color="#4A0F12"/><stop offset="1" stop-color="#24060A"/></radialGradient>
+<linearGradient id="lx10-plat" x1="17" y1="17" x2="83" y2="83" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FAFBFC"/><stop offset="0.3" stop-color="#D3D7DC"/><stop offset="0.55" stop-color="#9AA1A9"/><stop offset="0.8" stop-color="#E8EBEE"/><stop offset="1" stop-color="#B4BAC1"/></linearGradient>
+<clipPath id="lx10-b"><path d="M27,15H73V27H85V73H73V85H27V73H15V27H27Z"/></clipPath>
+</defs>
+<rect width="100" height="100" rx="22" fill="url(#lx10-ox)"/>
+<path d="M27,15H73V27H85V73H73V85H27V73H15V27H27Z" fill="#000" opacity=".55" transform="translate(.8 1.1)"/>
+<path d="M27,15H73V27H85V73H73V85H27V73H15V27H27Z" fill="url(#lx10-plat)"/>
+<path d="M28.50,16.50H71.50V28.50H83.50V71.50H71.50V83.50H28.50V71.50H16.50V28.50H28.50ZM30.00,18.00H70.00V30.00H82.00V70.00H70.00V82.00H30.00V70.00H18.00V30.00H30.00ZM31.50,19.50H68.50V31.50H80.50V68.50H68.50V80.50H31.50V68.50H19.50V31.50H31.50ZM33.00,21.00H67.00V33.00H79.00V67.00H67.00V79.00H33.00V67.00H21.00V33.00H33.00ZM34.50,22.50H65.50V34.50H77.50V65.50H65.50V77.50H34.50V65.50H22.50V34.50H34.50ZM36.00,24.00H64.00V36.00H76.00V64.00H64.00V76.00H36.00V64.00H24.00V36.00H36.00ZM37.50,25.50H62.50V37.50H74.50V62.50H62.50V74.50H37.50V62.50H25.50V37.50H37.50ZM39.00,27.00H61.00V39.00H73.00V61.00H61.00V73.00H39.00V61.00H27.00V39.00H39.00Z" fill="none" stroke="#6E757E" stroke-width=".25" opacity=".45" clip-path="url(#lx10-b)"/>
+<path d="M27,15H73V27H85V73H73V85H27V73H15V27H27Z" fill="none" stroke="#FFFFFF" stroke-width=".5" opacity=".8"/>
+<path d="M31,28.5H69V37.5H31ZM37.5,37.5H46V62.5H37.5ZM54,37.5H62.5V62.5H54ZM28,62.5H72V71.5H28Z" fill="#FFFFFF" opacity=".75" transform="translate(.5 .6)"/>
+<path d="M31,28.5H69V37.5H31ZM37.5,37.5H46V62.5H37.5ZM54,37.5H62.5V62.5H54ZM28,62.5H72V71.5H28Z" fill="#3A0B0E"/>
+<path d="M31,28.5H69V37.5H31ZM37.5,37.5H46V62.5H37.5ZM54,37.5H62.5V62.5H54ZM28,62.5H72V71.5H28Z" fill="none" stroke="#1A0305" stroke-width=".5"/>
+</svg>

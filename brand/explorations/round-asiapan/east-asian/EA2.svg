@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+<title>Panasia EA2 — Mosi Patchwork</title>
+<defs>
+<clipPath id="EA2-clip"><rect width="100" height="100" rx="22"/></clipPath>
+<filter id="EA2-grain" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7"/><feColorMatrix values="0 0 0 0 0.25  0 0 0 0 0.2  0 0 0 0 0.12  0.6 0 0 0 -0.25"/></filter>
+<filter id="EA2-weave" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><feTurbulence type="fractalNoise" baseFrequency="0.9 0.06" numOctaves="2" seed="3" result="a"/><feTurbulence type="fractalNoise" baseFrequency="0.06 0.9" numOctaves="2" seed="5" result="b"/><feComposite in="a" in2="b" operator="arithmetic" k2="0.5" k3="0.5"/><feColorMatrix values="0 0 0 0 0.3  0 0 0 0 0.25  0 0 0 0 0.18  0.9 0 0 0 -0.35"/></filter>
+</defs>
+<g clip-path="url(#EA2-clip)">
+<rect width="100" height="100" fill="#F1ECE0"/>
+<rect width="100" height="100" filter="url(#EA2-weave)" opacity="0.35"/>
+<g style="isolation:isolate"><path d="M14 17H86V25H14Z" fill="#2E4F8C" opacity="0.78" style="mix-blend-mode:multiply"/>
+<path d="M14 75H86V83H14Z" fill="#C4492F" opacity="0.78" style="mix-blend-mode:multiply"/>
+<path d="M38 17H46V83H38Z" fill="#D99A2B" opacity="0.78" style="mix-blend-mode:multiply"/>
+<path d="M54 17H62V83H54Z" fill="#5E9479" opacity="0.78" style="mix-blend-mode:multiply"/>
+<path d="M20 35H46V43H28V57H46V65H20Z" fill="#7A4A6A" opacity="0.78" style="mix-blend-mode:multiply"/>
+<path d="M80 35H54V43H72V57H54V65H80Z" fill="#3A3936" opacity="0.78" style="mix-blend-mode:multiply"/></g>
+</g>
+</svg>

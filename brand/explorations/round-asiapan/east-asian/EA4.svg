@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+<title>Panasia EA4 — Sanggam</title>
+<defs>
+<clipPath id="EA4-clip"><rect width="100" height="100" rx="22"/></clipPath>
+<filter id="EA4-grain" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7"/><feColorMatrix values="0 0 0 0 0.25  0 0 0 0 0.2  0 0 0 0 0.12  0.6 0 0 0 -0.25"/></filter>
+<radialGradient id="EA4-bg" cx="0.35" cy="0.28" r="0.9"><stop offset="0" stop-color="#B9D0BF"/><stop offset="0.6" stop-color="#97B4A1"/><stop offset="1" stop-color="#7E9E8A"/></radialGradient>
+<filter id="EA4-inlay" x="-5%" y="-5%" width="110%" height="110%"><feOffset dx="0" dy="0.5" in="SourceAlpha" result="o"/><feComposite in="SourceAlpha" in2="o" operator="out" result="edge"/><feFlood flood-color="#2a3a30" flood-opacity="0.45"/><feComposite in2="edge" operator="in" result="sh"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="sh"/></feMerge></filter>
+</defs>
+<g clip-path="url(#EA4-clip)">
+<rect width="100" height="100" fill="url(#EA4-bg)"/>
+<g fill="none" stroke="#5E7D6A" stroke-width="0.25" opacity="0.5"><path d="M0 12L9 18L14 31L8 44L11 60L4 72L9 88L6 100"/><path d="M100 18L91 26L93 40L88 55L94 70L90 86L95 100"/><path d="M22 0L28 9L41 11L50 7L63 12L76 6L85 0"/><path d="M14 31L26 30M88 55L80 50M8 44L0 47M93 40L100 43M50 7L52 0M28 92L40 88L55 93L70 89L78 100"/></g>
+<g filter="url(#EA4-inlay)">
+<path d="M16 18H84V26H16ZM16 74H84V82H16ZM38.5 18H46.5V82H38.5ZM53.5 18H61.5V82H53.5Z" fill="#F3F0E6"/>
+<path d="M21 35.5H46.5V43.5H29V56.5H46.5V64.5H21ZM79 35.5H53.5V43.5H71V56.5H53.5V64.5H79Z" fill="#252523"/>
+</g>
+<ellipse cx="34" cy="22" rx="20" ry="7" fill="#fff" opacity="0.12"/>
+</g>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+<defs>
+<linearGradient id="t6-bg" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#272A6E"/><stop offset="1" stop-color="#0B0C29"/></linearGradient>
+<linearGradient id="t6-sh" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="0.12"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient><filter id="t6-b4" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter><filter id="t6-b2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2"/></filter><filter id="t6-b1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1"/></filter><filter id="t6-b0_5" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.5"/></filter>
+<radialGradient id="t6-glow" cx="74" cy="38" r="30" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFB04A" stop-opacity=".45"/><stop offset="1" stop-color="#FFB04A" stop-opacity="0"/></radialGradient>
+<linearGradient id="t6-gl" x1="0" y1="18" x2="0" y2="80" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#DCDDFB"/><stop offset="1" stop-color="#ABADF0"/></linearGradient>
+<linearGradient id="t6-am" x1="0" y1="34" x2="0" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFF1C2"/><stop offset=".5" stop-color="#FFB547"/><stop offset="1" stop-color="#F07A12"/></linearGradient>
+
+<clipPath id="t6-tile"><rect width="100" height="100" rx="22"/></clipPath>
+</defs>
+<g clip-path="url(#t6-tile)">
+<rect width="100" height="100" fill="url(#t6-bg)"/>
+
+<rect width="100" height="100" fill="url(#t6-glow)"/>
+<g transform="translate(0 4)" filter="url(#t6-b2)" opacity=".6"><path d="M21 21H57V27H48.5V42H59V48H19V42H29.5V27H21Z M35.5 27H42.5V42H35.5Z M64 18H70V56H64Z M24 58H30V74H79V80H24Z" fill-rule="evenodd" fill="#03031A"/></g>
+<g fill="#5D61C9" opacity="1"><path d="M21 21H57V27H48.5V42H59V48H19V42H29.5V27H21Z M35.5 27H42.5V42H35.5Z M64 18H70V56H64Z M24 58H30V74H79V80H24Z" fill-rule="evenodd" transform="translate(0 0.47) "/><path d="M21 21H57V27H48.5V42H59V48H19V42H29.5V27H21Z M35.5 27H42.5V42H35.5Z M64 18H70V56H64Z M24 58H30V74H79V80H24Z" fill-rule="evenodd" transform="translate(0 0.93) "/><path d="M21 21H57V27H48.5V42H59V48H19V42H29.5V27H21Z M35.5 27H42.5V42H35.5Z M64 18H70V56H64Z M24 58H30V74H79V80H24Z" fill-rule="evenodd" transform="translate(0 1.40) "/><path d="M21 21H57V27H48.5V42H59V48H19V42H29.5V27H21Z M35.5 27H42.5V42H35.5Z M64 18H70V56H64Z M24 58H30V74H79V80H24Z" fill-rule="evenodd" transform="translate(0 1.87) "/><path d="M21 21H57V27H48.5V42H59V48H19V42H29.5V27H21Z M35.5 27H42.5V42H35.5Z M64 18H70V56H64Z M24 58H30V74H79V80H24Z" fill-rule="evenodd" transform="translate(0 2.33) "/><path d="M21 21H57V27H48.5V42H59V48H19V42H29.5V27H21Z M35.5 27H42.5V42H35.5Z M64 18H70V56H64Z M24 58H30V74H79V80H24Z" fill-rule="evenodd" transform="translate(0 2.80) "/></g>
+<clipPath id="t6-g-c"><path d="M21 21H57V27H48.5V42H59V48H19V42H29.5V27H21Z M35.5 27H42.5V42H35.5Z M64 18H70V56H64Z M24 58H30V74H79V80H24Z" clip-rule="evenodd" transform=""/></clipPath>
+<clipPath id="t6-g-cd"><path d="M21 21H57V27H48.5V42H59V48H19V42H29.5V27H21Z M35.5 27H42.5V42H35.5Z M64 18H70V56H64Z M24 58H30V74H79V80H24Z" clip-rule="evenodd" transform="translate(0 0.7) "/></clipPath>
+<g clip-path="url(#t6-g-c)">
+<path d="M21 21H57V27H48.5V42H59V48H19V42H29.5V27H21Z M35.5 27H42.5V42H35.5Z M64 18H70V56H64Z M24 58H30V74H79V80H24Z" fill-rule="evenodd" transform="" fill="#6D70D6" opacity="1"/>
+<path d="M21 21H57V27H48.5V42H59V48H19V42H29.5V27H21Z M35.5 27H42.5V42H35.5Z M64 18H70V56H64Z M24 58H30V74H79V80H24Z" fill-rule="evenodd" transform="translate(0 -0.6) " fill="#FFFFFF" opacity="1"/>
+<g clip-path="url(#t6-g-cd)"><path d="M21 21H57V27H48.5V42H59V48H19V42H29.5V27H21Z M35.5 27H42.5V42H35.5Z M64 18H70V56H64Z M24 58H30V74H79V80H24Z" fill-rule="evenodd" transform="translate(0 -0.6) " fill="url(#t6-gl)"/></g>
+</g>
+<path d="M70 34H79.5V40H70Z" fill="#FFB547" filter="url(#t6-b2)" opacity=".9"/>
+<g fill="#B5520A" opacity="1"><path d="M70 34H79.5V40H70Z" fill-rule="nonzero" transform="translate(0 0.47) "/><path d="M70 34H79.5V40H70Z" fill-rule="nonzero" transform="translate(0 0.93) "/><path d="M70 34H79.5V40H70Z" fill-rule="nonzero" transform="translate(0 1.40) "/><path d="M70 34H79.5V40H70Z" fill-rule="nonzero" transform="translate(0 1.87) "/><path d="M70 34H79.5V40H70Z" fill-rule="nonzero" transform="translate(0 2.33) "/><path d="M70 34H79.5V40H70Z" fill-rule="nonzero" transform="translate(0 2.80) "/></g>
+<clipPath id="t6-d-c"><path d="M70 34H79.5V40H70Z" clip-rule="nonzero" transform=""/></clipPath>
+<clipPath id="t6-d-cd"><path d="M70 34H79.5V40H70Z" clip-rule="nonzero" transform="translate(0 0.7) "/></clipPath>
+<g clip-path="url(#t6-d-c)">
+<path d="M70 34H79.5V40H70Z" fill-rule="nonzero" transform="" fill="#B5520A" opacity="1"/>
+<path d="M70 34H79.5V40H70Z" fill-rule="nonzero" transform="translate(0 -0.6) " fill="#FFFBE8" opacity="1"/>
+<g clip-path="url(#t6-d-cd)"><path d="M70 34H79.5V40H70Z" fill-rule="nonzero" transform="translate(0 -0.6) " fill="url(#t6-am)"/></g>
+</g>
+
+<rect width="100" height="100" fill="url(#t6-sh)"/>
+</g>
+</svg>

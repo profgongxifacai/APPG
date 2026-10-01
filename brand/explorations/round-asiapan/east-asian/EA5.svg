@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+<title>Panasia EA5 — Mokpan</title>
+<defs>
+<clipPath id="EA5-clip"><rect width="100" height="100" rx="22"/></clipPath>
+<filter id="EA5-grain" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7"/><feColorMatrix values="0 0 0 0 0.25  0 0 0 0 0.2  0 0 0 0 0.12  0.6 0 0 0 -0.25"/></filter>
+<filter id="EA5-print" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="0.5" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency="0.008 0.16" numOctaves="3" seed="4" result="g"/><feColorMatrix in="g" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.1 0 0 0 1.48" result="ga"/><feComposite in="d" in2="ga" operator="in"/></filter>
+</defs>
+<g clip-path="url(#EA5-clip)">
+<rect width="100" height="100" fill="#F0E8D7"/>
+<rect width="100" height="100" filter="url(#EA5-grain)" opacity="0.25"/>
+<g filter="url(#EA5-print)" fill="#1F3768">
+<rect x="10.5" y="10.5" width="79" height="79" rx="2" fill="none" stroke="#1F3768" stroke-width="1.6"/>
+<rect x="20" y="22" width="60" height="14"/>
+<rect x="33" y="36" width="12" height="28"/>
+<rect x="55" y="36" width="12" height="28"/>
+<rect x="20" y="64" width="60" height="14"/>
+</g>
+</g>
+</svg>

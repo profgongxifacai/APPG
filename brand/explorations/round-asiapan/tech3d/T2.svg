@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+<defs>
+<linearGradient id="t2-bg" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#22264A"/><stop offset="1" stop-color="#0D0F22"/></linearGradient>
+<linearGradient id="t2-sh" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="0.12"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient><filter id="t2-b3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter><filter id="t2-b1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1"/></filter><linearGradient id="t2-n-g" x1="0" y1="18" x2="0" y2="33.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3A3B45"/><stop offset="1" stop-color="#101116"/></linearGradient><linearGradient id="t2-w-g" x1="0" y1="39.0" x2="0" y2="61.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DDD6C8"/></linearGradient><linearGradient id="t2-c-g" x1="0" y1="39.0" x2="0" y2="61.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFE27A"/><stop offset="1" stop-color="#EFA514"/></linearGradient><linearGradient id="t2-e-g" x1="0" y1="39.0" x2="0" y2="61.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4E8BFF"/><stop offset="1" stop-color="#1C47B8"/></linearGradient><linearGradient id="t2-s-g" x1="0" y1="67.0" x2="0" y2="82.0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF6A55"/><stop offset="1" stop-color="#C21F27"/></linearGradient>
+<linearGradient id="t2-gold" x1="16" y1="16" x2="84" y2="84" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFF0B8"/><stop offset=".35" stop-color="#E6B550"/><stop offset=".7" stop-color="#B98226"/><stop offset="1" stop-color="#F3D27A"/></linearGradient>
+
+<clipPath id="t2-tile"><rect width="100" height="100" rx="22"/></clipPath>
+</defs>
+<g clip-path="url(#t2-tile)">
+<rect width="100" height="100" fill="url(#t2-bg)"/>
+
+<rect x="15.5" y="19" width="69" height="69" rx="12" fill="#000" opacity=".55" filter="url(#t2-b3)"/>
+<rect x="15.5" y="17.5" width="69" height="69" rx="12" fill="#7A5513"/>
+<rect x="15.5" y="15.5" width="69" height="69" rx="12" fill="url(#t2-gold)"/>
+<rect x="16" y="16" width="68" height="68" rx="11.5" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width=".6"/>
+<path d="M22 18H78Q82 18 82 22V29.0Q82 33.0 78 33.0H22Q18 33.0 18 29.0V22Q18 18 22 18Z" transform="translate(0 1.4)" fill="#000" opacity=".45"/><clipPath id="t2-n-c"><path d="M22 18H78Q82 18 82 22V29.0Q82 33.0 78 33.0H22Q18 33.0 18 29.0V22Q18 18 22 18Z" clip-rule="nonzero" transform=""/></clipPath>
+<clipPath id="t2-n-cd"><path d="M22 18H78Q82 18 82 22V29.0Q82 33.0 78 33.0H22Q18 33.0 18 29.0V22Q18 18 22 18Z" clip-rule="nonzero" transform="translate(0 0.7) "/></clipPath>
+<g clip-path="url(#t2-n-c)">
+<path d="M22 18H78Q82 18 82 22V29.0Q82 33.0 78 33.0H22Q18 33.0 18 29.0V22Q18 18 22 18Z" fill-rule="nonzero" transform="" fill="#000" opacity="0.35"/>
+<path d="M22 18H78Q82 18 82 22V29.0Q82 33.0 78 33.0H22Q18 33.0 18 29.0V22Q18 18 22 18Z" fill-rule="nonzero" transform="translate(0 -0.55) " fill="#fff" opacity="0.55"/>
+<g clip-path="url(#t2-n-cd)"><path d="M22 18H78Q82 18 82 22V29.0Q82 33.0 78 33.0H22Q18 33.0 18 29.0V22Q18 18 22 18Z" fill-rule="nonzero" transform="translate(0 -0.55) " fill="url(#t2-n-g)"/></g>
+</g><path d="M20.8 19.6H79.2" stroke="#fff" stroke-opacity=".28" stroke-width="1.1" stroke-linecap="round"/><path d="M21 39.0H30.5Q33.5 39.0 33.5 42.0V58.0Q33.5 61.0 30.5 61.0H21Q18 61.0 18 58.0V42.0Q18 39.0 21 39.0Z" transform="translate(0 1.4)" fill="#000" opacity=".45"/><clipPath id="t2-w-c"><path d="M21 39.0H30.5Q33.5 39.0 33.5 42.0V58.0Q33.5 61.0 30.5 61.0H21Q18 61.0 18 58.0V42.0Q18 39.0 21 39.0Z" clip-rule="nonzero" transform=""/></clipPath>
+<clipPath id="t2-w-cd"><path d="M21 39.0H30.5Q33.5 39.0 33.5 42.0V58.0Q33.5 61.0 30.5 61.0H21Q18 61.0 18 58.0V42.0Q18 39.0 21 39.0Z" clip-rule="nonzero" transform="translate(0 0.7) "/></clipPath>
+<g clip-path="url(#t2-w-c)">
+<path d="M21 39.0H30.5Q33.5 39.0 33.5 42.0V58.0Q33.5 61.0 30.5 61.0H21Q18 61.0 18 58.0V42.0Q18 39.0 21 39.0Z" fill-rule="nonzero" transform="" fill="#000" opacity="0.35"/>
+<path d="M21 39.0H30.5Q33.5 39.0 33.5 42.0V58.0Q33.5 61.0 30.5 61.0H21Q18 61.0 18 58.0V42.0Q18 39.0 21 39.0Z" fill-rule="nonzero" transform="translate(0 -0.55) " fill="#fff" opacity="0.55"/>
+<g clip-path="url(#t2-w-cd)"><path d="M21 39.0H30.5Q33.5 39.0 33.5 42.0V58.0Q33.5 61.0 30.5 61.0H21Q18 61.0 18 58.0V42.0Q18 39.0 21 39.0Z" fill-rule="nonzero" transform="translate(0 -0.55) " fill="url(#t2-w-g)"/></g>
+</g><path d="M20.1 40.6H31.4" stroke="#fff" stroke-opacity=".28" stroke-width="1.1" stroke-linecap="round"/><path d="M42.5 39.0H57.5Q60.5 39.0 60.5 42.0V58.0Q60.5 61.0 57.5 61.0H42.5Q39.5 61.0 39.5 58.0V42.0Q39.5 39.0 42.5 39.0Z" transform="translate(0 1.4)" fill="#000" opacity=".45"/><clipPath id="t2-c-c"><path d="M42.5 39.0H57.5Q60.5 39.0 60.5 42.0V58.0Q60.5 61.0 57.5 61.0H42.5Q39.5 61.0 39.5 58.0V42.0Q39.5 39.0 42.5 39.0Z" clip-rule="nonzero" transform=""/></clipPath>
+<clipPath id="t2-c-cd"><path d="M42.5 39.0H57.5Q60.5 39.0 60.5 42.0V58.0Q60.5 61.0 57.5 61.0H42.5Q39.5 61.0 39.5 58.0V42.0Q39.5 39.0 42.5 39.0Z" clip-rule="nonzero" transform="translate(0 0.7) "/></clipPath>
+<g clip-path="url(#t2-c-c)">
+<path d="M42.5 39.0H57.5Q60.5 39.0 60.5 42.0V58.0Q60.5 61.0 57.5 61.0H42.5Q39.5 61.0 39.5 58.0V42.0Q39.5 39.0 42.5 39.0Z" fill-rule="nonzero" transform="" fill="#000" opacity="0.35"/>
+<path d="M42.5 39.0H57.5Q60.5 39.0 60.5 42.0V58.0Q60.5 61.0 57.5 61.0H42.5Q39.5 61.0 39.5 58.0V42.0Q39.5 39.0 42.5 39.0Z" fill-rule="nonzero" transform="translate(0 -0.55) " fill="#fff" opacity="0.55"/>
+<g clip-path="url(#t2-c-cd)"><path d="M42.5 39.0H57.5Q60.5 39.0 60.5 42.0V58.0Q60.5 61.0 57.5 61.0H42.5Q39.5 61.0 39.5 58.0V42.0Q39.5 39.0 42.5 39.0Z" fill-rule="nonzero" transform="translate(0 -0.55) " fill="url(#t2-c-g)"/></g>
+</g><path d="M41.6 40.6H58.4" stroke="#fff" stroke-opacity=".28" stroke-width="1.1" stroke-linecap="round"/><path d="M69.5 39.0H79.0Q82.0 39.0 82.0 42.0V58.0Q82.0 61.0 79.0 61.0H69.5Q66.5 61.0 66.5 58.0V42.0Q66.5 39.0 69.5 39.0Z" transform="translate(0 1.4)" fill="#000" opacity=".45"/><clipPath id="t2-e-c"><path d="M69.5 39.0H79.0Q82.0 39.0 82.0 42.0V58.0Q82.0 61.0 79.0 61.0H69.5Q66.5 61.0 66.5 58.0V42.0Q66.5 39.0 69.5 39.0Z" clip-rule="nonzero" transform=""/></clipPath>
+<clipPath id="t2-e-cd"><path d="M69.5 39.0H79.0Q82.0 39.0 82.0 42.0V58.0Q82.0 61.0 79.0 61.0H69.5Q66.5 61.0 66.5 58.0V42.0Q66.5 39.0 69.5 39.0Z" clip-rule="nonzero" transform="translate(0 0.7) "/></clipPath>
+<g clip-path="url(#t2-e-c)">
+<path d="M69.5 39.0H79.0Q82.0 39.0 82.0 42.0V58.0Q82.0 61.0 79.0 61.0H69.5Q66.5 61.0 66.5 58.0V42.0Q66.5 39.0 69.5 39.0Z" fill-rule="nonzero" transform="" fill="#000" opacity="0.35"/>
+<path d="M69.5 39.0H79.0Q82.0 39.0 82.0 42.0V58.0Q82.0 61.0 79.0 61.0H69.5Q66.5 61.0 66.5 58.0V42.0Q66.5 39.0 69.5 39.0Z" fill-rule="nonzero" transform="translate(0 -0.55) " fill="#fff" opacity="0.55"/>
+<g clip-path="url(#t2-e-cd)"><path d="M69.5 39.0H79.0Q82.0 39.0 82.0 42.0V58.0Q82.0 61.0 79.0 61.0H69.5Q66.5 61.0 66.5 58.0V42.0Q66.5 39.0 69.5 39.0Z" fill-rule="nonzero" transform="translate(0 -0.55) " fill="url(#t2-e-g)"/></g>
+</g><path d="M68.6 40.6H79.9" stroke="#fff" stroke-opacity=".28" stroke-width="1.1" stroke-linecap="round"/><path d="M22 67.0H78Q82 67.0 82 71.0V78.0Q82 82.0 78 82.0H22Q18 82.0 18 78.0V71.0Q18 67.0 22 67.0Z" transform="translate(0 1.4)" fill="#000" opacity=".45"/><clipPath id="t2-s-c"><path d="M22 67.0H78Q82 67.0 82 71.0V78.0Q82 82.0 78 82.0H22Q18 82.0 18 78.0V71.0Q18 67.0 22 67.0Z" clip-rule="nonzero" transform=""/></clipPath>
+<clipPath id="t2-s-cd"><path d="M22 67.0H78Q82 67.0 82 71.0V78.0Q82 82.0 78 82.0H22Q18 82.0 18 78.0V71.0Q18 67.0 22 67.0Z" clip-rule="nonzero" transform="translate(0 0.7) "/></clipPath>
+<g clip-path="url(#t2-s-c)">
+<path d="M22 67.0H78Q82 67.0 82 71.0V78.0Q82 82.0 78 82.0H22Q18 82.0 18 78.0V71.0Q18 67.0 22 67.0Z" fill-rule="nonzero" transform="" fill="#000" opacity="0.35"/>
+<path d="M22 67.0H78Q82 67.0 82 71.0V78.0Q82 82.0 78 82.0H22Q18 82.0 18 78.0V71.0Q18 67.0 22 67.0Z" fill-rule="nonzero" transform="translate(0 -0.55) " fill="#fff" opacity="0.55"/>
+<g clip-path="url(#t2-s-cd)"><path d="M22 67.0H78Q82 67.0 82 71.0V78.0Q82 82.0 78 82.0H22Q18 82.0 18 78.0V71.0Q18 67.0 22 67.0Z" fill-rule="nonzero" transform="translate(0 -0.55) " fill="url(#t2-s-g)"/></g>
+</g><path d="M20.8 68.6H79.2" stroke="#fff" stroke-opacity=".28" stroke-width="1.1" stroke-linecap="round"/>
+
+<rect width="100" height="100" fill="url(#t2-sh)"/>
+</g>
+</svg>

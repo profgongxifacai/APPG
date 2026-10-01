@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+<title>Panasia LX3 — 칠보 오방 亞</title>
+<defs>
+<radialGradient id="lx3-ink" cx="0.3" cy="0.2" r="0.95"><stop offset="0" stop-color="#24324A"/><stop offset="0.55" stop-color="#111A2A"/><stop offset="1" stop-color="#070B13"/></radialGradient>
+<linearGradient id="lx3-gold" x1="15" y1="20" x2="85" y2="80" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FBF0C6"/><stop offset="0.28" stop-color="#E2BE66"/><stop offset="0.55" stop-color="#A57B2C"/><stop offset="0.78" stop-color="#EED38A"/><stop offset="1" stop-color="#B88D3A"/></linearGradient>
+<clipPath id="lx3-clip"><rect width="100" height="100" rx="22"/></clipPath>
+<linearGradient id="lx3-gloss" x1="0" y1="23" x2="0" y2="77" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.32"/><stop offset="0.35" stop-color="#FFFFFF" stop-opacity="0.04"/><stop offset="0.6" stop-color="#FFFFFF" stop-opacity="0"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0.1"/></linearGradient>
+<linearGradient id="lx3-top" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#3A3A44"/><stop offset="1" stop-color="#0B0B0E"/></linearGradient>
+<linearGradient id="lx3-bot" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#BE2C35"/><stop offset="1" stop-color="#761118"/></linearGradient>
+<linearGradient id="lx3-lb" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#F3EEE0"/><stop offset="1" stop-color="#C9BFA6"/></linearGradient>
+<linearGradient id="lx3-rb" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#3466B8"/><stop offset="1" stop-color="#142F6A"/></linearGradient>
+<linearGradient id="lx3-vl" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#EDBE4A"/><stop offset="1" stop-color="#AF7A16"/></linearGradient>
+<linearGradient id="lx3-vr" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#EDBE4A"/><stop offset="1" stop-color="#AF7A16"/></linearGradient>
+</defs>
+<rect width="100" height="100" rx="22" fill="url(#lx3-ink)"/>
+<rect x="6.5" y="6.5" width="87" height="87" rx="16" fill="none" stroke="url(#lx3-gold)" stroke-width=".6" opacity=".6"/>
+<path d="M27,23H73V32.5H27ZM27,67.5H73V77H27ZM34,32.5H43.5V67.5H34ZM56.5,32.5H66V67.5H56.5ZM17,36.5L34,36.5L34,46L26.5,46L26.5,54L34,54L34,63.5L17,63.5ZM83,36.5L66,36.5L66,46L73.5,46L73.5,54L66,54L66,63.5L83,63.5Z" fill="#000" opacity=".6" transform="translate(.6 .9)"/>
+<path d="M27,23H73V32.5H27Z" fill="url(#lx3-top)"/>
+<path d="M27,67.5H73V77H27Z" fill="url(#lx3-bot)"/>
+<path d="M17,36.5L34,36.5L34,46L26.5,46L26.5,54L34,54L34,63.5L17,63.5Z" fill="url(#lx3-lb)"/>
+<path d="M83,36.5L66,36.5L66,46L73.5,46L73.5,54L66,54L66,63.5L83,63.5Z" fill="url(#lx3-rb)"/>
+<path d="M34,32.5H43.5V67.5H34Z" fill="url(#lx3-vl)"/>
+<path d="M56.5,32.5H66V67.5H56.5Z" fill="url(#lx3-vr)"/>
+<path d="M27,23H73V32.5H27ZM27,67.5H73V77H27ZM34,32.5H43.5V67.5H34ZM56.5,32.5H66V67.5H56.5ZM17,36.5L34,36.5L34,46L26.5,46L26.5,54L34,54L34,63.5L17,63.5ZM83,36.5L66,36.5L66,46L73.5,46L73.5,54L66,54L66,63.5L83,63.5Z" fill="url(#lx3-gloss)"/>
+<path d="M27,23H73V32.5H27ZM27,67.5H73V77H27ZM34,32.5H43.5V67.5H34ZM56.5,32.5H66V67.5H56.5ZM17,36.5L34,36.5L34,46L26.5,46L26.5,54L34,54L34,63.5L17,63.5ZM83,36.5L66,36.5L66,46L73.5,46L73.5,54L66,54L66,63.5L83,63.5Z" fill="none" stroke="url(#lx3-gold)" stroke-width="1.15" stroke-linejoin="miter"/>
+</svg>

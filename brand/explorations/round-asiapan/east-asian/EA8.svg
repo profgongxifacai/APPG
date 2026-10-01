@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+<title>Panasia EA8 — Paper Cut</title>
+<defs>
+<clipPath id="EA8-clip"><rect width="100" height="100" rx="22"/></clipPath>
+<filter id="EA8-grain" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7"/><feColorMatrix values="0 0 0 0 0.25  0 0 0 0 0.2  0 0 0 0 0.12  0.6 0 0 0 -0.25"/></filter>
+<filter id="EA8-sh" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="0.8" stdDeviation="0.9" flood-color="#5a1a10" flood-opacity="0.45"/></filter>
+<mask id="EA8-m" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><rect width="100" height="100" fill="#fff"/><path d="M15 17H85V25H15ZM15 75H85V83H15ZM38 17H46V83H38ZM54 17H62V83H54ZM20 35H46V43H28V57H46V65H20ZM80 35H54V43H72V57H54V65H80Z" fill="#000"/></mask>
+</defs>
+<g clip-path="url(#EA8-clip)">
+<rect width="100" height="100" fill="#B8382A"/>
+<path d="M15 17H85V25H15ZM15 75H85V83H15ZM38 17H46V83H38ZM54 17H62V83H54ZM20 35H46V43H28V57H46V65H20ZM80 35H54V43H72V57H54V65H80Z" fill="#8E2A1F" transform="translate(0.6 0.9)"/>
+<g mask="url(#EA8-m)">
+<rect x="0" y="0" width="50" height="50" fill="#F8F4EA"/>
+<rect x="50" y="0" width="50" height="50" fill="#E9E2D2"/>
+<rect x="0" y="50" width="50" height="50" fill="#EEE8D9"/>
+<rect x="50" y="50" width="50" height="50" fill="#DFD6C3"/>
+<rect width="100" height="100" filter="url(#EA8-grain)" opacity="0.3"/>
+<path d="M50 0V100M0 50H100" stroke="#A3967B" stroke-width="0.45"/>
+</g>
+</g>
+</svg>
