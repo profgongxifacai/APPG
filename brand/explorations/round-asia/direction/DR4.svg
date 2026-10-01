@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+  <title>DR4</title>
+  <defs><clipPath id="dr4-tile"><rect width="100" height="100" rx="22"/></clipPath></defs>
+  <rect width="100" height="100" rx="22" fill="#15171C"/>
+  <rect x="0" y="60" width="100" height="40" fill="#0C4B4E" clip-path="url(#dr4-tile)"/>
+  <polygon points="16,60 84,60 84,40" fill="#F2B705"/>
+</svg>

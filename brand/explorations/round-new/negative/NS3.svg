@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
   <title>Panasia NS3</title>
   <rect width="100" height="100" rx="22" fill="#FF6B5B"/>
-  <path id="ns3p" fill="#1A1446" fill-rule="evenodd" d="M16 16 H48 A16 16 0 0 1 48 48 H32 V84 H16 Z M32 26 H48 A6 6 0 0 1 48 38 H32 Z"/>
+  <path fill="#1A1446" fill-rule="evenodd" d="M16 16 H48 A16 16 0 0 1 48 48 H32 V84 H16 Z M32 26 H48 A6 6 0 0 1 48 38 H32 Z"/>
   <path fill="#FFF1E6" fill-rule="evenodd" transform="rotate(180 50 50)" d="M16 16 H48 A16 16 0 0 1 48 48 H32 V84 H16 Z M32 26 H48 A6 6 0 0 1 48 38 H32 Z"/>
 </svg>
