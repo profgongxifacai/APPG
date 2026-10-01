@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+  <defs>
+    <linearGradient id="t1-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2A2F63"/><stop offset="1" stop-color="#0D0F24"/>
+    </linearGradient>
+    <radialGradient id="t1-bgglow" cx="50" cy="48" r="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6C6CFF" stop-opacity=".45"/><stop offset="1" stop-color="#6C6CFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="t1-sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".14"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="t1-glass" x1="0" y1="24" x2="0" y2="76" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".97"/>
+      <stop offset=".55" stop-color="#C9CCFF" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#8C8FF0" stop-opacity=".9"/>
+    </linearGradient>
+    <linearGradient id="t1-spec" x1="0" y1="24" x2="0" y2="76" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="t1-orb" cx="46" cy="46" r="10" fx="46.5" fy="45.5" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF8DA"/><stop offset=".45" stop-color="#FFC75A"/><stop offset="1" stop-color="#E86A1E"/>
+    </radialGradient>
+    <filter id="t1-blur3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="t1-blur1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation=".8"/></filter>
+  </defs>
+  <rect width="100" height="100" rx="22" fill="url(#t1-bg)"/>
+  <rect width="100" height="100" rx="22" fill="url(#t1-bgglow)"/>
+  <rect width="100" height="100" rx="22" fill="url(#t1-sheen)"/>
+  <!-- shadows -->
+  <g fill="none" stroke="#000" stroke-opacity=".55" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" filter="url(#t1-blur3)" transform="translate(0 4)">
+    <path d="M39 26 H31 Q26 26 26 31 V69 Q26 74 31 74 H39"/>
+    <path d="M61 26 H69 Q74 26 74 31 V69 Q74 74 69 74 H61"/>
+  </g>
+  <!-- glow orb -->
+  <circle cx="50" cy="50" r="15" fill="#FFB547" opacity=".55" filter="url(#t1-blur3)"/>
+  <circle cx="50" cy="50" r="9" fill="url(#t1-orb)"/>
+  <ellipse cx="47" cy="46.5" rx="3.2" ry="2.2" fill="#fff" opacity=".85" filter="url(#t1-blur1)"/>
+  <!-- glass brackets -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M39 26 H31 Q26 26 26 31 V69 Q26 74 31 74 H39" stroke="url(#t1-glass)" stroke-width="9"/>
+    <path d="M61 26 H69 Q74 26 74 31 V69 Q74 74 69 74 H61" stroke="url(#t1-glass)" stroke-width="9"/>
+    <path d="M38 24.2 H31 Q24.2 24.2 24.2 31 V60" stroke="url(#t1-spec)" stroke-width="1.8" opacity=".9"/>
+    <path d="M62 24.2 H69 Q72.6 24.2 72.6 28" stroke="#fff" stroke-width="1.8" opacity=".75"/>
+    <path d="M27.8 68 Q27.8 72.2 31 72.2 H38" stroke="#5A5DD8" stroke-width="1.6" opacity=".55"/>
+    <path d="M75.8 40 V69 Q75.8 75.8 69 75.8 H62" stroke="#4B4EC9" stroke-width="1.6" opacity=".6"/>
+  </g>
+</svg>
