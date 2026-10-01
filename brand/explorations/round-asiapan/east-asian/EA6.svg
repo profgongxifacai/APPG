@@ -1,15 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
-<title>Panasia EA6 — Beonjim</title>
+<title>Panasia EA6 — Geumbak</title>
 <defs>
 <clipPath id="EA6-clip"><rect width="100" height="100" rx="22"/></clipPath>
 <filter id="EA6-grain" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7"/><feColorMatrix values="0 0 0 0 0.25  0 0 0 0 0.2  0 0 0 0 0.12  0.6 0 0 0 -0.25"/></filter>
-<filter id="EA6-bleed" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><feMorphology in="SourceAlpha" operator="dilate" radius="3.5" result="dl"/><feGaussianBlur in="dl" stdDeviation="4.5" result="bl"/><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" seed="21" result="n"/><feDisplacementMap in="bl" in2="n" scale="16" xChannelSelector="R" yChannelSelector="G" result="dd"/><feComponentTransfer in="dd" result="A"><feFuncA type="linear" slope="3.2" intercept="-0.9"/></feComponentTransfer><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="2" seed="4" result="fib"/><feColorMatrix in="fib" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1.6 -0.3" result="fa"/><feComposite in="A" in2="fa" operator="in" result="A2"/><feFlood flood-color="#7A746A" flood-opacity="0.42"/><feComposite in2="A2" operator="in" result="wash"/><feGaussianBlur in="SourceAlpha" stdDeviation="1.3" result="b2"/><feDisplacementMap in="b2" in2="n" scale="4" xChannelSelector="G" yChannelSelector="R" result="d2"/><feFlood flood-color="#3B3833" flood-opacity="0.55"/><feComposite in2="d2" operator="in" result="feather"/><feMerge><feMergeNode in="wash"/><feMergeNode in="feather"/></feMerge></filter>
-<filter id="EA6-edge" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="0.5" xChannelSelector="R" yChannelSelector="G"/></filter>
+<linearGradient id="EA6-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22325A"/><stop offset="1" stop-color="#16213D"/></linearGradient>
+<linearGradient id="EA6-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F0D99A"/><stop offset="0.45" stop-color="#CFA85A"/><stop offset="0.7" stop-color="#E6C77E"/><stop offset="1" stop-color="#B98F45"/></linearGradient>
+<clipPath id="EA6-g"><path d="M15 17H85V25.5H15ZM15 74.5H85V83H15ZM37.5 17H46.0V83H37.5ZM54 17H62.5V83H54ZM20 34.5H46.0V43.0H28.5V57H46.0V65.5H20ZM80.0 34.5H54V43.0H71.5V57H54V65.5H80.0Z"/></clipPath>
+<filter id="EA6-silk" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><feTurbulence type="fractalNoise" baseFrequency="0.02 0.9" numOctaves="2" seed="12"/><feColorMatrix values="0 0 0 0 0.6  0 0 0 0 0.7  0 0 0 0 0.9  0.5 0 0 0 -0.2"/></filter>
+<filter id="EA6-crinkle" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><feTurbulence type="fractalNoise" baseFrequency="0.35" numOctaves="3" seed="31"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.8  1.2 0 0 0 -0.55"/></filter>
 </defs>
 <g clip-path="url(#EA6-clip)">
-<rect width="100" height="100" fill="#F3EEE3"/>
-<rect width="100" height="100" filter="url(#EA6-grain)" opacity="0.25"/>
-<path d="M22 24H78V36H22Z M33 36H45V64H33Z M55 36H67V64H55Z M22 64H78V76H22Z" fill="#000" filter="url(#EA6-bleed)"/>
-<path d="M22 24H78V36H22Z M33 36H45V64H33Z M55 36H67V64H55Z M22 64H78V76H22Z" fill="#151413" filter="url(#EA6-edge)"/>
+<rect width="100" height="100" fill="url(#EA6-bg)"/>
+<rect width="100" height="100" filter="url(#EA6-silk)" opacity="0.25"/>
+<g clip-path="url(#EA6-g)">
+<rect width="100" height="100" fill="url(#EA6-gold)"/>
+<rect width="100" height="100" filter="url(#EA6-crinkle)" opacity="0.35"/>
+<path d="M0 17H100M3 17V28M14 17V28M25 17V28M36 17V28M47 17V28M58 17V28M69 17V28M80 17V28M91 17V28M102 17V28M0 28H100M8.5 28V39M19.5 28V39M30.5 28V39M41.5 28V39M52.5 28V39M63.5 28V39M74.5 28V39M85.5 28V39M96.5 28V39M107.5 28V39M0 39H100M3 39V50M14 39V50M25 39V50M36 39V50M47 39V50M58 39V50M69 39V50M80 39V50M91 39V50M102 39V50M0 50H100M8.5 50V61M19.5 50V61M30.5 50V61M41.5 50V61M52.5 50V61M63.5 50V61M74.5 50V61M85.5 50V61M96.5 50V61M107.5 50V61M0 61H100M3 61V72M14 61V72M25 61V72M36 61V72M47 61V72M58 61V72M69 61V72M80 61V72M91 61V72M102 61V72M0 72H100M8.5 72V83M19.5 72V83M30.5 72V83M41.5 72V83M52.5 72V83M63.5 72V83M74.5 72V83M85.5 72V83M96.5 72V83M107.5 72V83M0 83H100M3 83V94M14 83V94M25 83V94M36 83V94M47 83V94M58 83V94M69 83V94M80 83V94M91 83V94M102 83V94" stroke="#9C7838" stroke-width="0.35" opacity="0.7" fill="none"/>
+</g>
 </g>
 </svg>

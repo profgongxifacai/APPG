@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
 <defs>
 <linearGradient id="t1-bg" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F3F0FA"/><stop offset="1" stop-color="#E2E4F4"/></linearGradient>
-<linearGradient id="t1-sh" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="0.5"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient><filter id="t1-b5" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter><filter id="t1-b2_5" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.5"/></filter><filter id="t1-b1_2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter><filter id="t1-b0_6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.6"/></filter>
-<radialGradient id="t1-o1" cx="64" cy="20" r="24" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#7FB0FF"/><stop offset=".55" stop-color="#2F62F2"/><stop offset="1" stop-color="#1A36B8"/></radialGradient>
-<radialGradient id="t1-o2" cx="23" cy="65" r="22" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF9A84"/><stop offset=".55" stop-color="#F0413A"/><stop offset="1" stop-color="#BB1D2B"/></radialGradient>
-<radialGradient id="t1-o3" cx="71" cy="72" r="12" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFF0A8"/><stop offset=".6" stop-color="#FFC21A"/><stop offset="1" stop-color="#E89A00"/></radialGradient>
+<linearGradient id="t1-sh" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="0.5"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient><filter id="t1-b6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter><filter id="t1-b2_5" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.5"/></filter><filter id="t1-b1_2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter><filter id="t1-b0_6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.6"/></filter>
+<radialGradient id="t1-o1" cx="58" cy="22" r="32" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#7FB0FF"/><stop offset=".55" stop-color="#2F62F2"/><stop offset="1" stop-color="#1A36B8"/></radialGradient>
+<radialGradient id="t1-o2" cx="24" cy="58" r="28" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF9A84"/><stop offset=".55" stop-color="#F0413A"/><stop offset="1" stop-color="#BB1D2B"/></radialGradient>
+<radialGradient id="t1-o3" cx="68" cy="68" r="15" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFF0A8"/><stop offset=".6" stop-color="#FFC21A"/><stop offset="1" stop-color="#E89A00"/></radialGradient>
 <clipPath id="t1-pane"><rect x="21" y="21" width="58" height="58" rx="12"/></clipPath>
-<linearGradient id="t1-frost" x1="21" y1="21" x2="79" y2="79" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity=".62"/><stop offset="1" stop-color="#fff" stop-opacity=".38"/></linearGradient>
+<linearGradient id="t1-frost" x1="21" y1="21" x2="79" y2="79" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity=".42"/><stop offset="1" stop-color="#fff" stop-opacity=".22"/></linearGradient>
 <linearGradient id="t1-rim" x1="21" y1="21" x2="79" y2="79" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".5" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity=".8"/></linearGradient>
 <linearGradient id="t1-gl" x1="0" y1="24" x2="0" y2="76" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F1F0FA"/></linearGradient>
 
@@ -15,25 +15,25 @@
 <g clip-path="url(#t1-tile)">
 <rect width="100" height="100" fill="url(#t1-bg)"/>
 
-<circle cx="71" cy="28" r="17" fill="url(#t1-o1)"/>
-<circle cx="29" cy="73" r="15" fill="url(#t1-o2)"/>
-<circle cx="74" cy="76" r="8.5" fill="url(#t1-o3)"/>
+<circle cx="66" cy="33" r="22" fill="url(#t1-o1)"/>
+<circle cx="32" cy="68" r="19" fill="url(#t1-o2)"/>
+<circle cx="72" cy="73" r="11" fill="url(#t1-o3)"/>
 <rect x="21" y="25" width="58" height="58" rx="12" fill="#3A3F8C" opacity=".22" filter="url(#t1-b2_5)"/>
 <g clip-path="url(#t1-pane)">
 <rect width="100" height="100" fill="#ECEAF7"/>
-<g filter="url(#t1-b5)"><circle cx="71" cy="28" r="17" fill="url(#t1-o1)"/>
-<circle cx="29" cy="73" r="15" fill="url(#t1-o2)"/>
-<circle cx="74" cy="76" r="8.5" fill="url(#t1-o3)"/></g>
+<g filter="url(#t1-b6)"><circle cx="66" cy="33" r="22" fill="url(#t1-o1)"/>
+<circle cx="32" cy="68" r="19" fill="url(#t1-o2)"/>
+<circle cx="72" cy="73" r="11" fill="url(#t1-o3)"/></g>
 <rect width="100" height="100" fill="url(#t1-frost)"/>
 </g>
 <rect x="21.3" y="21.3" width="57.4" height="57.4" rx="11.7" fill="none" stroke="url(#t1-rim)" stroke-width=".7"/>
-<path d="M26 24H74V31H63V40H76V60H63V69H78V76H22V69H37V60H24V40H37V31H26Z M44 31H56V69H44Z M30 46H37V54H30Z M63 46H70V54H63Z" fill-rule="evenodd" transform="translate(50 51.6) scale(0.74) translate(-50 -50)" fill="#2A2F7A" opacity=".28" filter="url(#t1-b1_2)"/>
-<clipPath id="t1-g-c"><path d="M26 24H74V31H63V40H76V60H63V69H78V76H22V69H37V60H24V40H37V31H26Z M44 31H56V69H44Z M30 46H37V54H30Z M63 46H70V54H63Z" clip-rule="evenodd" transform="translate(50 50) scale(0.74) translate(-50 -50)"/></clipPath>
-<clipPath id="t1-g-cd"><path d="M26 24H74V31H63V40H76V60H63V69H78V76H22V69H37V60H24V40H37V31H26Z M44 31H56V69H44Z M30 46H37V54H30Z M63 46H70V54H63Z" clip-rule="evenodd" transform="translate(0 0.6) translate(50 50) scale(0.74) translate(-50 -50)"/></clipPath>
+<path d="M26 24H74V31H63V40H76V60H63V69H78V76H22V69H37V60H24V40H37V31H26Z M44 31H56V69H44Z M30 46H37V54H30Z M63 46H70V54H63Z" fill-rule="evenodd" transform="translate(50 51.8) scale(0.78) translate(-50 -50)" fill="#1E2266" opacity=".35" filter="url(#t1-b1_2)"/>
+<clipPath id="t1-g-c"><path d="M26 24H74V31H63V40H76V60H63V69H78V76H22V69H37V60H24V40H37V31H26Z M44 31H56V69H44Z M30 46H37V54H30Z M63 46H70V54H63Z" clip-rule="evenodd" transform="translate(50 50) scale(0.78) translate(-50 -50)"/></clipPath>
+<clipPath id="t1-g-cd"><path d="M26 24H74V31H63V40H76V60H63V69H78V76H22V69H37V60H24V40H37V31H26Z M44 31H56V69H44Z M30 46H37V54H30Z M63 46H70V54H63Z" clip-rule="evenodd" transform="translate(0 0.6) translate(50 50) scale(0.78) translate(-50 -50)"/></clipPath>
 <g clip-path="url(#t1-g-c)">
-<path d="M26 24H74V31H63V40H76V60H63V69H78V76H22V69H37V60H24V40H37V31H26Z M44 31H56V69H44Z M30 46H37V54H30Z M63 46H70V54H63Z" fill-rule="evenodd" transform="translate(50 50) scale(0.74) translate(-50 -50)" fill="#C9C8E6" opacity="1"/>
-<path d="M26 24H74V31H63V40H76V60H63V69H78V76H22V69H37V60H24V40H37V31H26Z M44 31H56V69H44Z M30 46H37V54H30Z M63 46H70V54H63Z" fill-rule="evenodd" transform="translate(0 -0.5) translate(50 50) scale(0.74) translate(-50 -50)" fill="#FFFFFF" opacity="1"/>
-<g clip-path="url(#t1-g-cd)"><path d="M26 24H74V31H63V40H76V60H63V69H78V76H22V69H37V60H24V40H37V31H26Z M44 31H56V69H44Z M30 46H37V54H30Z M63 46H70V54H63Z" fill-rule="evenodd" transform="translate(0 -0.5) translate(50 50) scale(0.74) translate(-50 -50)" fill="url(#t1-gl)"/></g>
+<path d="M26 24H74V31H63V40H76V60H63V69H78V76H22V69H37V60H24V40H37V31H26Z M44 31H56V69H44Z M30 46H37V54H30Z M63 46H70V54H63Z" fill-rule="evenodd" transform="translate(50 50) scale(0.78) translate(-50 -50)" fill="#B9B8DE" opacity="1"/>
+<path d="M26 24H74V31H63V40H76V60H63V69H78V76H22V69H37V60H24V40H37V31H26Z M44 31H56V69H44Z M30 46H37V54H30Z M63 46H70V54H63Z" fill-rule="evenodd" transform="translate(0 -0.5) translate(50 50) scale(0.78) translate(-50 -50)" fill="#FFFFFF" opacity="1"/>
+<g clip-path="url(#t1-g-cd)"><path d="M26 24H74V31H63V40H76V60H63V69H78V76H22V69H37V60H24V40H37V31H26Z M44 31H56V69H44Z M30 46H37V54H30Z M63 46H70V54H63Z" fill-rule="evenodd" transform="translate(0 -0.5) translate(50 50) scale(0.78) translate(-50 -50)" fill="url(#t1-gl)"/></g>
 </g>
 
 <rect width="100" height="100" fill="url(#t1-sh)"/>
