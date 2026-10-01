@@ -5,8 +5,10 @@
 <rect width="100" height="100" fill="url(#ea6-bg)"/>
 <rect width="100" height="100" filter="url(#ea6-mot)" opacity="0.7"/>
 <rect width="100" height="100" filter="url(#ea6-grain)" opacity="0.5"/>
-<g fill="url(#ea6-h)" filter="url(#ea6-paper)"><rect x="19.5" y="28.30" width="61" height="10.4" rx="0.6"/><rect x="19.5" y="44.80" width="61" height="10.4" rx="0.6"/><rect x="19.5" y="61.30" width="61" height="10.4" rx="0.6"/></g>
-<g fill="url(#ea6-v)" filter="url(#ea6-paper)"><rect x="28.30" y="19.5" width="10.4" height="61" rx="0.6"/><rect x="44.80" y="19.5" width="10.4" height="61" rx="0.6"/><rect x="61.30" y="19.5" width="10.4" height="61" rx="0.6"/></g>
-<g fill="url(#ea6-h)" filter="url(#ea6-paper)"><rect x="27.10" y="44.80" width="12.80" height="10.4"/><rect x="43.60" y="28.30" width="12.80" height="10.4"/><rect x="43.60" y="61.30" width="12.80" height="10.4"/><rect x="60.10" y="44.80" width="12.80" height="10.4"/></g>
+<g transform="rotate(45 50 50)">
+<g fill="url(#ea6-h)" filter="url(#ea6-paper)"><rect x="25" y="31.50" width="50" height="9" rx="0.6"/><rect x="25" y="45.50" width="50" height="9" rx="0.6"/><rect x="25" y="59.50" width="50" height="9" rx="0.6"/></g>
+<g fill="url(#ea6-v)" filter="url(#ea6-paper)"><rect x="31.50" y="25" width="9" height="50" rx="0.6"/><rect x="45.50" y="25" width="9" height="50" rx="0.6"/><rect x="59.50" y="25" width="9" height="50" rx="0.6"/></g>
+<g fill="url(#ea6-h)" filter="url(#ea6-paper)"><rect x="30.30" y="45.50" width="11.40" height="9"/><rect x="44.30" y="31.50" width="11.40" height="9"/><rect x="44.30" y="59.50" width="11.40" height="9"/><rect x="58.30" y="45.50" width="11.40" height="9"/></g>
+</g>
 </g>
 </svg>
