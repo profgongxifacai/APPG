@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+  <title>Panasia NS6</title>
+  <defs><clipPath id="ns6c"><rect x="18" y="18" width="64" height="64" rx="9"/></clipPath></defs>
+  <rect width="100" height="100" rx="22" fill="#C8F03C"/>
+  <g clip-path="url(#ns6c)" fill="#111111"><path d="M18 18 H42 L58 50 L42 82 H18 Z"/><path d="M49 18 H82 V82 H49 L65 50 Z"/></g>
+</svg>
