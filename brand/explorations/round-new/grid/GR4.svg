@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+  <title>Panasia GR4</title>
+  <rect id="gr4-tile" width="100" height="100" rx="22" fill="#134E3A"/>
+  <path d="M48 48H24A24 24 0 0 1 48 24Z" fill="#8EE3A8"/>
+  <rect x="52" y="24" width="24" height="24" rx="3" fill="#F2FFF5"/>
+  <rect x="24" y="52" width="24" height="24" rx="3" fill="#F2FFF5"/>
+  <path d="M52 52H76A24 24 0 0 1 52 76Z" fill="#8EE3A8"/>
+</svg>
