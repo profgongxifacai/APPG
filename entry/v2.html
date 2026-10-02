@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Halcyon Entry Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+<style>
+/* Layout: a market-desk dossier. Sticky section index on the left, one reading column on the right; every number recalculates from the controls, and every playbook cites a real Panasia case. */
+:root {
+  --bg: #EDF0F2;
+  --surface: #FFFFFF;
+  --ink: #0D1A26;
+  --muted: #56646F;
+  --line: #D3DADF;
+  --accent: #0B7A63;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #DCEEE8;
+  --warn: #A86A12;
+  --warn-soft: #F6EAD5;
+  --hold: #9A4433;
+  --hold-soft: #F3E1DC;
+  --track: #E3E8EB;
+  --f-display: "Archivo", "IBM Plex Sans KR", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --step--1: 0.8125rem;
+  --step-0: 0.9375rem;
+  --step-1: 1.125rem;
+  --step-2: 1.5rem;
+  --step-3: clamp(2rem, 4.6vw, 3.25rem);
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A1117; --surface: #111B23; --ink: #E4EAEE; --muted: #93A2AC; --line: #22303A;
+    --accent: #3DC3A1; --accent-ink: #05241C; --accent-soft: #123128;
+    --warn: #E2AA4F; --warn-soft: #33270F; --hold: #E58B76; --hold-soft: #351C17; --track: #1C2932;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A1117; --surface: #111B23; --ink: #E4EAEE; --muted: #93A2AC; --line: #22303A;
+  --accent: #3DC3A1; --accent-ink: #05241C; --accent-soft: #123128;
+  --warn: #E2AA4F; --warn-soft: #33270F; --hold: #E58B76; --hold-soft: #351C17; --track: #1C2932;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 var(--step-0)/1.6 var(--f-body);
+  word-break: keep-all; overflow-wrap: anywhere;
+  padding-inline: 16px;
+}
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+p { margin: 0; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.label {
+  font: 500 var(--step--1)/1.3 var(--f-mono);
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+}
+
+.wrap { max-width: 1120px; margin: 0 auto; }
+
+/* Top bar */
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.bar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding-block: 12px; }
+.brand { font: 800 1rem/1 var(--f-display); font-stretch: 118%; letter-spacing: 0.08em; }
+.brand span { color: var(--muted); font-weight: 600; letter-spacing: 0.02em; font-stretch: 100%; }
+.conf { color: var(--muted); font-size: var(--step--1); margin-left: auto; }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.lang button { background: none; border: 0; padding: 4px 10px; font: 500 var(--step--1)/1.4 var(--f-mono); cursor: pointer; color: var(--muted); }
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+.sample {
+  margin-top: 16px;
+  border: 1px dashed var(--warn); background: var(--warn-soft); color: var(--ink);
+  border-radius: var(--radius); padding: 10px 14px; font-size: var(--step--1);
+}
+
+/* Hero */
+.hero { display: grid; gap: 24px; padding-block: 40px 32px; }
+.hero-copy { display: grid; gap: 16px; }
+.hero h1 { font: 800 var(--step-3)/1.08 var(--f-display); font-stretch: 112%; letter-spacing: -0.01em; max-width: 22ch; }
+.hero .lede { color: var(--muted); max-width: 62ch; font-size: var(--step-1); line-height: 1.55; }
+.route {
+  display: grid; gap: 10px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px 18px;
+}
+.route-line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.stop { display: inline-flex; align-items: baseline; gap: 8px; padding: 6px 12px; border-radius: 999px; background: var(--accent-soft); }
+.stop b { font: 800 1.25rem/1 var(--f-display); font-stretch: 120%; }
+.stop small { font: 500 var(--step--1)/1 var(--f-mono); color: var(--muted); }
+.arrow { color: var(--muted); font-family: var(--f-mono); }
+.route-meta { display: flex; flex-wrap: wrap; gap: 4px 20px; color: var(--muted); font-size: var(--step--1); }
+.route-meta b { color: var(--ink); font-weight: 600; }
+
+/* Page grid */
+.page { display: grid; gap: 32px; padding-bottom: 64px; }
+.rail { display: none; }
+@media (min-width: 960px) {
+  .hero { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); align-items: end; }
+  .page { grid-template-columns: 190px minmax(0, 1fr); gap: 48px; }
+  .rail { display: block; }
+  .rail nav { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 72px); display: grid; gap: 2px; }
+  .rail a { display: grid; grid-template-columns: 1.6em 1fr; padding: 6px 8px; border-radius: 6px; color: var(--muted); text-decoration: none; font-size: var(--step--1); }
+  .rail a:hover { color: var(--ink); background: var(--surface); }
+  .rail a span { font-family: var(--f-mono); }
+}
+main { display: grid; gap: 56px; min-width: 0; }
+section { display: grid; gap: 16px; min-width: 0; scroll-margin-top: 80px; }
+.sec-head { display: grid; gap: 6px; }
+.sec-head h2 { font: 700 var(--step-2)/1.2 var(--f-display); font-stretch: 108%; }
+.sec-head p { color: var(--muted); max-width: 66ch; }
+
+/* Now */
+.facts { display: grid; border-top: 1px solid var(--line); }
+.fact { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding-block: 14px; border-bottom: 1px solid var(--line); align-items: baseline; }
+.fact .v { font: 700 1.5rem/1 var(--f-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.fact .v.alert { color: var(--hold); }
+.fact .note { grid-column: 1 / -1; color: var(--muted); font-size: var(--step--1); }
+.read { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; max-width: 66ch; }
+.read .label { display: block; margin-bottom: 4px; }
+
+/* Cases */
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter {
+  border: 1px solid var(--line); background: var(--surface); border-radius: 999px;
+  padding: 5px 12px; font: 500 var(--step--1)/1.3 var(--f-mono); cursor: pointer;
+}
+.filter[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.filter .n { opacity: 0.6; margin-left: 4px; }
+.cases { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+.case {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px; display: grid; gap: 10px; align-content: start;
+}
+.case.match { border-color: var(--accent); }
+.case-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.case-name { font: 700 1.0625rem/1.2 var(--f-display); font-stretch: 110%; }
+.case-metric { font: 700 1.75rem/1 var(--f-mono); font-variant-numeric: tabular-nums; color: var(--accent); }
+.case-metric-label { font-size: var(--step--1); color: var(--ink); }
+.case-headline { font-weight: 600; line-height: 1.4; }
+.case-how { font-size: var(--step--1); color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; }
+.chip { font: 500 0.75rem/1 var(--f-mono); padding: 4px 8px; border-radius: 999px; white-space: nowrap; }
+.chip.sector { background: var(--track); color: var(--muted); }
+.chip.go { background: var(--accent-soft); color: var(--accent); }
+.chip.prep { background: var(--warn-soft); color: var(--warn); }
+.chip.hold { background: var(--hold-soft); color: var(--hold); }
+.chip.proof { background: var(--ink); color: var(--bg); }
+
+/* Markets */
+.markets { display: grid; gap: 8px; }
+.mkt { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.mkt.on { border-color: var(--accent); }
+.mkt-row { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 8px 14px; align-items: center; padding: 12px 14px; }
+.mkt-code { font: 800 1.125rem/1 var(--f-display); font-stretch: 120%; }
+.mkt-main { display: grid; gap: 6px; min-width: 0; }
+.mkt-title { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.mkt-title strong { font-weight: 600; }
+.meter { display: grid; grid-template-columns: minmax(0, 1fr) 2.6em; gap: 10px; align-items: center; }
+.meter-track { position: relative; height: 8px; background: var(--track); border-radius: 999px; }
+.meter-fill { position: absolute; inset: 0 auto 0 0; border-radius: 999px; background: var(--muted); }
+.mkt.on .meter-fill { background: var(--accent); }
+.meter-mark { position: absolute; top: -3px; bottom: -3px; width: 1px; background: var(--ink); opacity: 0.5; }
+.meter b { font: 600 var(--step-0)/1 var(--f-mono); text-align: right; }
+.mkt-actions { display: flex; gap: 8px; align-items: center; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 7px 12px; font-size: var(--step--1); cursor: pointer; white-space: nowrap; }
+.btn:hover { border-color: var(--ink); }
+.btn.toggle[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.mkt-detail { border-top: 1px solid var(--line); padding: 14px; display: grid; gap: 16px; }
+@media (min-width: 720px) { .mkt-detail { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); } }
+.factors { display: grid; gap: 8px; }
+.factor { display: grid; grid-template-columns: 7.5em minmax(0, 1fr) 2em; gap: 10px; align-items: center; font-size: var(--step--1); }
+.factor .meter-track { height: 6px; }
+.factor .meter-fill { background: var(--ink); opacity: 0.7; }
+.factor span:last-child { font-family: var(--f-mono); }
+.detail-list { display: grid; gap: 10px; }
+.detail-list ul { margin: 4px 0 0; padding-left: 1.1em; }
+.detail-list li + li { margin-top: 2px; }
+@media (max-width: 560px) {
+  .mkt-row { grid-template-columns: 36px minmax(0, 1fr); }
+  .mkt-actions { grid-column: 1 / -1; }
+  .mkt-actions .toggle { flex: 1; }
+}
+
+/* Plan: playbooks + quote */
+.plan { display: grid; gap: 16px; }
+@media (min-width: 880px) { .plan { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); align-items: start; } }
+.playbooks { display: grid; gap: 8px; }
+.pb {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; align-items: start;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; cursor: pointer;
+}
+.pb:has(input:checked) { border-color: var(--accent); }
+.pb input { margin: 3px 0 0; accent-color: var(--accent); width: 16px; height: 16px; }
+.pb-name { font-weight: 600; }
+.pb-note { grid-column: 2; color: var(--muted); font-size: var(--step--1); }
+.pb-proof { grid-column: 2; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.proof { font-size: 0.75rem; border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; display: inline-flex; gap: 6px; align-items: baseline; }
+.proof b { font-family: var(--f-mono); color: var(--accent); }
+.pb.base { cursor: default; background: transparent; border-style: dashed; }
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+table { width: 100%; border-collapse: collapse; min-width: 400px; }
+th, td { padding: 9px 14px; text-align: left; border-bottom: 1px solid var(--line); font-size: var(--step--1); vertical-align: top; }
+th { font: 500 0.75rem/1.3 var(--f-mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+td.r, th.r { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+td .sub { color: var(--muted); }
+tfoot td { font-weight: 600; border-bottom: 0; }
+tfoot tr.grand td { font-size: var(--step-0); border-top: 2px solid var(--ink); }
+.quote-note { padding: 10px 14px 12px; color: var(--muted); font-size: 0.75rem; }
+
+/* Sequence */
+.controls { display: flex; flex-wrap: wrap; gap: 8px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.seg button { border: 0; background: none; padding: 8px 14px; cursor: pointer; text-align: left; display: grid; gap: 2px; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button small { color: var(--muted); font-size: 0.75rem; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.seg button[aria-pressed="true"] small { color: inherit; opacity: 0.75; }
+.gantt-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.gantt { min-width: 600px; padding: 14px 16px 16px; display: grid; gap: 8px; }
+.g-row { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 12px; align-items: center; }
+.g-name { font-size: var(--step--1); display: flex; gap: 6px; align-items: baseline; }
+.g-name b { font: 700 var(--step-0)/1 var(--f-display); font-stretch: 115%; }
+.g-track { position: relative; height: 22px; background: repeating-linear-gradient(to right, var(--track) 0 1px, transparent 1px calc(100% / 12)); border-radius: 4px; }
+.g-seg { position: absolute; top: 3px; bottom: 3px; border-radius: 3px; }
+.g-seg.prep { background: var(--warn); opacity: 0.75; }
+.g-seg.launch { background: var(--accent); }
+.g-seg.grow { background: var(--accent); opacity: 0.28; }
+.g-axis .g-track { background: none; height: auto; display: grid; grid-template-columns: repeat(12, 1fr); }
+.g-axis .g-track span { font: 500 0.6875rem/1 var(--f-mono); color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: var(--step--1); color: var(--muted); padding: 0 16px 14px; }
+.legend i { display: inline-block; width: 12px; height: 8px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+
+/* CTA */
+.cta { background: var(--ink); color: var(--bg); border-radius: 14px; padding: 24px; display: grid; gap: 16px; }
+.cta h2 { font: 700 var(--step-2)/1.2 var(--f-display); font-stretch: 108%; }
+.cta p { opacity: 0.8; max-width: 60ch; }
+.cta pre {
+  margin: 0; white-space: pre-wrap; word-break: break-word;
+  background: color-mix(in srgb, var(--bg) 8%, transparent); border: 1px solid color-mix(in srgb, var(--bg) 20%, transparent);
+  border-radius: 8px; padding: 14px; font: 400 var(--step--1)/1.6 var(--f-mono);
+}
+.cta-row { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+.cta .primary { background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 8px; padding: 11px 18px; font-weight: 600; cursor: pointer; }
+.cta .addr { font-family: var(--f-mono); user-select: all; }
+.cta .status { font-size: var(--step--1); opacity: 0.8; }
+.empty { color: var(--muted); font-size: var(--step--1); padding: 12px 0; }
+
+footer { border-top: 1px solid var(--line); padding-block: 20px 32px; color: var(--muted); font-size: var(--step--1); display: flex; flex-wrap: wrap; gap: 6px 20px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .meter-fill, .g-seg { transition: width 0.35s ease, left 0.35s ease; }
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <div class="brand">PANASIA <span>Entry Map</span></div>
+    <div class="conf" data-t="conf"></div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="lang-ko" data-lang="ko" aria-pressed="true">KO</button>
+      <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="sample" data-t="sample"></div>
+
+  <div class="hero">
+    <div class="hero-copy">
+      <div class="label" data-t="eyebrow"></div>
+      <h1 data-t="h1"></h1>
+      <p class="lede" data-t="lede"></p>
+    </div>
+    <div class="route" aria-live="polite">
+      <div class="label" data-t="routeLabel"></div>
+      <div class="route-line" id="route"></div>
+      <div class="route-meta" id="route-meta"></div>
+    </div>
+  </div>
+
+  <div class="page">
+    <aside class="rail"><nav id="rail"></nav></aside>
+    <main>
+      <section id="now">
+        <div class="sec-head"><h2 data-t="s1title"></h2><p data-t="s1lede"></p></div>
+        <div class="facts" id="facts"></div>
+        <div class="read"><span class="label" data-t="readLabel"></span><p id="read"></p></div>
+      </section>
+
+      <section id="cases">
+        <div class="sec-head"><h2 data-t="sCasesTitle"></h2><p data-t="sCasesLede"></p></div>
+        <div class="filters" id="filters" role="group"></div>
+        <div class="cases" id="case-list"></div>
+      </section>
+
+      <section id="markets">
+        <div class="sec-head"><h2 data-t="s2title"></h2><p data-t="s2lede"></p></div>
+        <div class="markets" id="market-list"></div>
+      </section>
+
+      <section id="plan">
+        <div class="sec-head"><h2 data-t="sPlanTitle"></h2><p data-t="sPlanLede"></p></div>
+        <div class="plan">
+          <div class="playbooks" id="playbooks"></div>
+          <div class="table-wrap"><table id="quote-table"></table><p class="quote-note" data-t="quoteNote"></p></div>
+        </div>
+      </section>
+
+      <section id="sequence">
+        <div class="sec-head"><h2 data-t="s3title"></h2><p data-t="s3lede"></p></div>
+        <div class="controls">
+          <div class="seg" role="group" id="pace">
+            <button type="button" id="pace-seq" data-pace="seq" aria-pressed="true"><span data-t="paceSeq"></span><small data-t="paceSeqNote"></small></button>
+            <button type="button" id="pace-par" data-pace="par" aria-pressed="false"><span data-t="pacePar"></span><small data-t="paceParNote"></small></button>
+          </div>
+        </div>
+        <div class="gantt-wrap">
+          <div class="gantt" id="gantt"></div>
+          <div class="legend">
+            <span><i style="background:var(--warn);opacity:.75"></i><span data-t="phPrep"></span></span>
+            <span><i style="background:var(--accent)"></i><span data-t="phLaunch"></span></span>
+            <span><i style="background:var(--accent);opacity:.28"></i><span data-t="phGrow"></span></span>
+          </div>
+        </div>
+      </section>
+
+      <section id="next">
+        <div class="cta">
+          <h2 data-t="s6title"></h2>
+          <p data-t="s6lede"></p>
+          <pre id="summary"></pre>
+          <div class="cta-row">
+            <button type="button" class="primary" id="copy-btn" data-t="copy"></button>
+            <span><span data-t="sendTo"></span> <span class="addr">people@panasia.io</span></span>
+            <span class="status" id="copy-status" aria-live="polite"></span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <span>Panasia · Seoul</span>
+    <span data-t="footerNote"></span>
+  </footer>
+</div>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   CASES: Panasia's published work (panasia.io). Real, shared by every brief.
+   ───────────────────────────────────────────────────────────── */
+const CASES = [
+  { id: "mantra", name: "Mantra", sector: "rwa", metric: "$50M+",
+    ko: { label: "기관 파이프라인", how: "자산운용사 아웃리치" },
+    en: { label: "institutional pipeline", how: "Asset-manager outreach" } },
+  { id: "ondo", name: "Ondo Finance", sector: "rwa", metric: "50+",
+    ko: { label: "기관 리드", how: "RWA 세미나" },
+    en: { label: "institutional leads", how: "RWA seminars" } },
+  { id: "multipli", name: "Multipli", sector: "rwa", metric: null,
+    ko: { label: "한국 RWA 수익형 포지셔닝", how: "현지화 콘텐츠, KOL, PR" },
+    en: { label: "Korea RWA-yield positioning", how: "Localised content, KOLs and PR" } },
+  { id: "polygon", name: "Polygon", sector: "defi", metric: "$2M",
+    ko: { label: "30일 만의 한국 TVL", how: "DeFi·개발자 프로그램" },
+    en: { label: "Korean TVL in 30 days", how: "DeFi and developer programs" } },
+  { id: "sahara", name: "Sahara AI", sector: "ai", metric: "400+",
+    ko: { label: "AI 개발자·엔터프라이즈 참석자", how: "개발자·엔터프라이즈 이벤트" },
+    en: { label: "AI developer and enterprise attendees", how: "Developer and enterprise events" } },
+  { id: "kite", name: "Kite", sector: "ai", metric: null,
+    ko: { label: "한국 AI-크립토 포지셔닝", how: "GTM 전략과 커뮤니티 개발" },
+    en: { label: "Korea AI-crypto positioning", how: "GTM strategy and community development" } },
+  { id: "peaq", name: "peaq", sector: "depin", metric: null,
+    ko: { label: "DePIN을 한국 IoT·모빌리티 생태계와 연결", how: "DePIN 교육과 파트너 개발" },
+    en: { label: "Connected DePIN with Korea's IoT and mobility ecosystem", how: "DePIN education and partner development" } },
+  { id: "bybit", name: "Bybit", sector: "exchange", metric: "1,200+",
+    ko: { label: "VIP 사용자", how: "한국 트레이더 이벤트와 전용 VIP 프로그램" },
+    en: { label: "VIP users", how: "Korea trader events and a dedicated VIP program" } },
+  { id: "kucoin", name: "KuCoin", sector: "exchange", metric: "$150M+",
+    ko: { label: "거래량", how: "KOL과 유료 배포" },
+    en: { label: "trading volume", how: "KOLs and paid distribution" } }
+];
+const SECTORS = {
+  rwa: { ko: "RWA", en: "RWA" }, ai: { ko: "AI", en: "AI" }, depin: { ko: "DePIN", en: "DePIN" },
+  defi: { ko: "DeFi·L2", en: "DeFi & L2" }, exchange: { ko: "거래소", en: "Exchange" }
+};
+
+/* Playbooks: what Panasia runs, each backed by the cases above.
+   Rates are SAMPLE values in USD. Replace with Panasia's rate card. */
+const PLAYBOOKS = [
+  { id: "inst", cases: ["mantra", "ondo"], oncePerMarket: 12000, monthlyPerMarket: 6000,
+    ko: ["기관 세미나·자산운용사 아웃리치", "운용사·증권사·기관 대상 세미나와 1:1 미팅"],
+    en: ["Institutional seminars & outreach", "Seminars and one-to-one meetings with asset managers, brokers and institutions"] },
+  { id: "position", cases: ["multipli", "kite"], oncePerMarket: 8000, monthlyPerMarket: 4000,
+    ko: ["현지화 포지셔닝·PR", "현지 언어 메시지, 콘텐츠, 언론"],
+    en: ["Local positioning & PR", "Local-language messaging, content and press"] },
+  { id: "kol", cases: ["kucoin", "multipli"], oncePerMarket: 0, monthlyPerMarket: 7000,
+    ko: ["KOL·유료 배포", "현지 KOL 캠페인과 유료 채널 배포"],
+    en: ["KOLs & paid distribution", "Local KOL campaigns and paid channels"] },
+  { id: "events", cases: ["sahara", "polygon"], oncePerMarket: 15000, monthlyPerMarket: 0,
+    ko: ["개발자·엔터프라이즈 이벤트", "개발자 프로그램, 엔터프라이즈 밋업"],
+    en: ["Developer & enterprise events", "Developer programs and enterprise meetups"] },
+  { id: "trader", cases: ["bybit"], oncePerMarket: 10000, monthlyPerMarket: 5000,
+    ko: ["트레이더 이벤트·VIP 프로그램", "현지 트레이더 대상 이벤트와 전용 VIP 운영"],
+    en: ["Trader events & VIP program", "Events for local traders and a dedicated VIP program"] },
+  { id: "partner", cases: ["peaq"], oncePerMarket: 0, monthlyPerMarket: 5000,
+    ko: ["산업 파트너 개발", "현지 기업·산업 생태계와 첫 협력 설계"],
+    en: ["Industry partner development", "First collaborations with local companies and industry ecosystems"] }
+];
+const BASE = { once: 18000, oncePerMarket: 4000,
+  ko: ["GTM 전략·시퀀스 설계", "모든 구성에 포함"], en: ["GTM strategy & sequencing", "Included in every plan"] };
+
+/* ─────────────────────────────────────────────────────────────
+   BRIEF: the only part that changes per prospect.
+   Copy this file, replace this object, send the link.
+   The prospect below is FICTIONAL sample data.
+   ───────────────────────────────────────────────────────────── */
+const BRIEF = {
+  id: "HX-0142",
+  date: { ko: "2026년 10월 2일", en: "2 Oct 2026" },
+  desk: "Seoul Desk",
+  project: "Halcyon Finance",
+  client: "Halcyon Labs",
+  sector: "rwa",
+  playbooks: ["inst", "position", "kol"],
+  selected: ["KR", "SG", "JP"],
+  months: 6,
+  facts: [
+    { v: "$310M", ko: ["TVL", "토큰화 미국 국채 기반 수익형 상품"], en: ["TVL", "Yield product backed by tokenised US Treasuries"] },
+    { v: "6%", ko: ["아시아 예치 비중", "대부분 북미·유럽 지갑"], en: ["Asia share of deposits", "Mostly North American and European wallets"] },
+    { v: "0", alert: true, ko: ["한국 기관 접점", "국내 자산운용사·증권사 미팅 기록 없음"], en: ["Korean institutional contacts", "No meetings with Korean asset managers or brokers"] },
+    { v: "0", alert: true, ko: ["한국어 채널", "한국어 커뮤니티·콘텐츠·언론 노출 없음"], en: ["Korean-language channels", "No Korean community, content or press"] }
+  ],
+  read: {
+    ko: "Halcyon의 상품은 한국 기관과 수익형 투자자 모두에게 맞지만, 한국에는 기관 접점도 현지어 채널도 없습니다. Panasia가 Ondo Finance, Mantra, Multipli에서 이미 검증한 RWA 경로(기관 세미나 → 자산운용사 아웃리치 → 현지화 포지셔닝)를 그대로 쓸 수 있습니다. 첫 시장은 한국입니다.",
+    en: "Halcyon's product fits both Korean institutions and yield-seeking investors, but it has no institutional contacts and no local-language channel in Korea. Panasia has already run this RWA route for Ondo Finance, Mantra and Multipli: institutional seminars, then asset-manager outreach, then local positioning. Korea comes first."
+  },
+  // f = factor scores 0-100. prep / launch in weeks.
+  markets: [
+    { code: "KR", proof: true, f: { reg: 68, access: 80, demand: 94, partners: 92 }, prep: 6, launch: 6,
+      ko: { name: "한국", blockers: ["기관은 수탁·회계 처리 구조를 먼저 확인함", "국문 상품 설명서와 리스크 고지 필요"], panasia: ["운용사·증권사 대상 RWA 세미나", "기관 1:1 미팅 파이프라인 관리", "국문 포지셔닝과 KOL 캠페인"] },
+      en: { name: "Korea", blockers: ["Institutions check custody and accounting treatment first", "Needs a Korean product memo and risk disclosure"], panasia: ["RWA seminar for asset managers and brokers", "Managed pipeline of institutional meetings", "Korean positioning and KOL campaign"] } },
+    { code: "SG", f: { reg: 82, access: 74, demand: 60, partners: 84 }, prep: 4, launch: 6,
+      ko: { name: "싱가포르", blockers: ["MAS 규정상 리테일 대상 마케팅 제한"], panasia: ["패밀리오피스·펀드 대상 프라이빗 세션"] },
+      en: { name: "Singapore", blockers: ["MAS rules restrict retail-facing marketing"], panasia: ["Private sessions for family offices and funds"] } },
+    { code: "JP", f: { reg: 55, access: 58, demand: 74, partners: 78 }, prep: 10, launch: 8,
+      ko: { name: "일본", blockers: ["토큰화 증권 규정 검토, 리드타임이 김", "일본 내 법인 또는 대리인 구조 검토"], panasia: ["규제 검토 전문가 연결", "일본어 포지셔닝"] },
+      en: { name: "Japan", blockers: ["Security-token rules need review, with long lead times", "Needs a local entity or agent structure"], panasia: ["Regulatory expert introductions", "Japanese positioning"] } },
+    { code: "HK", f: { reg: 74, access: 60, demand: 58, partners: 70 }, prep: 8, launch: 6,
+      ko: { name: "홍콩", blockers: ["SFC 라이선스 플랫폼 기준 충족 필요"], panasia: ["홍콩 기관 투자자 라운드테이블"] },
+      en: { name: "Hong Kong", blockers: ["Must meet SFC-licensed platform criteria"], panasia: ["Institutional investor roundtable"] } },
+    { code: "TW", f: { reg: 60, access: 52, demand: 58, partners: 55 }, prep: 6, launch: 6,
+      ko: { name: "대만", blockers: ["등록 VASP로 유통 경로 한정", "현지 파트너 풀이 작음"], panasia: ["번체 중국어 콘텐츠"] },
+      en: { name: "Taiwan", blockers: ["Distribution limited to registered VASPs", "Small local partner pool"], panasia: ["Traditional Chinese content"] } },
+    { code: "TH", f: { reg: 50, access: 56, demand: 66, partners: 60 }, prep: 6, launch: 6,
+      ko: { name: "태국", blockers: ["태국 SEC 승인 플랫폼 요건", "태국어 현지화 필요"], panasia: ["태국어 커뮤니티 운영"] },
+      en: { name: "Thailand", blockers: ["Thai SEC-approved platform requirements", "Needs Thai localisation"], panasia: ["Thai community operations"] } },
+    { code: "VN", f: { reg: 35, access: 40, demand: 88, partners: 66 }, prep: 4, launch: 6,
+      ko: { name: "베트남", blockers: ["가상자산 시범 제도 초기 단계", "커뮤니티 중심 진입만 가능"], panasia: ["베트남어 커뮤니티 런칭"] },
+      en: { name: "Vietnam", blockers: ["Crypto pilot framework is at an early stage", "Community-led entry only"], panasia: ["Vietnamese community launch"] } },
+    { code: "MY", f: { reg: 62, access: 46, demand: 46, partners: 50 }, prep: 6, launch: 6,
+      ko: { name: "말레이시아", blockers: ["SC 등록 플랫폼으로 경로 한정", "시장 규모가 작음"], panasia: ["등록 플랫폼 소개"] },
+      en: { name: "Malaysia", blockers: ["Routes limited to SC-registered platforms", "Small market size"], panasia: ["Introductions to registered platforms"] } }
+  ]
+};
+
+const T = {
+  ko: {
+    conf: BRIEF.client + " 전용 · 대외비",
+    sample: "샘플 프로토타입입니다. 사례(Mantra, Ondo Finance 등)와 그 수치는 panasia.io에 공개된 Panasia의 실제 기록입니다. 대상 프로젝트(Halcyon Finance), 시장 점수, 단가는 예시입니다.",
+    eyebrow: "Entry Map " + BRIEF.id + " · " + BRIEF.date.ko + " · " + BRIEF.desk,
+    h1: BRIEF.project + "의 아시아 진입 지도",
+    lede: "Panasia가 " + BRIEF.project + "의 현재 위치를 읽고, 같은 길을 먼저 간 프로젝트에서 만든 실제 결과를 근거로 진입 순서와 비용을 설계했습니다. 아래에서 시장과 플레이북을 바꾸면 일정과 견적이 바로 다시 계산됩니다.",
+    routeLabel: "현재 추천 경로",
+    nav: ["지금의 위치", "같은 길을 간 프로젝트", "8개 시장 적합도", "플레이북과 견적", "진입 순서", "다음 단계"],
+    s1title: "지금 " + BRIEF.project + "의 위치",
+    s1lede: "공개 데이터 기준, 2026년 9월 말.",
+    readLabel: "Panasia의 판단",
+    sCasesTitle: "같은 길을 먼저 간 프로젝트",
+    sCasesLede: "Panasia가 한국에서 실제로 만든 결과입니다. " + BRIEF.project + "와 같은 분야를 먼저 보여 드립니다.",
+    all: "전체",
+    s2title: "8개 시장 적합도",
+    s2lede: "규제 명확성 25%, 유통 접근 25%, 수요 30%, 파트너 밀도 20%로 계산한 점수입니다. 세로선은 바로 진입 기준(75점)입니다. 시장을 펼쳐 막히는 조건을 보고, 범위에 넣거나 빼 보세요.",
+    factors: { reg: "규제 명확성", access: "유통 접근", demand: "수요", partners: "파트너 밀도" },
+    status: { go: "바로 진입", prep: "준비 후 진입", hold: "보류" },
+    proofChip: "실행 기록 있음",
+    include: "범위에 넣기", included: "범위에 포함됨",
+    more: "자세히", less: "접기",
+    blockers: "막히는 조건", panasia: "Panasia가 하는 일",
+    sPlanTitle: "플레이북과 견적",
+    sPlanLede: "각 플레이북 아래에 그 방식을 실제로 돌린 Panasia 사례를 붙였습니다. 넣고 빼면 견적이 바로 바뀝니다.",
+    colItem: "항목", colOnce: "일회성", colMonthly: "월",
+    subtotal: "소계", grand: (m) => m + "개월 총액",
+    quoteNote: "단가는 예시입니다. 월 단위 항목은 " + BRIEF.months + "개월로 계산했습니다.",
+    perMarket: (n) => "시장 " + n + "곳",
+    proofPrefix: "근거",
+    s3title: "진입 순서와 일정",
+    s3lede: "범위에 넣은 시장을 점수 순으로 배치했습니다. 12개월 기준입니다.",
+    paceSeq: "단계 진입", paceSeqNote: "한 시장 런칭 후 다음 시장 준비",
+    pacePar: "동시 진입", paceParNote: "2주 간격으로 함께 준비",
+    phPrep: "준비", phLaunch: "런칭", phGrow: "성장 운영",
+    s6title: "이 구성 그대로 이야기해 봅시다",
+    s6lede: "아래 요청 내용을 복사해 보내 주시면, " + BRIEF.desk + " 리드가 30분 Entry Review를 잡습니다. 숫자는 그 자리에서 함께 확정합니다.",
+    copy: "요청 내용 복사", copied: "복사했습니다. 메일 본문에 붙여 넣으세요.", copyFail: "자동 복사가 막혀 있어 내용을 선택해 두었습니다. 직접 복사해 주세요.",
+    sendTo: "보낼 곳",
+    empty: "범위에 넣은 시장이 없습니다. 8개 시장 적합도에서 시장을 하나 이상 넣어 주세요.",
+    routeMeta: (n, w, total, c) => ["시장 <b>" + n + "곳</b>", "첫 런칭 <b>" + w + "주</b>", BRIEF.months + "개월 견적 <b>" + total + "</b>", "근거 사례 <b>" + c + "건</b>"],
+    summary: (o) => [
+      "Entry Review 요청: " + BRIEF.project + " (" + BRIEF.id + ")",
+      "",
+      "시장 순서: " + o.route + " (" + o.pace + ")",
+      "플레이북: " + o.playbooks,
+      "참고 사례: " + o.cases,
+      "예상 견적: 일회성 " + o.once + " + 월 " + o.monthly + " (" + BRIEF.months + "개월 총 " + o.total + ")",
+      "",
+      "담당: Panasia " + BRIEF.desk
+    ].join("\n"),
+    footerNote: "이 페이지는 " + BRIEF.client + "를 위해 작성되었습니다. 사례 출처: panasia.io"
+  },
+  en: {
+    conf: "Prepared for " + BRIEF.client + " · Confidential",
+    sample: "Sample prototype. The cases (Mantra, Ondo Finance and others) and their figures are Panasia's real results as published on panasia.io. The prospect (Halcyon Finance), market scores and rates are illustrative.",
+    eyebrow: "Entry Map " + BRIEF.id + " · " + BRIEF.date.en + " · " + BRIEF.desk,
+    h1: BRIEF.project + "'s entry map for Asia",
+    lede: "Panasia read where " + BRIEF.project + " stands today and designed an entry sequence and budget based on results we delivered for projects that took the same route. Change the markets and playbooks below and the timeline and quote update instantly.",
+    routeLabel: "Current recommended route",
+    nav: ["Where you stand", "Projects on the same route", "8-market fit", "Playbooks & quote", "Entry sequence", "Next step"],
+    s1title: "Where " + BRIEF.project + " stands today",
+    s1lede: "Public data as of late September 2026.",
+    readLabel: "Panasia's read",
+    sCasesTitle: "Projects that took this route first",
+    sCasesLede: "Results Panasia delivered in Korea. Projects in " + BRIEF.project + "'s sector are shown first.",
+    all: "All",
+    s2title: "Fit across eight markets",
+    s2lede: "Weighted 25% regulatory clarity, 25% distribution access, 30% demand and 20% partner density. The vertical line marks the go threshold (75). Open a market to see what blocks entry, and add or remove it from scope.",
+    factors: { reg: "Regulatory clarity", access: "Distribution access", demand: "Demand", partners: "Partner density" },
+    status: { go: "Go now", prep: "Prepare first", hold: "Hold" },
+    proofChip: "Track record",
+    include: "Add to scope", included: "In scope",
+    more: "Details", less: "Close",
+    blockers: "What blocks entry", panasia: "What Panasia does",
+    sPlanTitle: "Playbooks and quote",
+    sPlanLede: "Under each playbook is the Panasia case where we ran it. Add or remove playbooks and the quote updates.",
+    colItem: "Item", colOnce: "One-off", colMonthly: "Monthly",
+    subtotal: "Subtotal", grand: (m) => m + "-month total",
+    quoteNote: "Rates are illustrative. Monthly items are calculated over " + BRIEF.months + " months.",
+    perMarket: (n) => n + (n === 1 ? " market" : " markets"),
+    proofPrefix: "Proof",
+    s3title: "Entry sequence and timeline",
+    s3lede: "Markets in scope, ordered by score, over 12 months.",
+    paceSeq: "Staged", paceSeqNote: "Next market starts after the last one launches",
+    pacePar: "Parallel", paceParNote: "Markets start two weeks apart",
+    phPrep: "Prepare", phLaunch: "Launch", phGrow: "Grow",
+    s6title: "Let's talk about this exact setup",
+    s6lede: "Copy the request below and send it over. A " + BRIEF.desk + " lead will set up a 30-minute Entry Review, and we will confirm the numbers together.",
+    copy: "Copy request", copied: "Copied. Paste it into your email.", copyFail: "Automatic copy is blocked here, so the text is selected. Copy it manually.",
+    sendTo: "Send to",
+    empty: "No markets in scope. Add at least one market in the fit section.",
+    routeMeta: (n, w, total, c) => ["<b>" + n + "</b> " + (n === 1 ? "market" : "markets"), "First launch in <b>" + w + " wks</b>", BRIEF.months + "-month quote <b>" + total + "</b>", "<b>" + c + "</b> backing cases"],
+    summary: (o) => [
+      "Entry Review request: " + BRIEF.project + " (" + BRIEF.id + ")",
+      "",
+      "Market order: " + o.route + " (" + o.pace + ")",
+      "Playbooks: " + o.playbooks,
+      "Reference cases: " + o.cases,
+      "Estimated quote: " + o.once + " one-off + " + o.monthly + "/month (" + o.total + " over " + BRIEF.months + " months)",
+      "",
+      "Desk: Panasia " + BRIEF.desk
+    ].join("\n"),
+    footerNote: "This page was prepared for " + BRIEF.client + ". Case source: panasia.io"
+  }
+};
+
+const W = { reg: 0.25, access: 0.25, demand: 0.30, partners: 0.20 };
+const GO = 75, PREP = 60, WEEKS = 52;
+const state = {
+  lang: "ko",
+  selected: new Set(BRIEF.selected),
+  pace: "seq",
+  playbooks: new Set(BRIEF.playbooks),
+  sector: BRIEF.sector,
+  open: "KR"
+};
+try { const saved = localStorage.getItem("entrymap-lang"); if (saved === "ko" || saved === "en") state.lang = saved; } catch (e) {}
+
+const $ = (s) => document.querySelector(s);
+const usd = (n) => "$" + Math.round(n).toLocaleString("en-US");
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const score = (m) => Math.round(Object.keys(W).reduce((a, k) => a + m.f[k] * W[k], 0));
+const status = (s) => (s >= GO ? "go" : s >= PREP ? "prep" : "hold");
+const byScore = BRIEF.markets.slice().sort((a, b) => score(b) - score(a));
+const inScope = () => byScore.filter((m) => state.selected.has(m.code));
+const caseById = (id) => CASES.find((c) => c.id === id);
+const chosenPlaybooks = () => PLAYBOOKS.filter((p) => state.playbooks.has(p.id));
+const backingCases = () => [...new Set(chosenPlaybooks().flatMap((p) => p.cases))].map(caseById);
+const caseShort = (c) => c.name + (c.metric ? " " + c.metric + " " + c[state.lang].label : "");
+
+function schedule(list) {
+  let cursor = 0;
+  return list.map((m, i) => {
+    const start = state.pace === "seq" ? cursor : i * 2;
+    cursor = start + m.prep + m.launch;
+    return { m, start, prepEnd: start + m.prep, launchEnd: start + m.prep + m.launch };
+  });
+}
+
+function quote(list) {
+  const n = list.length;
+  const rows = [];
+  if (!n) return { rows, once: 0, monthly: 0, total: 0 };
+  rows.push({ name: BASE[state.lang][0], n, once: BASE.once + BASE.oncePerMarket * n, monthly: 0 });
+  chosenPlaybooks().forEach((p) => rows.push({ name: p[state.lang][0], n, once: p.oncePerMarket * n, monthly: p.monthlyPerMarket * n }));
+  const once = rows.reduce((a, r) => a + r.once, 0);
+  const monthly = rows.reduce((a, r) => a + r.monthly, 0);
+  return { rows, once, monthly, total: once + monthly * BRIEF.months };
+}
+
+function renderStatic() {
+  const t = T[state.lang];
+  document.documentElement.lang = state.lang;
+  document.querySelectorAll("[data-t]").forEach((el) => {
+    const v = t[el.dataset.t];
+    if (typeof v === "string") el.textContent = v;
+  });
+  document.querySelectorAll(".lang button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === state.lang)));
+  const ids = ["now", "cases", "markets", "plan", "sequence", "next"];
+  $("#rail").innerHTML = ids.map((id, i) => '<a href="#' + id + '"><span>' + (i + 1) + "</span>" + esc(t.nav[i]) + "</a>").join("");
+  $("#facts").innerHTML = BRIEF.facts.map((f) => {
+    const [k, note] = f[state.lang];
+    return '<div class="fact"><span>' + esc(k) + '</span><span class="v' + (f.alert ? " alert" : "") + '">' + esc(f.v) + '</span><span class="note">' + esc(note) + "</span></div>";
+  }).join("");
+  $("#read").textContent = BRIEF.read[state.lang];
+}
+
+function renderCases() {
+  const t = T[state.lang];
+  const count = (s) => CASES.filter((c) => c.sector === s).length;
+  const keys = [BRIEF.sector, ...Object.keys(SECTORS).filter((s) => s !== BRIEF.sector)];
+  $("#filters").innerHTML =
+    '<button type="button" class="filter" id="f-all" data-sector="all" aria-pressed="' + (state.sector === "all") + '">' + esc(t.all) + '<span class="n">' + CASES.length + "</span></button>" +
+    keys.map((s) => '<button type="button" class="filter" id="f-' + s + '" data-sector="' + s + '" aria-pressed="' + (state.sector === s) + '">' + esc(SECTORS[s][state.lang]) + '<span class="n">' + count(s) + "</span></button>").join("");
+  const list = state.sector === "all"
+    ? CASES.slice().sort((a, b) => (b.sector === BRIEF.sector) - (a.sector === BRIEF.sector))
+    : CASES.filter((c) => c.sector === state.sector);
+  $("#case-list").innerHTML = list.map((c) => {
+    const L = c[state.lang];
+    const body = c.metric
+      ? '<div><div class="case-metric">' + esc(c.metric) + '</div><div class="case-metric-label">' + esc(L.label) + "</div></div>"
+      : '<div class="case-headline">' + esc(L.label) + "</div>";
+    return '<article class="case' + (c.sector === BRIEF.sector ? " match" : "") + '">' +
+      '<div class="case-top"><span class="case-name">' + esc(c.name) + '</span><span class="chip sector">' + esc(SECTORS[c.sector][state.lang]) + "</span></div>" +
+      body + '<div class="case-how">' + esc(L.how) + "</div></article>";
+  }).join("");
+}
+
+function renderMarkets() {
+  const t = T[state.lang];
+  $("#market-list").innerHTML = byScore.map((m) => {
+    const s = score(m), st = status(s), on = state.selected.has(m.code), open = state.open === m.code;
+    const L = m[state.lang];
+    const factors = Object.keys(W).map((k) =>
+      '<div class="factor"><span>' + esc(t.factors[k]) + '</span><div class="meter-track"><div class="meter-fill" style="width:' + m.f[k] + '%"></div></div><span>' + m.f[k] + "</span></div>"
+    ).join("");
+    return '<div class="mkt' + (on ? " on" : "") + '">' +
+      '<div class="mkt-row">' +
+        '<div class="mkt-code">' + m.code + "</div>" +
+        '<div class="mkt-main">' +
+          '<div class="mkt-title"><strong>' + esc(L.name) + '</strong><span class="chip ' + st + '">' + esc(t.status[st]) + "</span>" +
+            (m.proof ? '<span class="chip proof">' + esc(t.proofChip) + "</span>" : "") + "</div>" +
+          '<div class="meter"><div class="meter-track"><div class="meter-fill" style="width:' + s + '%"></div><div class="meter-mark" style="left:' + GO + '%"></div></div><b>' + s + "</b></div>" +
+        "</div>" +
+        '<div class="mkt-actions">' +
+          '<button type="button" class="btn toggle" id="tg-' + m.code + '" data-toggle="' + m.code + '" aria-pressed="' + on + '">' + esc(on ? t.included : t.include) + "</button>" +
+          '<button type="button" class="btn" id="mo-' + m.code + '" data-open="' + m.code + '" aria-expanded="' + open + '">' + esc(open ? t.less : t.more) + "</button>" +
+        "</div>" +
+      "</div>" +
+      (open ? '<div class="mkt-detail"><div class="factors">' + factors + '</div><div class="detail-list">' +
+        '<div><span class="label">' + esc(t.blockers) + "</span><ul>" + L.blockers.map((b) => "<li>" + esc(b) + "</li>").join("") + "</ul></div>" +
+        '<div><span class="label">' + esc(t.panasia) + "</span><ul>" + L.panasia.map((b) => "<li>" + esc(b) + "</li>").join("") + "</ul></div>" +
+      "</div></div>" : "") +
+    "</div>";
+  }).join("");
+}
+
+function renderPlan(list, q) {
+  const t = T[state.lang];
+  const proofs = (ids) => ids.map(caseById).map((c) =>
+    '<span class="proof">' + esc(c.name) + (c.metric ? " <b>" + esc(c.metric) + "</b> " + esc(c[state.lang].label) : " · " + esc(c[state.lang].label)) + "</span>"
+  ).join("");
+  $("#playbooks").innerHTML =
+    '<div class="pb base"><span></span><span class="pb-name">' + esc(BASE[state.lang][0]) + '</span><span class="pb-note">' + esc(BASE[state.lang][1]) + "</span></div>" +
+    PLAYBOOKS.map((p) => {
+      const [name, note] = p[state.lang];
+      return '<label class="pb" for="pb-' + p.id + '"><input type="checkbox" id="pb-' + p.id + '" data-pb="' + p.id + '"' + (state.playbooks.has(p.id) ? " checked" : "") + ">" +
+        '<span class="pb-name">' + esc(name) + '</span><span class="pb-note">' + esc(note) + "</span>" +
+        '<span class="pb-proof"><span class="label" style="align-self:center">' + esc(t.proofPrefix) + "</span>" + proofs(p.cases) + "</span></label>";
+    }).join("");
+  if (!list.length) { $("#quote-table").innerHTML = '<tbody><tr><td class="sub">' + esc(t.empty) + "</td></tr></tbody>"; return; }
+  $("#quote-table").innerHTML =
+    "<thead><tr><th>" + esc(t.colItem) + '</th><th class="r">' + esc(t.colOnce) + '</th><th class="r">' + esc(t.colMonthly) + "</th></tr></thead><tbody>" +
+    q.rows.map((r) => "<tr><td>" + esc(r.name) + '<br><span class="sub">' + esc(t.perMarket(r.n)) + '</span></td><td class="r">' + (r.once ? usd(r.once) : "–") + '</td><td class="r">' + (r.monthly ? usd(r.monthly) : "–") + "</td></tr>").join("") +
+    "</tbody><tfoot><tr><td>" + esc(t.subtotal) + '</td><td class="r">' + usd(q.once) + '</td><td class="r">' + usd(q.monthly) + "</td></tr>" +
+    '<tr class="grand"><td>' + esc(t.grand(BRIEF.months)) + '</td><td class="r" colspan="2">' + usd(q.total) + "</td></tr></tfoot>";
+}
+
+function renderSequence(list) {
+  const t = T[state.lang];
+  document.querySelectorAll("#pace button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.pace === state.pace)));
+  if (!list.length) { $("#gantt").innerHTML = '<p class="empty">' + esc(t.empty) + "</p>"; return; }
+  const pct = (w) => (Math.min(w, WEEKS) / WEEKS) * 100;
+  const seg = (cls, a, b) => (a >= WEEKS ? "" : '<div class="g-seg ' + cls + '" style="left:' + pct(a) + "%;width:" + (pct(b) - pct(a)) + '%"></div>');
+  const axis = '<div class="g-row g-axis"><span></span><div class="g-track">' + Array.from({ length: 12 }, (_, i) => "<span>M" + (i + 1) + "</span>").join("") + "</div></div>";
+  $("#gantt").innerHTML = axis + schedule(list).map((r) =>
+    '<div class="g-row"><div class="g-name"><b>' + r.m.code + "</b>" + esc(r.m[state.lang].name) + '</div><div class="g-track">' +
+      seg("prep", r.start, r.prepEnd) + seg("launch", r.prepEnd, r.launchEnd) + seg("grow", r.launchEnd, WEEKS) +
+    "</div></div>"
+  ).join("");
+}
+
+function renderRoute(list, q) {
+  const t = T[state.lang];
+  if (!list.length) { $("#route").innerHTML = '<p class="empty">' + esc(t.empty) + "</p>"; $("#route-meta").innerHTML = ""; return; }
+  $("#route").innerHTML = list.map((m, i) =>
+    (i ? '<span class="arrow" aria-hidden="true">→</span>' : "") +
+    '<span class="stop"><b>' + m.code + "</b><small>" + esc(m[state.lang].name) + " " + score(m) + "</small></span>"
+  ).join("");
+  $("#route-meta").innerHTML = t.routeMeta(list.length, schedule(list)[0].launchEnd, usd(q.total), backingCases().length).map((x) => "<span>" + x + "</span>").join("");
+}
+
+function renderSummary(list, q) {
+  const t = T[state.lang];
+  if (!list.length) { $("#summary").textContent = t.empty; return; }
+  $("#summary").textContent = t.summary({
+    route: list.map((m) => m[state.lang].name).join(" → "),
+    pace: state.pace === "seq" ? t.paceSeq : t.pacePar,
+    playbooks: chosenPlaybooks().map((p) => p[state.lang][0]).join(", ") || "–",
+    cases: backingCases().map(caseShort).join(" / ") || "–",
+    once: usd(q.once), monthly: usd(q.monthly), total: usd(q.total)
+  });
+}
+
+function render() {
+  const list = inScope();
+  const q = quote(list);
+  renderCases();
+  renderMarkets();
+  renderPlan(list, q);
+  renderSequence(list);
+  renderRoute(list, q);
+  renderSummary(list, q);
+  $("#copy-status").textContent = "";
+}
+
+document.addEventListener("click", (e) => {
+  const tg = e.target.closest("[data-toggle]");
+  if (tg) { const c = tg.dataset.toggle; state.selected.has(c) ? state.selected.delete(c) : state.selected.add(c); render(); document.getElementById("tg-" + c)?.focus(); return; }
+  const op = e.target.closest("[data-open]");
+  if (op) { const c = op.dataset.open; state.open = state.open === c ? null : c; render(); document.getElementById("mo-" + c)?.focus(); return; }
+  const sf = e.target.closest("[data-sector]");
+  if (sf) { state.sector = sf.dataset.sector; render(); document.getElementById("f-" + state.sector)?.focus(); return; }
+  const pc = e.target.closest("[data-pace]");
+  if (pc) { state.pace = pc.dataset.pace; render(); return; }
+  const lg = e.target.closest("[data-lang]");
+  if (lg) {
+    state.lang = lg.dataset.lang;
+    try { localStorage.setItem("entrymap-lang", state.lang); } catch (err) {}
+    renderStatic(); render(); return;
+  }
+});
+document.addEventListener("change", (e) => {
+  const id = e.target.dataset && e.target.dataset.pb;
+  if (!id) return;
+  e.target.checked ? state.playbooks.add(id) : state.playbooks.delete(id);
+  render();
+  document.getElementById("pb-" + id)?.focus();
+});
+$("#copy-btn").addEventListener("click", () => {
+  const t = T[state.lang];
+  const text = $("#summary").textContent;
+  const fallback = () => {
+    const r = document.createRange(); r.selectNodeContents($("#summary"));
+    const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    $("#copy-status").textContent = t.copyFail;
+  };
+  try {
+    navigator.clipboard.writeText(text).then(() => { $("#copy-status").textContent = t.copied; }, fallback);
+  } catch (err) { fallback(); }
+});
+
+renderStatic();
+render();
+</script>
+</body>
+</html>
