@@ -46,6 +46,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer;background:none;border:0;padding:0}
 a{color:var(--accent);text-underline-offset:3px}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+/* headings receive focus only from script (skip links, step changes); a ring there reads as a stray box */
+h1[tabindex="-1"]:focus,h2[tabindex="-1"]:focus,h3[tabindex="-1"]:focus{outline:none}
 .mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums;letter-spacing:0}
 .muted{color:var(--muted)}
 .small{font-size:var(--step--1)}
@@ -74,8 +76,8 @@ html[lang="ko"] .caps,html[lang="ko"] .eyebrow{text-transform:none}
 .brand .sub{color:var(--muted);font-size:var(--step--1);white-space:pre}
 .brand .lat{font-family:var(--f-mono);font-size:var(--step--2);letter-spacing:.16em;margin-left:6px;color:var(--ink)}
 @media (max-width:599px){ .brand .id-long{display:none} }
-@media (min-width:720px){ body:not(.cover-only):not(.review-mode) .brand .id-long{display:none} }
-@media (min-width:720px) and (max-width:1399px){ body:not(.cover-only) .th-seg{display:none} body:not(.cover-only) .th-cyc{display:inline-flex} }
+@media (min-width:720px){ body:not(.cover-only):not(.review-mode):not(.v-brief) .brand .id-long{display:none} }
+@media (min-width:720px) and (max-width:1399px){ body.v-deep:not(.cover-only) .th-seg{display:none} body.v-deep:not(.cover-only) .th-cyc{display:inline-flex} }
 @media (max-width:419px){ .brand{display:grid;grid-template-columns:auto auto;justify-content:start;align-content:center;line-height:1.15} .brand .sub{grid-column:1/-1;font-size:var(--step--2);white-space:nowrap} .brand .sub .sep{display:none} .brand .lat{display:inline;align-self:center} }
 .idx{flex:1 1 300px;min-width:0;display:flex;gap:4px;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:24px;scrollbar-width:none;padding:4px 2px}
 .idx.more{-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent)}
@@ -127,19 +129,6 @@ body.review-mode .review{max-width:900px;margin-inline:auto}
 body.cover-only .sheet-wrap{display:none}
 @media (min-width:900px){ body.cover-only .doors{grid-template-columns:repeat(3,minmax(0,1fr))} body.cover-only .door{border-top:0;border-left:1px solid var(--rule);padding:16px 18px;grid-template-columns:40px 1fr} body.cover-only .door:first-child{border-left:0;padding-left:4px} body.cover-only .door{grid-template-rows:auto 1fr auto} body.cover-only .door .s{grid-column:2;grid-row:2} body.cover-only .door .go{grid-column:2;grid-row:3;justify-self:start;align-self:end;margin-top:8px} body.cover-only .lede{max-width:40em} body.cover-only .cover h1{max-width:19em} html[lang="en"] body.cover-only .cover h1{max-width:24em} body.cover-only #s0.sec{padding-top:12px} }
 .door:hover .go,.door:focus-visible .go{text-decoration:underline;text-underline-offset:3px}
-/* cover preview of the Scope Draft (wide screens): ruled blanks only, nothing invented */
-.cover-ghost{display:none}
-@media (min-width:1200px){
-  body.cover-only .cover{display:grid;grid-template-columns:minmax(0,1fr) 340px;column-gap:56px;align-items:start}
-  body.cover-only .cover>*{grid-column:1/-1}
-  body.cover-only .cover>.eyebrow,body.cover-only .cover>h1,body.cover-only .cover>.lede,body.cover-only .cover>.tagline{grid-column:1}
-  body.cover-only .cover-ghost{display:block;grid-column:2;grid-row:1/span 4;align-self:start;margin-top:4px}
-}
-.ghost-sheet{padding:16px 20px 14px;box-shadow:none}
-.ghost-sheet .sl{padding:6px 0;grid-template-columns:72px minmax(0,1fr)}
-.ghost-sheet .blank{display:block;height:1.05em;border-bottom:1px dashed var(--rule-strong)}
-.ghost-sheet .sl:nth-child(odd) .blank{width:72%} .ghost-sheet .sl:nth-child(3n) .blank{width:54%}
-.ghost-sheet .cap{margin-top:10px;font-size:var(--step--2);color:var(--muted)}
 @media (min-width:1000px){ body.cover-only .strip{grid-template-columns:repeat(6,minmax(0,1fr))} }
 @media (max-width:1023px){ .sheet-wrap{display:none} body{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))} }
 
@@ -169,10 +158,9 @@ details.dis>.dbody{padding:6px 0 18px}
 .eyebrow{font-family:var(--f-mono);font-size:var(--step--2);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap}
 .cover h1{font-size:clamp(1.85rem,3.6vw,2.75rem);margin-top:10px;max-width:none;font-weight:700;line-height:1.25}
 .lede{margin-top:12px;font-size:var(--step-1);line-height:1.6;max-width:36em}
-.tagline{margin-top:12px;color:var(--ink);font-size:var(--step-0);max-width:40em}
-.tagline.m,.strip-note-m{display:none}
+.strip-note-m{display:none}
 .doors-q{margin-top:24px}
-@media (max-width:599px){ .door{grid-template-columns:30px 1fr auto;gap:2px 10px} .door .go{font-size:var(--step--2)} #s0.sec{padding-top:12px} .cover{padding-top:4px} .cover h1{font-size:1.6rem;margin-top:10px} .lede{font-size:var(--step-0);margin-top:10px} body.cover-only .cover>.tagline{display:none} body.cover-only .cover>.tagline.m{display:block;margin-top:14px} .door{padding-block:12px} .doors-q{margin-top:16px} .strip-h .note{display:none} .strip-note-m{display:block;margin-top:8px} }
+@media (max-width:599px){ .door{grid-template-columns:30px 1fr auto;gap:2px 10px} .door .go{font-size:var(--step--2)} #s0.sec{padding-top:12px} .cover{padding-top:4px} .cover h1{font-size:1.6rem;margin-top:10px} .lede{font-size:var(--step-0);margin-top:10px} .door{padding-block:12px} .doors-q{margin-top:16px} .strip-h .note{display:none} .strip-note-m{display:block;margin-top:8px} }
 .doors{margin-top:8px;display:grid;grid-template-columns:1fr;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
 .door{display:grid;grid-template-columns:44px 1fr auto;gap:4px 12px;align-items:start;text-align:left;padding:18px 4px;border-top:1px solid var(--rule);min-height:44px;transition:background .15s}
 .door:first-child{border-top:0}
@@ -618,9 +606,120 @@ footer{border-top:1px solid var(--ink);margin-top:24px}
 @media (min-width:860px){ .ft{grid-template-columns:1.2fr 1fr;padding-inline:24px} }
 .ft>.stack{align-content:start}
 
+/* ── v4: default path (cover → three questions → Entry Brief) ── */
+body.v-brief .layout{display:block}
+body.v-brief .sheet-wrap,body.v-brief .bar{display:none!important}
+@media (max-width:1023px){ body.v-brief{padding-bottom:0} body.v-brief .toast{bottom:calc(20px + env(safe-area-inset-bottom,0px))} }
+body.v-brief:not(.cover-only) main{max-width:800px;margin-inline:auto}
+body.v-brief .idx{display:none}
+.idx .back{flex:0 0 auto;min-height:36px;padding:4px 10px;border:1px solid var(--accent);border-radius:var(--radius);color:var(--accent);font-size:var(--step--1);white-space:nowrap;margin-right:6px}
+.idx .back .short{display:none}
+@media (max-width:719px){ .idx .back .long{display:none} .idx .back .short{display:inline} }
+/* compact doors once a door is chosen */
+.cover.mini{padding-block:0 4px;display:grid;gap:8px}
+#s0.sec:has(.cover.mini){padding-block:18px 0}
+.doors.mini{display:flex;flex-wrap:wrap;gap:6px;margin-top:0;border:0}
+.doors.mini .door{display:inline-flex;grid-template-columns:none;gap:8px;align-items:center;padding:8px 14px;border:1px solid var(--rule);border-radius:var(--radius);background:var(--surface);min-height:44px}
+.doors.mini .door:first-child{border-top:1px solid var(--rule)}
+.doors.mini .door .t{font-family:var(--f-body);font-weight:600;font-size:var(--step--1)}
+.doors.mini .door .k{padding-top:0;font-size:var(--step--2)}
+.doors.mini .door[aria-current="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.doors.mini .door:hover,.doors.mini .door:focus-visible{box-shadow:inset 0 0 0 1px var(--accent)}
+/* three questions */
+#qk.sec{padding-block:24px 28px;border-top:0}
+.qk-h{display:grid;gap:4px;margin-bottom:6px}
+.qk-h h2{font-size:var(--step-2)}
+.qk-h .sub{color:var(--muted);font-size:var(--step--1)}
+#qk .q{padding-block:12px}
+.qk-prev{margin-top:10px;padding:10px 14px;background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);font-size:var(--step--1);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+/* the Entry Brief: a one-page memo from the Seoul desk */
+#bf.sec{padding-block:8px 40px;border-top:0}
+.memo{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--ink);border-radius:2px;padding:24px 32px 18px;box-shadow:0 1px 0 var(--rule),0 18px 36px -26px rgba(20,23,28,.4)}
+.memo-lh{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;align-items:baseline;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.memo-lh .caps{color:var(--ink);letter-spacing:.12em}
+.memo-lh .r{font-size:var(--step--2);color:var(--muted)}
+.memo-re{margin-top:12px;color:var(--muted)}
+.memo .headline{font-size:clamp(1.3rem,2.5vw,1.7rem);line-height:1.42;margin:6px 0 14px;max-width:30em}
+.bf-row{display:grid;grid-template-columns:132px minmax(0,1fr);gap:6px 24px;padding:14px 0;border-top:1px solid var(--rule)}
+.bf-k{font-family:var(--f-mono);font-size:var(--step--2);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:3px;line-height:1.5}
+html[lang="ko"] .bf-k{text-transform:none;letter-spacing:.01em;word-spacing:-.32em}
+.bf-v{display:grid;gap:8px;min-width:0;font-size:var(--step--1)}
+.bf-mk{display:flex;gap:10px;align-items:baseline}
+.bf-mk b{font-size:var(--step-2);font-weight:500;line-height:1}
+.bf-mk span{font-family:var(--f-display);font-weight:700;font-size:var(--step-1)}
+.rchips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.rc{display:inline-flex;gap:4px;align-items:baseline;padding:2px 10px;border:1px solid var(--rule-strong);border-radius:999px;font-size:var(--step--1);white-space:nowrap}
+.rc.on{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.rc.cand{border-style:dashed;color:var(--muted)}
+.rc-sep{color:var(--muted);font-family:var(--f-mono)}
+.rc-l{margin-right:2px}
+.cs-list{display:grid;gap:0}
+.cs-list li{display:grid;grid-template-columns:minmax(76px,max-content) minmax(0,1fr);gap:2px 14px;padding:8px 0;border-bottom:1px dashed var(--rule)}
+.cs-list li:last-child{border-bottom:0}
+.cs-list .fig{font-family:var(--f-mono);font-size:var(--step-1);font-weight:500;line-height:1.25;white-space:nowrap}
+.cs-list .nofig{font-family:var(--f-body);font-size:var(--step--2);color:var(--muted);white-space:normal}
+.cs-list .cx{display:grid;gap:1px;min-width:0}
+.cs-list .who{font-family:var(--f-display);font-weight:700}
+.cs-list .who.pend{font-family:var(--f-mono);font-weight:400;font-size:var(--step--2);color:var(--muted)}
+.cs-list .cq{font-style:italic;font-size:var(--step--2);color:var(--muted)}
+.cs-list .orig{font-family:var(--f-mono);font-style:normal}
+.pg-list{display:grid;gap:10px}
+.pg-h{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
+.pg-h b{font-family:var(--f-display);font-size:var(--step-0)}
+.dl{display:grid;gap:2px;margin-top:4px}
+.dl li{padding-left:14px;position:relative}
+.dl li::before{content:"";position:absolute;left:2px;top:.72em;width:5px;height:1px;background:var(--muted)}
+.tl{display:flex;flex-wrap:wrap;gap:4px 0;align-items:center}
+.tl li{display:inline-flex;align-items:center}
+.tl li+li::before{content:"→";content:"→" / "";margin:0 8px;color:var(--muted);font-family:var(--f-mono)}
+.tl li:first-child{font-weight:600}
+.memo-foot{margin-top:6px;padding-top:12px;border-top:1px solid var(--rule);font-size:var(--step--2);color:var(--muted)}
+.book{margin-top:16px;border:1px solid var(--ink);border-radius:var(--radius);background:var(--surface);padding:20px 24px;display:grid;gap:12px}
+.book .field{max-width:420px}
+.book-go{gap:10px 18px}
+.book-go .btn{font-size:var(--step-0)}
+.book-2{gap:4px 20px;font-size:var(--step--1)}
+.bf-more{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.bf-more .small{flex:1 1 220px}
+@media (max-width:719px){ .memo{padding:18px 16px 14px} .bf-row{grid-template-columns:minmax(0,1fr);gap:6px;padding:12px 0} .book{padding:16px} #s0.sec:has(.cover.mini){padding-top:12px} }
+/* the prospect's one page (#demo and a published proposal copy) */
+.pbrief{padding-block:12px 36px}
+.pbrief .block{margin-top:24px}
+.pbrief .read{margin-top:8px}
+.pb-facts{margin-top:8px}
+.pb-facts .fact{padding:10px 0}
+.pb-facts .fact .ctl{gap:2px}
+.tb{min-height:32px;padding:2px 8px;font-size:var(--step--2);color:var(--muted);text-decoration:underline dotted;text-underline-offset:3px;border-radius:var(--radius)}
+.tb:hover{color:var(--ink)}
+.tb[aria-pressed="true"]{color:var(--accent);text-decoration:underline solid;font-weight:600;background:var(--accent-soft)}
+.pb-two{display:grid;gap:20px}
+@media (min-width:720px){ .pb-two{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} }
+.pb-two .rchips{margin-top:10px}
+.pb-two p.small{margin-top:8px}
+.pb-progs{display:grid;gap:8px;margin-top:10px}
+.pb-progs li{display:grid;gap:2px;padding-left:12px;border-left:2px solid var(--ink)}
+.pb-sealed{margin-top:22px;display:flex;gap:10px;align-items:center;font-size:var(--step--1);padding:10px 14px;background:var(--hatch-bg) 0 0/100% 6px no-repeat,var(--surface);border:1px solid var(--rule);padding-top:14px}
+.pb-sealed .pv-s{white-space:normal}
+/* v4: only REPORTED and SAMPLE are marked by default; VIEW, PUBLIC and YOURS read as plain text until X-ray ("출처 보기") is on */
+html:not(.xray) .pv-p{border:0;border-radius:0;padding:0}
+html:not(.xray) .pv-p::after{content:none}
+html:not(.xray) .pv-v{text-decoration:none}
+html:not(.xray) .pv-v .vt{display:none}
+html:not(.xray) .pv-y{outline:0;padding:0;color:inherit}
+html:not(.xray) .vtag{display:none}
+html:not(.xray) .vblock{border-left:0;padding-left:0}
+/* the operator pill (draft mode only): bottom of the page, collapsed */
+.banner{max-width:1180px;margin:0 auto;padding:0 16px 20px}
+@media (min-width:860px){ .banner{padding-inline:24px} }
+.banner details{display:inline-block;max-width:100%}
+.banner details:not([open]){border-radius:999px}
+.banner details[open]{display:block}
+.banner summary{min-height:36px;padding:4px 12px;border-radius:999px;font-size:var(--step--2)}
+.banner details[open] summary{border-radius:0}
+@media (max-width:1023px){ body.v-deep .banner{padding-bottom:8px} }
 /* phones and touch: every tap target is at least 44×44 (after all component rules so it wins the cascade) */
 @media (max-width:1023px),(any-pointer:coarse){
-  .idx button,.seg button,.xbtn,.opt,.opt.sm,.btn.sm,.pinbtn,.ib,.toggle,.addpair .opt.info,.cell,.dot{min-height:44px;min-width:44px}
+  .idx button,.seg button,.xbtn,.opt,.opt.sm,.btn.sm,.pinbtn,.ib,.toggle,.addpair .opt.info,.cell,.dot,.tb,.banner summary{min-height:44px;min-width:44px}
   .opt{justify-content:center}
   .paste input,.fact input,.field input[type=text]{min-height:44px}
 }
@@ -642,6 +741,7 @@ footer{border-top:1px solid var(--ink);margin-top:24px}
   :root:not([data-theme="light"]) .tile.solid .c,:root:not([data-theme="light"]) .tile.solid .muted{color:var(--ink)}
   :root:not([data-theme="light"]) .btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
   :root:not([data-theme="light"]) .dot[aria-checked="true"]:not([data-v="0"]){background:var(--accent-soft);color:var(--accent);border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+  :root:not([data-theme="light"]) .rc.on{background:var(--accent-soft);color:var(--ink);border-color:var(--accent)}
 }
 :root[data-theme="dark"] .bar{background:var(--surface);color:var(--ink);border-top:1px solid var(--rule-strong)}
 :root[data-theme="dark"] .bar button:focus-visible{outline-color:var(--accent)}
@@ -652,6 +752,7 @@ footer{border-top:1px solid var(--ink);margin-top:24px}
 :root[data-theme="dark"] .tile.solid .c,:root[data-theme="dark"] .tile.solid .muted{color:var(--ink)}
 :root[data-theme="dark"] .btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 :root[data-theme="dark"] .dot[aria-checked="true"]:not([data-v="0"]){background:var(--accent-soft);color:var(--accent);border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+:root[data-theme="dark"] .rc.on{background:var(--accent-soft);color:var(--ink);border-color:var(--accent)}
 /* Windows High Contrast: background-only selection states would vanish */
 @media (forced-colors:active){
   .opt[aria-checked="true"],.opt[aria-pressed="true"],.seg button[aria-pressed="true"],.cell[aria-pressed="true"],.dot[aria-checked="true"],.toggle[aria-pressed="true"],.door[aria-current="true"],.xbtn[aria-pressed="true"],.pinbtn[aria-pressed="true"]{forced-color-adjust:none;background:Highlight;color:HighlightText;border-color:Highlight}
@@ -662,11 +763,12 @@ footer{border-top:1px solid var(--ink);margin-top:24px}
 </head>
 <body>
 <header class="hdr" id="hdr"></header>
-<div class="banner" id="banner" hidden></div>
 <div class="wrap">
   <div class="layout">
     <main id="app" tabindex="-1">
       <section id="s0" class="sec" aria-labelledby="s0h"></section>
+      <section id="qk" class="sec qk" aria-labelledby="qkh" hidden></section>
+      <section id="bf" class="sec bf" aria-labelledby="bfh" hidden></section>
       <section id="s1" class="sec" aria-labelledby="s1h" hidden></section>
       <section id="s2" class="sec" aria-labelledby="s2h" hidden></section>
       <section id="s3" class="sec" aria-labelledby="s3h" hidden></section>
@@ -683,6 +785,7 @@ footer{border-top:1px solid var(--ink);margin-top:24px}
 <div class="sr" id="live" aria-live="polite"></div>
 <div class="sr" id="alert" role="alert"></div>
 <footer id="foot"></footer>
+<div class="banner" id="banner" hidden></div>
 <script>
 "use strict";
 // ═══════════════════════════════════════════════════════════════════════════
@@ -858,17 +961,17 @@ const CONFIG = {
     question:"q-desk-VN", verified:true, addWeeks:2 }
  ],
  modules: [ // encoded bit = n (spec §7.1). weeks = VIEW proposed defaults; rate = ILLUSTRATIVE, used only via sampleRates (draft) or rates.status="range"
-  { n:0, id:"entry-review", track:"A", r2:true, name:{ko:"Entry Review",en:"Entry Review"},
+  { n:0, id:"entry-review", track:"A", r2:true, name:{ko:"진입 진단",en:"Entry Diagnostic"},
     promise:{ ko:"첫 시장, 채널 조합, 연락 대상까지 판단에 필요한 정보를 한 장의 브리프로 정리합니다.", en:"First market, channel mix and who to contact: the decision brief in one document." },
     deliverables:[ {o:"p",ko:"Panasia Intelligence 브리프",en:"Panasia Intelligence brief"}, {o:"p",ko:"시장별 스코프: 산출물·담당·예산",en:"Per-market scope: deliverables, owner, budget"},
-      {o:"p",ko:"실명 숏리스트: 맞는 이유·확인할 점",en:"Named shortlist: why it fits, what needs checking"}, {o:"partner",ko:"조율된 전문가의 게이트 확인",en:"Gate check with coordinated experts"},
+      {o:"p",ko:"실명 숏리스트: 맞는 이유·확인할 점",en:"Named shortlist: why it fits, what needs checking"}, {o:"partner",ko:"조율된 전문가와 계속·중단 기준 확인",en:"Continue/stop check with coordinated experts"},
       {o:"you",ko:"제품 자료·현재 지표·제약 공유",en:"Product materials, current metrics, constraints"} ],
     weeks:{ prep:0, run:[2,3] }, kpis:[{ko:"합의한 날짜에 결정 가능한 스코프",en:"Decision-ready scope on the agreed date"}], cases:[], requiresRoute:null,
     namedInER:[{ko:"숏리스트 대상의 실명",en:"Names on the shortlist"}], day90:[{ko:"Panasia Intelligence 브리프",en:"Panasia Intelligence brief"},{ko:"시장별 스코프 문서",en:"Per-market scope document"}],
-    gateDefault:{ ko:"계속: 첫 시장과 다음 결정이 합의됨 · 중단: 게이트 확인에서 막힘", en:"Continue: first market and next decision agreed · Stop: blocked at the gate check" } },
+    gateDefault:{ ko:"계속: 첫 시장과 다음 결정이 합의됨 · 중단: 계속·중단 기준 확인에서 막힘", en:"Continue: first market and next decision agreed · Stop: blocked at the continue/stop check" } },
   { n:1, id:"inst-bridge", track:"A", name:{ko:"기관 브리지",en:"Institutional Bridge"},
     promise:{ ko:"자산운용사·증권사와의 비공개 세미나와 1:1 미팅으로 기관 파이프라인을 만듭니다.", en:"Opens an institutional pipeline through closed seminars and 1:1 meetings with asset managers and brokers." },
-    deliverables:[ {o:"p",ko:"자산운용사·증권사 대상 지도 (유형, 실명은 Entry Review)",en:"Target map of asset managers and brokers (types; names in the Entry Review)"},
+    deliverables:[ {o:"p",ko:"자산운용사·증권사 대상 지도 (유형, 실명은 진입 진단)",en:"Target map of asset managers and brokers (types; names in the Entry Diagnostic)"},
       {o:"p",ko:"현지어 기관 메모·위험 고지 초안",en:"Local-language institutional memo and risk disclosure draft"}, {o:"you",ko:"상품·수탁·회계 자료 제공",en:"Product, custody and accounting materials"},
       {o:"p",ko:"비공개 RWA 세미나",en:"Closed-door RWA seminar"}, {o:"p",ko:"1:1 미팅 파이프라인 · 첫 미팅 동석",en:"1:1 meeting pipeline · Panasia joins first meetings"},
       {o:"p",ko:"후속 추적표: 다음 합의 단계",en:"Follow-up tracker: next agreed step"} ],
@@ -988,20 +1091,20 @@ const CONFIG = {
   { id:"q-custody", resolver:"p", ko:"대상 기관이 이 자산을 보유·수탁·회계 처리할 수 있는 구조인가요?", en:"Can target institutions hold, custody and account for this asset?", item:{ ko:"대상 기관의 보유·수탁·회계 처리 가능 여부", en:"Whether target institutions can hold, custody and account for the asset" } },
   { id:"q-kr-memo", resolver:"you", ko:"국문 상품 설명과 위험 고지를 맡을 담당이 정해져 있나요?", en:"Is someone assigned to the Korean product memo and risk disclosure?", item:{ ko:"국문 상품 설명·위험 고지 담당자 지정", en:"Owner for the Korean product memo and risk disclosure" } },
   { id:"q-entity", resolver:"you", ko:"아시아 현지 법인 또는 등록 주체가 있나요?", en:"Do you have a local entity or registered party in Asia?", item:{ ko:"아시아 현지 법인·등록 주체 유무", en:"Local entity or registered party in Asia" } },
-  { id:"q-target", resolver:"both", ko:"{kpi} 목표({value})가 판아시아 공개 실적을 넘습니다. 스코프 콜에서 전제를 함께 검토할까요?", en:"Your {kpi} target ({value}) is beyond Panasia's published record. Shall we review the assumptions on the Scope Call?", item:{ ko:"{kpi} 목표 {value}의 전제 (판아시아 공개 실적 밖)", en:"Assumptions behind the {kpi} target of {value} (beyond Panasia's published record)" } },
+  { id:"q-target", resolver:"both", ko:"{kpi} 목표({value})가 판아시아 공개 실적을 넘습니다. 30분 무료 상담에서 전제를 함께 검토할까요?", en:"Your {kpi} target ({value}) is beyond Panasia's published record. Shall we review the assumptions on the 30-min intro call?", item:{ ko:"{kpi} 목표 {value}의 전제 (판아시아 공개 실적 밖)", en:"Assumptions behind the {kpi} target of {value} (beyond Panasia's published record)" } },
   { id:"q-budget", resolver:"both", ko:"구성한 범위가 예산대를 넘습니다. 예산대 안으로 범위를 조정해도 될까요?", en:"The configured range exceeds your band. Can we adjust the scope to fit it?", item:{ ko:"예산대에 맞춘 범위 조정", en:"Fitting the scope to the budget band" } },
-  { id:"q-desk", resolver:"call", ko:"{market}에는 판아시아 공개 사례가 아직 없습니다. 해당 시장의 지원 범위를 스코프 콜에서 확인할까요?", en:"Panasia has no published case in {market} yet. Shall we confirm what's covered there on the Scope Call?", item:{ ko:"{market} 지원 범위 (판아시아 공개 사례 없음)", en:"Coverage in {market} (no published Panasia case yet)" } },
+  { id:"q-desk", resolver:"call", ko:"{market}에는 판아시아 공개 사례가 아직 없습니다. 해당 시장의 지원 범위를 30분 무료 상담에서 확인할까요?", en:"Panasia has no published case in {market} yet. Shall we confirm what's covered there on the 30-min intro call?", item:{ ko:"{market} 지원 범위 (판아시아 공개 사례 없음)", en:"Coverage in {market} (no published Panasia case yet)" } },
   { id:"q-reversal", resolver:"you", ko:"판아시아 제안({item})을 바꾸셨습니다. 이유를 간단히 알려 주세요.", en:"You changed Panasia's proposal ({item}). Could you share why, briefly?", item:{ ko:"판아시아 제안({item})을 바꾼 이유", en:"Why Panasia's proposal ({item}) was changed" } },
   { id:"q-fact", resolver:"you", ko:"'{fact}' 항목을 '{state}'으로 표시하셨습니다. 정확한 내용을 알려주세요.", en:"You marked '{fact}' as {state}. What's the accurate figure?", item:{ ko:"'{fact}' 항목의 정확한 내용 ({state} 표시)", en:"Correct value for '{fact}' (marked {state})" } },
   { id:"q-claims", resolver:"both", ko:"현지 콘텐츠에서 쓸 수 있는 수익·성과 표현의 범위가 정리되어 있나요?", en:"Have you defined which yield or performance claims local content may make?", item:{ ko:"현지 콘텐츠에 쓸 수 있는 수익·성과 표현 범위", en:"Which yield or performance claims local content may make" } },
   { id:"q-pilot-owner", resolver:"you", ko:"첫 협업을 맡을 귀사 쪽 담당자가 정해져 있나요?", en:"Is an owner for the first collaboration named on your side?", item:{ ko:"첫 협업을 맡을 당사 담당자 지정", en:"Owner for the first collaboration on our side" } },
-  { id:"q-listing", resolver:"both", ko:"상장 결과는 약속되지 않습니다. 준비 기준을 스코프 콜에서 함께 정할까요?", en:"No listing outcome is promised. Shall we set the readiness bar together on the Scope Call?", item:{ ko:"상장 준비 기준 (상장 결과는 약속하지 않음)", en:"Readiness bar for listing (no listing outcome promised)" } },
+  { id:"q-listing", resolver:"both", ko:"상장 결과는 약속되지 않습니다. 준비 기준을 30분 무료 상담에서 함께 정할까요?", en:"No listing outcome is promised. Shall we set the readiness bar together on the 30-min intro call?", item:{ ko:"상장 준비 기준 (상장 결과는 약속하지 않음)", en:"Readiness bar for listing (no listing outcome promised)" } },
   { id:"q-b-reg", resolver:"both", ko:"내부 규제 검토를 시작했나요?", en:"Has your internal regulatory review started?", item:{ ko:"내부 규제 검토 착수 여부", en:"Whether internal regulatory review has started" } },
   { id:"q-b-residency", resolver:"you", ko:"데이터 국내 보관 요건을 공급자 선정 기준에 어떻게 반영할까요? (노드·저장·백업 위치)", en:"How should the data-residency requirement shape provider selection (node, storage and backup location)?", item:{ ko:"데이터 국내 보관 요건을 공급자 선정에 반영하는 방식", en:"How the data-residency requirement shapes provider selection" } },
   { id:"q-b-experts", resolver:"p", ko:"{experts} 전문가는 보유로 표시되지 않았습니다. 판아시아가 역할별로 조율할까요?", en:"You haven't marked {experts} expertise as in place. Should Panasia coordinate those roles?", item:{ ko:"{experts} 전문가 조율 (보유로 표시되지 않음)", en:"Coordinating {experts} roles (not marked as in place)" } },
   { id:"q-kr-vasp-plan", resolver:"you", ko:"KoFIU 신고 일정이 정해져 있나요?", en:"Is there a timeline for the KoFIU filing?", item:{ ko:"KoFIU 신고 일정", en:"Timeline for the KoFIU filing" } },
   { id:"q-sg-retail", resolver:"both", ko:"싱가포르에서는 일반 대중 대상 마케팅 없이 운영할 수 있나요?", en:"Can you operate in Singapore without marketing to the general public?", item:{ ko:"싱가포르에서 일반 대중 대상 마케팅 없이 운영 가능한지 여부", en:"Whether Singapore can work without marketing to the general public" } },
-  { id:"q-ai", resolver:"p", ko:"AI 초안이 답하지 못한 부분을 스코프 콜에서 다룹니다.", en:"We'll cover what the AI draft couldn't on the Scope Call.", item:{ ko:"AI 초안이 답하지 못한 부분", en:"What the AI draft couldn't answer" } },
+  { id:"q-ai", resolver:"p", ko:"AI 초안이 답하지 못한 부분을 30분 무료 상담에서 다룹니다.", en:"We'll cover what the AI draft couldn't on the 30-min intro call.", item:{ ko:"AI 초안이 답하지 못한 부분", en:"What the AI draft couldn't answer" } },
   { id:"q-b-reg-open", resolver:"both", ko:"진행 중인 규제 검토에서 아직 열려 있는 쟁점은 무엇인가요?", en:"Which issues are still open in your regulatory review?", item:{ ko:"규제 검토에서 아직 열린 쟁점", en:"Issues still open in the regulatory review" } },
   { id:"q-hk-stablecoin", resolver:"both", ko:"이 사용 사례에 홍콩 HKMA 스테이블코인 발행 인가가 적용되는지 확인하셨나요?", en:"Have you checked whether HKMA stablecoin-issuer licensing applies to this use case?", item:{ ko:"홍콩 HKMA 스테이블코인 발행 인가 적용 여부", en:"Whether HKMA stablecoin-issuer licensing applies to this use case" } },
   { id:"q-b-experts-ask", resolver:"you", ko:"기술·법률·규제·세무 가운데 이미 내부에 있는 전문가 역할은 무엇인가요? 없는 역할은 판아시아가 역할별로 조율할 수 있습니다.", en:"Which of technical, legal, regulatory and tax expertise do you already have in-house? Panasia can coordinate any missing role.", item:{ ko:"내부 전문가 보유 현황 (기술·법률·규제·세무)", en:"In-house expert roles (technical, legal, regulatory, tax)" } }
@@ -1073,7 +1176,7 @@ const CONFIG = {
  deferred: [ {ko:"최종 가격·계약 조건",en:"Final pricing and contract terms"},{ko:"기관·파트너·거래소·KOL·전문가 실명",en:"Named institutions, partners, exchanges, KOLs, experts"},
    {ko:"소개",en:"Introductions"},{ko:"레퍼런스 콜 (NDA 후)",en:"Reference calls (after NDA)"},{ko:"시장별 운영 맥락·전문가 의견",en:"Operating context and expert opinion per market"},
    {ko:"법률·규제 의견",en:"Legal or regulatory opinions"},{ko:"시장별 예산 상세",en:"Per-market budget detail"},{ko:"독점 여부",en:"Exclusivity"},{ko:"인력 구성",en:"Staffing"},
-   {ko:"게이트 모듈의 적격성 확인",en:"Eligibility checks for gated modules"} ],
+   {ko:"사전 적격성 확인이 필요한 프로그램의 확인",en:"Eligibility checks for programs that need one first"} ],
  campaigns: [
   {n:1,token:"rwa",track:0,a:{sector:1}}, {n:2,token:"defi",track:0,a:{sector:2}}, {n:3,token:"infra",track:0,a:{sector:3}},
   {n:4,token:"exchange",track:0,a:{sector:4}}, {n:5,token:"ai",track:0,a:{sector:5}}, {n:6,token:"depin",track:1,a:{sector:6}},
@@ -1105,8 +1208,6 @@ const CONFIG = {
 // ═══════════════════════════════════════════════════════════════════════════
 const STRING_PAIRS = {
  brand:["판아시아","PANASIA"], brandSub:["서울","Seoul"], product:["판아시아 스코프 룸","Panasia Scope Room"],
- tagline:["그 전에, 판아시아의 방식으로 귀사의 첫 스코프를 여기서 직접 그려 보세요. 초안은 공개된 실적과, 아직 확인이 필요한 조건 목록을 바탕으로 합니다.","Before that call, draft your first scope here the way Panasia would, from published results and a list of conditions still to be checked."],
- taglineSourced:["그 전에, 판아시아의 방식으로 귀사의 첫 스코프를 여기서 직접 그려 보세요. 공개된 실적과 출처가 확인된 조건만 씁니다.","Before that call, draft your first scope here the way Panasia would, using only published results and sourced conditions."],
  h1:["아시아에서 블록체인의 다음 장은, 맞는 파트너십에서 시작됩니다.","The next chapter of blockchain in Asia starts with the right partnerships."],
  lede:["어디서 성장하고 싶은지, 무엇을 해결해야 하는지 알려주세요. 첫 대화에서 범위와 다음 결정을 정합니다.","Tell us where you want to grow or what your business needs to solve. We'll use the first conversation to define the scope and the next decision."],
  doorsTitle:["어느 쪽에 가깝나요?","Which describes you?"],
@@ -1116,12 +1217,12 @@ const STRING_PAIRS = {
  doorPSub:["파트너 리서치 · 적합성 검토 · 첫 협업 설계","Partner research · fit assessment · first collaboration"],
  doorB:["블록체인 도입이나 공급자를 검토하는 기업·기관","Business or institution adopting blockchain or choosing a provider"], doorGo:["시작","Start"],
  doorBSub:["도입 진단 · 레이어·공급자 선정 · 파일럿","Adoption diagnostic · layer & provider selection · pilot"],
- browse:["실적부터 보기","Show me the work first"], resume:["작성하던 초안 이어서 보기","Resume your earlier draft"],
- pasteLabel:["Plan ID 붙여넣기","Paste a Plan ID"], pasteOpen:["Plan ID로 열기","Open a Plan ID"], pasteBtn:["열기","Open"], pastePh:["P2-XXXXX-…","P2-XXXXX-…"],
- pasteErr:["Plan ID를 확인해 주세요 (체크섬 불일치)","Check the Plan ID (checksum mismatch)"],
- pasteOld:["이전 버전의 Plan ID입니다. 이메일 본문의 요약을 참고해 주세요.","This Plan ID is from an earlier version; use the summary in the email."],
- pasteFormat:["Plan ID를 확인해 주세요. P2-로 시작하는 문자열입니다.","Check the Plan ID. It starts with P2-."],
- hashNotice:["Plan ID를 확인해 주세요","Check the Plan ID"],
+ resume:["작성하던 초안 이어서 보기","Resume your earlier draft"],
+ pasteLabel:["플랜 코드 붙여넣기","Paste a plan code"], pasteBtn:["열기","Open"], pastePh:["P2-XXXXX-…","P2-XXXXX-…"],
+ pasteErr:["플랜 코드를 확인해 주세요 (체크섬 불일치)","Check the plan code (checksum mismatch)"],
+ pasteOld:["이전 버전의 플랜 코드입니다. 이메일 본문의 요약을 참고해 주세요.","This plan code is from an earlier version; use the summary in the email."],
+ pasteFormat:["플랜 코드를 확인해 주세요. P2-로 시작하는 문자열입니다.","Check the plan code. It starts with P2-."],
+ hashNotice:["플랜 코드를 확인해 주세요","Check the plan code"],
  promise:["이 페이지는 아무것도 전송하지 않습니다. 복사한 것만 밖으로 나갑니다.","This page sends nothing. Only what you copy leaves it."],
  press:["언론 문의","Media inquiries"],
  pressLine:["인터뷰나 창업자 프로필 요청은 주제와 마감일을 적어 보내 주세요.","For interviews or a founder profile, send your topic and deadline."],
@@ -1147,7 +1248,7 @@ const STRING_PAIRS = {
  sumFirstMarket:["제안 첫 시장","First market"], sumFirstModule:["첫 프로그램","First program"], sumCases:["매칭된 공개 사례","Matched cases"],
  sumQuestions:["확인할 것","Open questions"], sumSealed:["봉인 항목","Sealed items"],
  openRoute:["제안 경로 직접 바꿔 보기","Change the proposed route yourself"], summaryOnly:["요약만 보기","Just the summary"],
- firstLeg:["첫 구간 근거: {case}","First leg backed by: {case}"], firstLegNone:["첫 구간 {M} · {mod}: 이 모듈로 {M}에 표기된 공개 사례는 아직 없습니다. 가장 가까운 공개 실적(시장 미표기)은 {case}입니다.","First leg {M} · {mod}: no published case for this module names {M} yet. Closest published result (market not stated): {case}."], unstatedMk:["시장 미표기","market not stated"],
+ firstLeg:["첫 구간 근거: {case}","First leg backed by: {case}"], firstLegNone:["첫 구간 {M} · {mod}: 이 프로그램으로 {M}에 표기된 공개 사례는 아직 없습니다. 가장 가까운 공개 실적(시장 미표기)은 {case}입니다.","First leg {M} · {mod}: no published case for this program names {M} yet. Closest published result (market not stated): {case}."], unstatedMk:["시장 미표기","market not stated"],
  s0:["표지","Cover"], s1:["지금 위치","Where you stand"], s1Sub:["다섯 번만 고르면 됩니다. 고를 때마다 아래가 바뀝니다.","Five taps. Everything below updates as you go."],
  s1SubB:["다섯 번만 고르면 됩니다. 고를 때마다 아래가 바뀝니다.","Five taps. Everything below updates as you go."],
  trackLabel:["출발점","Starting point"], "track.0":["아시아 진출","Asia GTM"], "track.1":["파트너 찾기","Find partners"], "track.2":["도입·공급자 찾기","Adopt or find providers"],
@@ -1170,8 +1271,8 @@ const STRING_PAIRS = {
  "optb.needs":[["숏리스트","도입 프레임워크","레이어 선정","전문가 조율","파일럿","내부 교육"],["Shortlist","Adoption framework","Layer selection","Expert coordination","Pilot","Internal education"]],
  "optb.constraints":[["규제 검토 시작됨","사내 개발팀 있음","허가형 선호","데이터 국내 보관 요건"],["Regulatory review started","In-house developers","Prefer permissioned","Data residency requirement"]],
  "optb.experts":[["기술","법률","규제","세무"],["Technical","Legal","Regulatory","Tax"]],
- counter:["관련 공개 사례 {n}건 · 확인할 조건이 없는 시장 {k}/8 · 추천 모듈 {m}개","Related published cases {n} · Markets with no listed gate {k}/8 · Recommended modules {m}"],
- counterB:["공개된 기관 도입 사례는 아직 없습니다 · 인접 실적 {n}건 · 추천 모듈 {m}개","No institutional adoption case published yet · adjacent work {n} · recommended modules {m}"],
+ counter:["관련 공개 사례 {n}건 · 확인할 조건이 없는 시장 {k}/8 · 추천 프로그램 {m}개","Related published cases {n} · Markets with no listed condition {k}/8 · Recommended programs {m}"],
+ counterB:["공개된 기관 도입 사례는 아직 없습니다 · 인접 실적 {n}건 · 추천 프로그램 {m}개","No institutional adoption case published yet · adjacent work {n} · recommended programs {m}"],
  posTitle:["판아시아가 본 현재 위치","Your position"],
  posNeed:["지금 필요한 것은 {aud}에 닿는 첫 경로입니다.","What you need now is a first route to {aud}."], posNeedUnset:["닿아야 할 대상(4번)을 고르면 첫 경로가 정해집니다.","Pick who you must reach (4) and the first route takes shape."],
  posNeedB:["지금 필요한 것은 {needs}입니다.","What you need now: {needs}."], posNeedBUnset:["필요한 것(4번)을 고르면 첫 단계가 정해집니다.","Pick what you need (4) and the first step takes shape."], posStage:[" 단계입니다. ",". "], posIs:["입니다. ",". "],
@@ -1181,7 +1282,7 @@ const STRING_PAIRS = {
  revealHint:["분야와 단계를 고르면 공개 사례, 시장 경로, 스코프가 아래에 열립니다.","Pick a sector and a stage and the published cases, market route and scope open below."],
  revealHintB:["조직과 해결할 문제를 고르면 인접 실적, 도입 경로, 스코프가 아래에 열립니다.","Pick an organization and a problem and the adjacent work, adoption path and scope open below."],
  s2:["같은 길을 걸은 기록","Who has walked this road"],
- coverage:["공개 사례 {n}","{n} published cases"], coverageNone:["공개 사례 없음 · 지원 범위 확인","No published case · coverage to confirm"], covCaption:["숫자가 없는 시장: 공개 사례 없음 · 지원 범위는 스코프 콜에서 확인","Markets without a count: no published case yet · coverage confirmed on the Scope Call"], covTitle:["시장별 공개 사례","Published cases by market"], exExcl:[" (거래소 사례 제외)"," (excluding exchange cases)"],
+ coverage:["공개 사례 {n}","{n} published cases"], coverageNone:["공개 사례 없음 · 지원 범위 확인","No published case · coverage to confirm"], covCaption:["숫자가 없는 시장: 공개 사례 없음 · 지원 범위는 30분 무료 상담에서 확인","Markets without a count: no published case yet · coverage confirmed on the 30-min intro call"], covTitle:["시장별 공개 사례","Published cases by market"], exExcl:[" (거래소 사례 제외)"," (excluding exchange cases)"],
  unstated:["시장 미표기 공개 사례 {u}건","{u} published cases with no market stated"],
  eraNote:["아래 실적은 panasia.io 게시 기준입니다. 수행 시기와 판아시아의 역할은 카드마다 표기합니다. 판아시아는 2026년 9월 15일 공식 웹사이트와 아시아 GTM 서비스를 출범했습니다.","Results below are as published on panasia.io. Each card states when the work was done and Panasia's role. Panasia launched its official website and Asia GTM service on 15 Sep 2026."],
  matchedTitle:["귀사와 가장 가까운 공개 사례","Published cases closest to you"], matchedFew:["이 조건에 맞는 공개 사례는 {n}건입니다 · 아래 전체 사례에서 더 볼 수 있습니다.","{n} published cases match this profile · see all cases below."], matchedNone:["이 프로필과 가까운 공개 사례는 아직 없습니다. 아래 전체 사례에서 직접 확인해 주세요.","No published case is close to this profile yet. See all cases below."], whyL:["맞는 이유","Why"], browseTitle:["panasia.io에 게시된 전체 실적","Everything published on panasia.io"], browseCta:["이 실적을 바탕으로 초안 만들기","Build a draft from this record"],
@@ -1200,7 +1301,7 @@ const STRING_PAIRS = {
  targetTitle:["목표를 공개 실적과 견주어 보기","Set your target against the record"], targetUnset:["설정 안 함","Not set"], targetKpi:["KPI","KPI"], targetVal:["목표","Target"],
  window:["기간","Window"], "opt.window":[["설정 안 함","30일","90일","180일"],["None","30 days","90 days","180 days"]],
  "zone.within":["공개 실적 범위 안","Within the published record"], "zone.exOnly":["이 KPI의 공개 기록은 거래소 사례뿐이라 비교하지 않습니다","The only published figures for this KPI are exchange cases, so they aren't compared here"], "zone.stretch":["도전 범위 (공개 실적의 2배 이내)","Stretch (up to 2× the record)"], "zone.r14":["KoFIU 신고가 확인되면 Bybit·KuCoin 공개 실적과 나란히 놓습니다","Once the KoFIU filing is confirmed, this sits next to the Bybit and KuCoin published results"],
- "zone.beyond":["공개 실적 밖 · 스코프 콜에서 전제를 함께 봅니다","Beyond the published record · we'll review assumptions on the Scope Call"],
+ "zone.beyond":["공개 실적 밖 · 30분 무료 상담에서 전제를 함께 봅니다","Beyond the published record · we'll review assumptions on the 30-min intro call"],
  "zone.none":["이 KPI의 공개 수치 기록 없음","No published figure for this KPI"], "zone.unset":["목표를 정하면 공개 기록과 나란히 놓입니다","Set a target to see it next to the published record"],
  axisNote:["이 축은 다른 고객사의 공개 실적입니다. 귀사의 결과를 예측하지 않습니다.","This axis shows other clients' published results. It does not predict yours."],
  periodNote:["공개 기록은 {d}일 기준입니다","The published record is over {d} days"],
@@ -1218,44 +1319,44 @@ const STRING_PAIRS = {
  rankRule:["시장 순서 기준: ① 차단된 경로 수 ② 확인 필요 조건 수 ③ 해당 시장 공개 사례 수 ④ 준비 기간(데스크 기본값)","Market order: ① closed routes ② conditions to check ③ published cases in that market ④ prep time (desk default)"],
  rankNote:["공개 사례가 없는 시장은 '지원 범위 확인' 1건이 확인 수에 더해집니다.","Markets with no published case carry one extra check: coverage to confirm."], rankDetails:["시장별 순서 근거","Why each market ranks where it does"],
  rankLine:["{name}: 차단 {c} · 확인 {k} · 공개 사례 {e} · 준비 {p}주(기본값)","{name}: closed {c} · to check {k} · published cases {e} · prep {p} wks (default)"],
- "status.closed":["차단","Closed"], "status.check":["확인 필요","To check"], "status.clear":["등록된 조건 없음","No listed gate"],
+ "status.closed":["차단","Closed"], "status.check":["확인 필요","To check"], "status.clear":["등록된 조건 없음","No listed condition"],
  "pace.staged":["단계적","Staged"], "pace.parallel":["병행","Parallel"], paceLabel:["진행 방식","Pace"], horizonLabel:["기간","Horizon"],
  horizon:["{n}개월","{n} months"], weeks:["{n}주","{n} wks"],
  add:["추가","Add"], remove:["제거","Remove"], up:["위로","Move up"], down:["아래로","Move down"],
  routeTitle:["경로 순서","Route order"], othersTitle:["시장 추가","Add a market"], routeMax:["경로는 4개 시장까지입니다","A route holds up to 4 markets"],
  resetRec:["추천 경로로 되돌리기","Reset to recommended"], resetProp:["판아시아 제안으로 되돌리기","Reset to Panasia's proposal"],
  ghostLegend:["점선: 판아시아 제안 경로","Dashed: Panasia's proposed route"], ghostLegendRec:["점선: 처음 추천된 경로","Dashed: the route first recommended"], krOnly:["한국에서 시작합니다 · 다음 시장을 누르면 경로가 이어집니다","Starting in Korea · tap a next market to extend the route"], candLegend:["옅은 점선: 다음 후보 시장","Faint dashes: next candidate markets"],
- routeLegend:["실선: 현재 경로","Solid: current route"], pipLegend:["✕ 차단 · ◐ 확인 필요 · ○ 등록된 조건 없음 · ● 공개 사례 있음","✕ closed · ◐ to check · ○ no listed gate · ● published case"],
+ routeLegend:["실선: 현재 경로","Solid: current route"], pipLegend:["✕ 차단 · ◐ 확인 필요 · ○ 등록된 조건 없음 · ● 공개 사례 있음","✕ closed · ◐ to check · ○ no listed condition · ● published case"],
  mapAria:["시장 지도. 현재 경로: {route}","Market map. Current route: {route}"],
- consTitle:["바뀐 점","What changed"], consEmpty:["경로나 모듈을 바꾸면 결과가 여기에 문장으로 남습니다.","Change the route or modules and the result is written here."],
+ consTitle:["바뀐 점","What changed"], consEmpty:["경로나 프로그램을 바꾸면 결과가 여기에 문장으로 남습니다.","Change the route or programs and the result is written here."],
 
  consMoved:["{M} {i} 번째로 옮김","Moved {M} to #{i}"], consRoute:[" · 경로 변경: {a} ⇒ {b}"," · route changed: {a} ⇒ {b}"], consOut:[" · {M} 빠짐: {cond}"," · {M} left the route: {cond}"], consOutRank:["추천 시장 수·순서가 바뀜","fewer markets fit or the order changed"],
- consKey:["구간 = 경로 시장 × 선택한 모듈 · a/b는 공개 사례로 뒷받침되는 구간 / 전체 구간","Leg = route market × selected module · a/b = legs backed by a published case / all legs"], consAdded:["{M} 추가","Added {M}"], consRemoved:["{M} 제거","Removed {M}"],
+ consKey:["구간 = 경로 시장 × 선택한 프로그램 · a/b는 공개 사례로 뒷받침되는 구간 / 전체 구간","Leg = route market × selected program · a/b = legs backed by a published case / all legs"], consAdded:["{M} 추가","Added {M}"], consRemoved:["{M} 제거","Removed {M}"],
  consParallel:["병행으로 전환","Switched to parallel"], consStaged:["단계적으로 전환","Switched to staged"],
  consModAdd:["{mod} 추가","Added {mod}"], consModRemove:["{mod} 제외","Removed {mod}"], consProfile:["{q}: {v}","{q}: {v}"], consHorizon:["기간 변경","Changed the horizon"],
  consDropped:[" · {modTopic} {M}에서 제외됨: {cond}"," · {mod} drops in {M}: {cond}"], consMakeFit:["예산에 맞춤","Made it fit"], consNoDelta:["차단·확인·근거 수 변화 없음","no change in closed, check or evidence counts"],
  layer1:["공개 신호","Public signals"], layer2:["현지 운영 맥락","Local operating context"], layer3:["전문가 의견","Expert opinion"],
- layerLocked:["Entry Review에서 조율된 전문가 의견으로 제공","Delivered in the Entry Review via coordinated experts"],
- layer2Pending:["Entry Review에서 제공","Provided in the Entry Review"],
+ layerLocked:["진입 진단에서 조율된 전문가 의견으로 제공","Delivered in the Entry Diagnostic via coordinated experts"],
+ layer2Pending:["진입 진단에서 제공","Provided in the Entry Diagnostic"],
  whyFit:["맞는 이유","Why it fits"], toCheck:["확인할 점","What needs checking"], unlockTitle:["무엇이 바뀌면 열리나","What would open this"],
  notAdvice:["법률 자문이 아닙니다 · 전문가 확인 필요","Not legal advice · needs expert check"],
  unverified:["미검증 · 초안 모드 전용","Unverified · draft mode only"], verified:["검증됨","Verified"], asOf:["기준일 {d}","As of {d}"], asOfMissing:["기준일 미기재","No as-of date"],
  deskNote:["데스크 노트","Desk note"], covTag:["공개 사례","Published cases"], coverageCheck:["공개 사례 없음 · 지원 범위 확인 필요","No published case · coverage to confirm"],
  "route.retail":["리테일","retail"], "route.institutional":["기관","institutional"], "route.developer":["개발자","developer"], "route.enterprise":["기업","enterprise"],
  deskNone:["이 플랜에 걸리는 등록 조건이 없습니다.","No listed condition applies to this plan."], close:["닫기","Close"],
- deskOpen:["{name} 데스크 카드 열기","Open the {name} desk card"], deskOpenSr:["데스크 카드 열기","open the desk card"], modsH:["프로그램 모듈","Program modules"],
- fitCases:["공개 사례 {n}건이 이 시장에 있습니다{x}.","{n} published cases are in this market{x}."], fitNoGate:["이 플랜에 필요한 경로에 등록된 조건이 없습니다.","No listed gate on the routes this plan needs."],
- fitInRoute:["현재 경로의 {i} 번째 시장입니다.","It is #{i} on your current route."], ganttTitle:["일정 초안","Draft timeline"], msDetails:["이정표 목록","Milestones"], ganttBlocked:["막힘 · 진행할 모듈 없음","blocked · no active module"], fitPrep:["데스크 기본 준비 기간이 {p}주로 짧은 편입니다.","Desk default prep is a short {p} weeks."],
+ deskOpen:["{name} 데스크 카드 열기","Open the {name} desk card"], deskOpenSr:["데스크 카드 열기","open the desk card"], modsH:["프로그램","Programs"],
+ fitCases:["공개 사례 {n}건이 이 시장에 있습니다{x}.","{n} published cases are in this market{x}."], fitNoGate:["이 플랜에 필요한 경로에 등록된 조건이 없습니다.","No listed condition on the routes this plan needs."],
+ fitInRoute:["현재 경로의 {i} 번째 시장입니다.","It is #{i} on your current route."], ganttTitle:["일정 초안","Draft timeline"], msDetails:["이정표 목록","Milestones"], ganttBlocked:["막힘 · 진행할 프로그램 없음","blocked · no active program"], fitPrep:["데스크 기본 준비 기간이 {p}주로 짧은 편입니다.","Desk default prep is a short {p} weeks."],
  ganttNote:["데스크 기본 기간 · 확정 아님","Desk default durations · not confirmed"],
- "ms.scope":["스코프 콜","Scope Call"], "ms.er":["Entry Review","Entry Review"], "ms.shortlist":["숏리스트","Shortlist"], "ms.meetings":["첫 미팅","First meetings"], "ms.review":["첫 캠페인 리뷰","First campaign review"], "ms.gate":["다음 시장 게이트","Next-market gate"],
+ "ms.scope":["30분 무료 상담","30-min intro call"], "ms.er":["진입 진단","Entry Diagnostic"], "ms.shortlist":["숏리스트","Shortlist"], "ms.meetings":["첫 미팅","First meetings"], "ms.review":["첫 캠페인 리뷰","First campaign review"], "ms.gate":["다음 시장 계속·중단 기준","Next-market continue/stop check"],
  "g.prep":["준비","Prep"], "g.launch":["런칭","Launch"], "g.op":["운영","Operate"], "g.ms":["이정표","Milestone"],
  clipped:["기간 밖","Beyond horizon"], beyondH:["기간 밖","beyond horizon"], mktBeyond:["{M} 전체","all of {M}"], deskBtn:["데스크","Desk"], weekAt:["{n}주 차","wk {n}"],
- evidence:["공개 사례로 뒷받침되는 구간 {a}/{t} · 시장 미표기 사례로 뒷받침 {b}/{t}","Legs backed by a published case in that market {a}/{t} · by a case with no market stated {b}/{t}"], legDef:["구간 = 경로 시장 × 선택한 모듈","leg = route market × selected module"],
+ evidence:["공개 사례로 뒷받침되는 구간 {a}/{t} · 시장 미표기 사례로 뒷받침 {b}/{t}","Legs backed by a published case in that market {a}/{t} · by a case with no market stated {b}/{t}"], legDef:["구간 = 경로 시장 × 선택한 프로그램","leg = route market × selected program"],
  pinA:["이 경로를 A로 고정","Pin as route A"], saveB:["B로 저장","Save as B"], compare:["A/B 비교","Compare A/B"], clearAB:["비교 지우기","Clear comparison"],
  abLink:["다른 경로와 비교하기","Compare with another route"], makeB:["B를 주 경로로","Make B primary"], abBack:["B 저장 · A로 돌아왔습니다","B saved · back on route A"], abSwapped:["B를 주 경로로 바꿨습니다","Route B is now primary"],
  abHint:["A로 고정한 뒤 경로를 바꾸고 B로 저장하면 두 안을 나란히 볼 수 있습니다.","Pin A, change the route, then save B to see both side by side."],
  abPinned:["A 고정됨: {route}","A pinned: {route}"], abSaved:["B 저장됨: {route}","B saved: {route}"],
- "cmp.rows":[["첫 시장","포함 시장","6개월 내 런칭 시장(기본값)","경로상 차단","확인 필요","공개 사례 구간","모듈","비용 범위","확인할 것"],["First market","Markets in plan","Launched by month 6 (default)","Closed routes on route","To check","Published-case legs","Modules","Cost range","Open questions"]],
+ "cmp.rows":[["첫 시장","포함 시장","6개월 내 런칭 시장(기본값)","경로상 차단","확인 필요","공개 사례 구간","프로그램","비용 범위","확인할 것"],["First market","Markets in plan","Launched by month 6 (default)","Closed routes on route","To check","Published-case legs","Programs","Cost range","Open questions"]],
  cmpNote:["승자는 정하지 않습니다. 행마다 앞서는 쪽만 표시합니다.","No overall winner. Each row marks which route leads."], cmpItem:["항목","Item"],
  "hs.title":["첫 협업 설계","Design the first collaboration"], "hs.step1":["상대 유형","Counterpart"], "hs.step2":["내 쪽 필요","Your need"], "hs.step3":["상대 쪽 필요","Their need"], "hs.step4":["파일럿 형식","Pilot format"],
  "hs.card":["첫 협업 카드","First Collaboration card"], "hs.success":["성공 확인","Success check"], "hs.checks":["확인할 점","What needs checking"], "hs.role":["판아시아의 역할","Panasia's role"],
@@ -1272,26 +1373,26 @@ const STRING_PAIRS = {
  coiExchange:["거래소 고객 2곳(공개 실적 있음)과 사이트 로고 목록의 다른 고객사도 공급자 후보에 오르면 먼저 밝힙니다. 고객사 표기를 확인 중인 공개 실적 {p}건은 표기가 확인되면 이 목록에 더합니다.","Two exchange clients with published results, and any other client in the site's logo list, are disclosed first if one becomes a candidate. Clients behind {p} published results whose label is being confirmed are added once confirmed."], movedUp:["▲{n}","▲{n}"], movedDown:["▼{n}","▼{n}"],
  bench:["전문가 자리","Expert bench"], have:["보유","In place"], coordinate:["판아시아가 역할별로 조율","Panasia coordinates by role"], benchAsk:["확인 필요","To confirm"],
  phasesTitle:["도입 단계","Adoption phases"],
- s4:["프로그램과 스코프","Program and scope"], s4Sub:["추천 모듈은 미리 골라 두었습니다. 빼거나 더하면 경로와 일정이 함께 바뀝니다.","Recommended modules are pre-selected. Add or remove them and the route and schedule follow."],
+ s4:["프로그램과 스코프","Program and scope"], s4Sub:["추천 프로그램은 미리 골라 두었습니다. 빼거나 더하면 경로와 일정이 함께 바뀝니다.","Recommended programs are pre-selected. Add or remove them and the route and schedule follow."],
  recommended:["추천","Recommended"], available:["추가 가능","Available"], addedByYou:["직접 추가","Added by you"], removed:["제외함","Removed"], r2:["필수 출발점","Required first step"],
  inPlan:["플랜에 포함","In plan"], notInPlan:["플랜에 넣기","Add to plan"],
  "owner.p":["판아시아","Panasia"], "owner.you":["귀사","You"], "owner.partner":["파트너","Partner"],
- kpisReported:["판아시아가 보고하는 지표","KPIs Panasia reports"], namedInER:["Entry Review에서 이름으로 공개","Named in the Entry Review"], namedInB:["도입 진단에서 이름으로 공개","Named in the Adoption Diagnostic"],
+ kpisReported:["판아시아가 보고하는 지표","KPIs Panasia reports"], namedInER:["진입 진단에서 이름으로 공개","Named in the Entry Diagnostic"], namedInB:["도입 진단에서 이름으로 공개","Named in the Adoption Diagnostic"],
  gateFirst:["진행 전 확인","Check before anything else"], durationL:["기간","Duration"], prepRun:["준비 {p}주 + 실행 {r}주","prep {p} {pw} + run {r} wks"], runOnly:["{r}주","{r} wks"],
  backing:["근거 사례","Backing cases"], details:["구성 보기","See what's included"], gatedOnly:["거래소 분야에만 해당합니다","Exchange sector only"],
  noCaseModule:["서비스 제공 · 공개 실적 없음 · 상장 결과를 약속하지 않습니다","Service offered · no published result · no listing outcome is promised"],
  blockedIn:["{M}에서는 경로가 막혀 제외됩니다","Excluded in {M}: route closed"],
- priceUnset:["범위는 Entry Review에서 확정","Range set in the Entry Review"], priceUnsetB:["범위는 도입 진단에서 확정","Range set in the Adoption Diagnostic"], priceTag:["판아시아 요율표 · {d} · 확정은 스코프에서","Panasia rate card · {d} · confirmed in scope"],
+ priceUnset:["범위는 진입 진단에서 확정","Range set in the Entry Diagnostic"], priceUnsetB:["범위는 도입 진단에서 확정","Range set in the Adoption Diagnostic"], priceTag:["판아시아 요율표 · {d} · 확정은 스코프에서","Panasia rate card · {d} · confirmed in scope"],
  sampleRateTag:["예시 요율 · 초안 모드 미리보기 · 실제 가격이 아닙니다","Sample rates · draft-mode preview · not real prices"],
  budget:["예산대","Budget band"], "opt.budget":[["설정 안 함","$50K 미만","$50–150K","$150–300K","$300K–1M","$1M 이상","밝히지 않음"],["Not set","Under $50K","$50–150K","$150–300K","$300K–1M","$1M+","Prefer not to say"]],
  timing:["시점","Timing"], "opt.timing":[["설정 안 함","30일 이내","이번 분기","탐색 중"],["Not set","Within 30 days","This quarter","Exploring"]],
  company:["회사명 (선택)","Company (optional)"], companyNote:["링크에는 담기지 않습니다","Not stored in the link"],
- budgetNoRates:["비용 범위는 스코프 콜 후 Entry Review에서 확정합니다. 예산대를 알려주시면 그 안에서 범위를 설계합니다.","Cost ranges are set in the Entry Review after the Scope Call. Tell us your band and we'll design the scope inside it."],
- budgetNoRatesB:["비용 범위는 스코프 콜 후 도입 진단에서 확정합니다. 예산대를 알려주시면 그 안에서 범위를 설계합니다.","Cost ranges are set in the Adoption Diagnostic after the Scope Call. Tell us your band and we'll design the scope inside it."],
+ budgetNoRates:["비용 범위는 30분 무료 상담 후 진입 진단에서 확정합니다. 예산대를 알려주시면 그 안에서 범위를 설계합니다.","Cost ranges are set in the Entry Diagnostic after the 30-min intro call. Tell us your band and we'll design the scope inside it."],
+ budgetNoRatesB:["비용 범위는 30분 무료 상담 후 도입 진단에서 확정합니다. 예산대를 알려주시면 그 안에서 범위를 설계합니다.","Cost ranges are set in the Adoption Diagnostic after the 30-min intro call. Tell us your band and we'll design the scope inside it."],
  "fit.fits":["예산 안","Fits"], "fit.stretch":["빠듯함","Stretch"], "fit.over":["초과","Over"], rangeL:["구성 범위","Configured range"],
  makeFit:["예산에 맞추기","Make it fit"], undo:["되돌리기","Undo"], fitDone:["조정할 항목이 더 없습니다","Nothing left to adjust"],
  fitPace:["단계적으로 전환","Switch to staged"], fitHorizon:["기간 9개월로","Horizon to 9 months"], fitDrop:["{x} 제외","Drop {x}"],
- scopeTitle:["스코프 표","Scope table"], rowsN:["{n}행","{n} rows"], sameAs:["{M} 같음","Same as {M}"], "th.scope":["스코프","Scope"], "th.deliv":["산출물","Deliverables"], "th.owner":["담당","Owner"], "th.budget":["예산","Budget"], "th.gate":["게이트 (계속/중단 기준)","Gate (continue/stop)"], "th.next":["다음 결정","Next decision"],
+ scopeTitle:["스코프 표","Scope table"], rowsN:["{n}행","{n} rows"], sameAs:["{M} 같음","Same as {M}"], "th.scope":["스코프","Scope"], "th.deliv":["산출물","Deliverables"], "th.owner":["담당","Owner"], "th.budget":["예산","Budget"], "th.gate":["계속·중단 기준","Continue/stop criteria"], "th.next":["다음 결정","Next decision"],
  allMarkets:["전체","All markets"], ownerSplit:["판아시아 {p} · 귀사 {y} · 파트너 {r}","Panasia {p} · You {y} · Partner {r}"],
  "next.r3":["런칭 프로그램 착수 여부","Whether to start the launch program"], "next.mkt":["{M} 진행 여부","Whether to proceed to {M}"], "next.r4":["운영·확장 전환 여부","Whether to move to operate & expand"],
  "next.b1":["공급자 숏리스트 확정 여부","Whether to confirm the provider shortlist"], "next.b2":["파일럿 착수 여부","Whether to start the pilot"], "next.b3":["확장 여부","Whether to scale"],
@@ -1305,10 +1406,10 @@ const STRING_PAIRS = {
  pipeCols:[["대상 유형","맞는 이유","확인할 점","다음 합의 단계","상태"],["Target type","Why it fits","What needs checking","Next agreed step","Status"]],
  instRow:["기관 {x}","Institution {x}"], partnerRow:["파트너 {x}","Partner {x}"], providerRow:["공급자 후보 {x}","Provider candidate {x}"],
  day90:["90일 차에 귀사가 갖게 되는 것","What you own at day 90"],
- sealedTitle:["Entry Review에서 공개할 항목","Opened in the Entry Review"], sealedTitleB:["도입 진단에서 공개할 항목","Opened in the Adoption Diagnostic"], sealed:["Entry Review에서 공개","Opened in the Entry Review"], sealedB:["도입 진단에서 공개","Opened in the Adoption Diagnostic"], moreN:["{n}개 더 보기","{n} more"],
+ sealedTitle:["진입 진단에서 공개할 항목","Opened in the Entry Diagnostic"], sealedTitleB:["도입 진단에서 공개할 항목","Opened in the Adoption Diagnostic"], sealed:["진입 진단에서 공개","Opened in the Entry Diagnostic"], sealedB:["도입 진단에서 공개","Opened in the Adoption Diagnostic"], moreN:["{n}개 더 보기","{n} more"],
  s5:["스코프 초안과 다음 단계","Scope draft and next step"], s5Sub:["여기까지가 초안입니다. 복사한 것만 밖으로 나갑니다.","This is your draft. Only what you copy leaves the page."],
  agenda:["확인할 것 (우선순위)","What needs checking (by priority)"], more:["추가 확인 {n}건","{n} more to check"],
- "resolver.p":["판아시아가 Entry Review에서 확인","Panasia confirms in the Entry Review"], "resolver.pB":["판아시아가 도입 진단에서 확인","Panasia confirms in the Adoption Diagnostic"], "resolver.you":["귀사 확인","You confirm"], "resolver.both":["함께","Together"], "resolver.call":["판아시아가 스코프 콜에서 답변","Panasia answers on the Scope Call"],
+ "resolver.p":["판아시아가 진입 진단에서 확인","Panasia confirms in the Entry Diagnostic"], "resolver.pB":["판아시아가 도입 진단에서 확인","Panasia confirms in the Adoption Diagnostic"], "resolver.you":["귀사 확인","You confirm"], "resolver.both":["함께","Together"], "resolver.call":["판아시아가 30분 무료 상담에서 답변","Panasia answers on the 30-min intro call"],
  "qs.yes":["예","Yes"], "qs.no":["아니오","No"], "qs.discuss":["논의","Discuss"],
  people:["작성자와 승인","Who drafts, who approves"],
  yourRole:["작성자 역할","Your role"], "opt.role":[["선택","창업자·CEO","BD·파트너십","그로스·마케팅","컴플라이언스·법무","전략·혁신","투자·IC","기타"],["Choose","Founder/CEO","BD/partnerships","Growth/marketing","Compliance/legal","Strategy/innovation","Investment/IC","Other"]],
@@ -1316,26 +1417,26 @@ const STRING_PAIRS = {
  times:["희망 시간 (최대 3)","Preferred times (up to 3)"], timesHint:["한국 시간(KST, UTC+9) 기준 · 칸 안의 시간은 현지 시간({tz}) · 방향키로 이동, 스페이스로 선택","Korea time (KST, UTC+9) · cells show your local time ({tz}) · Arrow keys move, Space selects"], timesHintSeoul:["한국 시간(KST, UTC+9) 기준 · 방향키로 이동, 스페이스로 선택","Korea time (KST, UTC+9) · Arrow keys move, Space selects"],
  timesMax:["희망 시간은 최대 3개입니다","Up to 3 times"], timesOff:["흐린 칸은 현지 업무 시간 밖입니다.","Dimmed cells fall outside your local working hours."], prevDay:["전날","prev. day"], nextDay:["다음날","next day"],
  days:[["월","화","수","목","금"],["Mon","Tue","Wed","Thu","Fri"]],
- rung:["다음 단계","Next step"], "opt.rung":[["스코프 콜 요청","Entry Review로 바로","프로그램으로 바로","저장만"],["Request a Scope Call","Go straight to the Entry Review","Go straight to a program","Save only"]],
- "opt.rungB":[["스코프 콜 요청","도입 진단으로 바로","파일럿 조율로 바로","저장만"],["Request a Scope Call","Go straight to the Adoption Diagnostic","Go straight to pilot coordination","Save only"]],
- outputs:["판아시아에 보내기","Send it to Panasia"], memoLang:["메모 언어","Memo language"], send1:["받는 사람","To"], send2:["제목","Subject"], send3:["본문 · 초안 전체와 Plan ID 포함","Body · the whole draft, with the Plan ID"], sendMore:["팀 안에서 공유하기","Share inside your team"],
- copyEmail:["판아시아에 보낼 이메일 복사","Copy email to Panasia"], copyMemo:["내부 공유 메모 복사","Copy internal memo"], copyLink:["공유 링크 복사","Copy share link"], copyId:["Plan ID 복사","Copy Plan ID"],
+ rung:["다음 단계","Next step"], "opt.rung":[["30분 무료 상담 요청","진입 진단으로 바로","프로그램으로 바로","저장만"],["Request a 30-min intro call","Go straight to the Entry Diagnostic","Go straight to a program","Save only"]],
+ "opt.rungB":[["30분 무료 상담 요청","도입 진단으로 바로","파일럿 조율로 바로","저장만"],["Request a 30-min intro call","Go straight to the Adoption Diagnostic","Go straight to pilot coordination","Save only"]],
+ outputs:["판아시아에 보내기","Send it to Panasia"], memoLang:["메모 언어","Memo language"], send1:["받는 사람","To"], send2:["제목","Subject"], send3:["본문 · 초안 전체와 플랜 코드 포함","Body · the whole draft, with the plan code"], sendMore:["팀 안에서 공유하기","Share inside your team"],
+ copyEmail:["판아시아에 보낼 이메일 복사","Copy email to Panasia"], copyMemo:["내부 공유 메모 복사","Copy internal memo"], copyLink:["내 플랜 링크 복사","Copy my plan link"], copyId:["플랜 코드 복사","Copy plan code"],
  copyAddr:["주소 복사","Copy address"], copySubject:["제목 복사","Copy subject"], subjectL:["제목","Subject"],
  sendDirect:["판아시아에 바로 보내기","Send to Panasia"], sendFail:["전송되지 않았습니다. 이메일 복사를 이용해 주세요.","Not sent. Please use Copy email."], sendOk:["전송했습니다 · 참조 {ref}","Sent · ref {ref}"],
  copied:["복사했습니다","Copied"], copiedEmail:["이메일을 복사했습니다. {addr}로 보내 주세요.","Email copied. Send it to {addr}."], copyFallback:["자동 복사가 되지 않았습니다. 선택된 내용을 직접 복사해 주세요.","Automatic copy failed. Please copy the selected text."],
- planId:["Plan ID","Plan ID"], ref:["참조","Reference"],
- linkFallbackMemo:["Plan ID: {id}\n판아시아 스코프 룸의 'Plan ID 붙여넣기' 칸에 입력하면 같은 플랜이 열립니다.","Plan ID: {id}\nPaste it into 'Paste a Plan ID' in the Panasia Scope Room to open the same plan."],
- linkFallback:["Plan ID: {id}\n판아시아 스코프 룸의 'Plan ID 붙여넣기' 칸에 입력하면 같은 플랜이 열립니다. 스코프 룸 링크는 people@panasia.io로 요청해 주세요. ({identity})","Plan ID: {id}\nPaste it into 'Paste a Plan ID' in the Panasia Scope Room to open the same plan. Ask people@panasia.io for the Scope Room link. ({identity})"],
+ planId:["플랜 코드","Plan code"], ref:["참조","Reference"],
+ linkFallbackMemo:["플랜 코드: {id}\n판아시아 스코프 룸의 '플랜 코드 붙여넣기' 칸에 입력하면 같은 플랜이 열립니다.","Plan code: {id}\nPaste it into 'Paste a plan code' in the Panasia Scope Room to open the same plan."],
+ linkFallback:["플랜 코드: {id}\n판아시아 스코프 룸의 '플랜 코드 붙여넣기' 칸에 입력하면 같은 플랜이 열립니다. 스코프 룸 링크는 people@panasia.io로 요청해 주세요. ({identity})","Plan code: {id}\nPaste it into 'Paste a plan code' in the Panasia Scope Room to open the same plan. Ask people@panasia.io for the Scope Room link. ({identity})"],
  ladder:["이후 진행 단계","Next steps"], here:["현재 위치","You are here"], chosen:["선택한 다음 단계","Your chosen next step"], ladderStep:[["지금","1단계","2단계","3단계","4단계"],["Now","Step 1","Step 2","Step 3","Step 4"]],
  "ladder.0":["스코프 룸 · 지금 · 무료 — 이 초안은 귀사의 것입니다.","Scope Room · now · free — this draft is yours."],
- "ladder.1":["스코프 콜 · 30분 · 무료 — 첫 대화에서 범위와 다음 결정을 정합니다.","Scope Call · 30 min · free — the first conversation defines the scope and the next decision."],
- "ladder.2":["Entry Review · 2–3주 · 정액 — 첫 시장, 채널 조합, 연락 대상, 실명 숏리스트.","Entry Review · 2–3 wks · fixed fee — first market, channel mix, who to contact, a named shortlist."],
+ "ladder.1":["30분 무료 상담 — 첫 대화에서 범위와 다음 결정을 정합니다.","30-min intro call · free — the first conversation defines the scope and the next decision."],
+ "ladder.2":["진입 진단 · 2–3주 · 정액 — 첫 시장, 채널 조합, 연락 대상, 실명 숏리스트.","Entry Diagnostic · 2–3 wks · fixed fee — first market, channel mix, who to contact, a named shortlist."],
  "ladder.2B":["도입 진단 · 2–4주 · 정액 — 해결할 문제, 레이어 선정 기준, 공급자 후보, 규제 질문 목록.","Adoption Diagnostic · 2–4 wks · fixed fee — the problem, layer criteria, provider candidates and the regulatory question list."],
  "ladder.3B":["파일럿 · 1개 사용 사례 · 약 8–12주 — 범위·담당·예산과 진행/중단 기준이 명시됩니다.","Pilot · one use case · about 8–12 wks — scope, owner, budget and go/no-go criteria are named."],
  ladderNote:["기간은 데스크 기본값입니다","Durations are desk defaults"],
  "ladder.3":["런칭 프로그램 · 1개 시장 · 약 90일 — 스코프에 산출물·담당·예산이 명시됩니다.","Launch program · one market · ~90 days — your scope names the deliverables, owner and budget."],
  "ladder.4B":["확장 · 월 단위 — 첫 미팅에 함께하고 다음 합의 단계를 추적합니다. 운영 전환은 파일럿 기준 충족 후.","Scale · monthly — we join the first meetings and track the next agreed step; production follows once the pilot criteria are met."],
- "ladder.4":["운영·확장 · 월 단위 — 첫 미팅에 함께하고 다음 합의 단계를 추적합니다. 다음 시장은 게이트 확인 후.","Operate & expand · monthly — we join the first meetings and track the next agreed step; the next market opens after its gate."],
+ "ladder.4":["운영·확장 · 월 단위 — 첫 미팅에 함께하고 다음 합의 단계를 추적합니다. 다음 시장은 계속·중단 기준 확인 후.","Operate & expand · monthly — we join the first meetings and track the next agreed step; the next market opens after its continue/stop check."],
  creditLine:["{d}일 안에 프로그램을 계약하면 비용이 프로그램에 반영됩니다.","Credited against a program signed within {d} days."],
  deferred:["상세 협의로 남겨 둔 것","Left for detailed talks"],
  aiTitle:["AI 진단 초안","AI-drafted diagnosis"], aiBtn:["AI 진단 초안 받기","Get an AI-drafted diagnosis"],
@@ -1343,26 +1444,26 @@ const STRING_PAIRS = {
  aiBlocked:["AI 초안에 확인되지 않은 수치가 있어 표시하지 않습니다. 질문 목록에 추가했습니다.","The AI draft contained unverified figures, so it isn't shown. Added to your questions."],
  aiLater:["잠시 후 다시 시도해 주세요.","Please try again shortly."], aiFail:["지금은 초안을 만들 수 없습니다. 질문 목록에 추가했습니다.","A draft can't be made right now. Added to your questions."],
  aiDone:["초안 작성 완료","Draft ready"], aiInclude:["이메일에 AI 초안 포함 (AI 초안으로 표기됨)","Include the AI draft in the email (marked as AI)"], aiStop:["중지","Stop"], aiThinking:["작성 중…","Thinking…"], aiSignin:["다시 로그인한 뒤 시도해 주세요.","Sign in again, then retry."],
- review:["스코프 초안 검토 · {ref}","Scope draft review · {ref}"], reviewSub:["작성: {role} · 승인: {approvers}","Drafted by {role} · approval: {approvers}"], rvRole:["작성: {role}","Drafted by {role}"], rvAppr:["승인: {approvers}","Sign-off: {approvers}"],
- reviewH:["{track} 스코프 초안 · {first}부터 시작","{track} scope draft · {first} first"], reviewHB:["{problem} 도입 스코프 초안","{problem}: adoption scope draft"],
+ review:["진입 브리프 검토 · {ref}","Entry brief review · {ref}"], reviewSub:["작성: {role} · 승인: {approvers}","Drafted by {role} · approval: {approvers}"], rvRole:["작성: {role}","Drafted by {role}"], rvAppr:["승인: {approvers}","Sign-off: {approvers}"],
+ reviewH:["{track} 진입 브리프 · {first}부터 시작","{track} entry brief · {first} first"], reviewHB:["{problem} 도입 브리프","{problem}: adoption brief"],
  reviewIntro:["귀사 팀이 판아시아 스코프 룸에서 작성한 초안입니다. ■ 표시가 붙은 수치는 panasia.io에 게시된 판아시아 실적이고, 기간은 데스크 기본값입니다. 비용이 표시된 경우 출처(요율표 또는 예시)를 함께 적었습니다.","Your team built this draft in Panasia's Scope Room. Figures marked ■ are Panasia results published on panasia.io; durations are desk defaults. The 'Sample' or 'Rate card' tag next to a cost tells you where it comes from."],
  reviewIntroP:["판아시아가 귀사를 위해 준비한 제안 초안입니다. ■ 표시가 붙은 수치는 panasia.io에 게시된 판아시아 실적이고, 기간은 데스크 기본값입니다. 비용이 표시된 경우 출처(요율표 또는 예시)를 함께 적었습니다.","Panasia prepared this draft proposal for you. Figures marked ■ are Panasia results published on panasia.io; durations are desk defaults. The 'Sample' or 'Rate card' tag next to a cost tells you where it comes from."],
  reviewIntroPAdj:["판아시아 제안을 바탕으로 귀사 팀이 조정한 초안입니다. 바뀐 점은 바로 아래 '판아시아 제안에서 바뀐 점'에 있습니다. ■ 표시가 붙은 수치는 panasia.io에 게시된 판아시아 실적이고, 기간은 데스크 기본값입니다.","Your team adjusted Panasia's proposal; the changes are listed right below under 'Changes from Panasia's proposal'. Figures marked ■ are Panasia results published on panasia.io; durations are desk defaults."],
  "rv.closing":["검토가 끝나면 판아시아에 보내거나 내부 메모로 돌리세요.","Done reviewing? Send it to Panasia or circulate it as an internal memo."],
- editPlan:["이 플랜 편집하기","Edit this plan"], xProspect:["다른 제안서 사본에서 만든 Plan ID입니다 · 확인 항목 답변은 원본 사본에서 보입니다","This Plan ID was made from another proposal copy · its agenda answers show in that copy"], copyMine:["내 메모로 복사","Copy as my memo"],
- "rv.first":["첫 시장","First market"], "rv.modules":["모듈","Modules"], "rv.band":["예산대","Budget band"], "rv.range":["범위","Range"], "rv.rung":["다음 단계","Next step"],
+ editPlan:["이 플랜 편집하기","Edit this plan"], xProspect:["다른 제안서 사본에서 만든 플랜 코드입니다 · 확인 항목 답변은 원본 사본에서 보입니다","This plan code was made from another proposal copy · its agenda answers show in that copy"], copyMine:["내 메모로 복사","Copy as my memo"],
+ "rv.first":["첫 시장","First market"], "rv.modules":["프로그램","Programs"], "rv.band":["예산대","Budget band"], "rv.range":["범위","Range"], "rv.rung":["다음 단계","Next step"],
  refsTitle:["근거 사례와 원문 고지 문구","References and qualifiers"], routeMini:["경로","Route"], diffTitle:["판아시아 제안에서 바뀐 점","Changes from Panasia's proposal"],
  sheetBar:["초안 · {n}줄 · 다음: {next}","Draft · {n} lines · Next: {next}"], sheetTitle:["스코프 초안","Scope draft"],
  sheetEmpty:["아직 비어 있습니다. 위에서 출발점을 고르면 이 종이에 초안이 한 줄씩 쌓입니다.","Still blank. Pick a starting point and the draft builds here line by line."],
- ghostCap:["문을 고르면 이 초안이 한 줄씩 채워집니다.","Pick a door and this draft fills in line by line."],
+ 
  sheetGo:["초안 마무리하기","Finish the draft"], sheetLines:["초안 {n}줄","{n} draft lines"],
  "sl.track":["출발점","Start"], "sl.profile":["프로필","Profile"], "sl.aud":["대상","Audience"], "sl.kpi":["성공 기준","Success"], "sl.status":["상태","Status"], "sl.route":["경로","Route"],
- "sl.modules":["모듈","Modules"], "sl.cases":["근거","Evidence"], "sl.gates":["게이트","Gates"], "sl.budget":["예산","Budget"], "sl.questions":["확인할 것","To check"],
+ "sl.modules":["프로그램","Programs"], "sl.cases":["근거","Evidence"], "sl.gates":["시장 조건","Conditions"], "sl.budget":["예산","Budget"], "sl.questions":["확인할 것","To check"],
  "sl.next":["다음 단계","Next step"], "sl.company":["회사","Company"], "sl.hs":["첫 협업","First collab"], "sl.alt":["경로 B","Route B"], "sl.times":["희망 시간","Times"],
- "sl.people":["승인","Approval"], skippedS5:["판아시아 추천으로 나머지를 채웠습니다 · 경로 {route} · 모듈 {n}개.","Filled the rest with Panasia's recommendation · route {route} · {n} modules."], "sl.weights":["선정 기준","Criteria"], "sl.layer":["레이어","Layers"], "sl.pins":["관련 사례","Pinned"], "sl.adjacent":["인접 실적","Adjacent record"], "sl.home":["운영 시장","Market"],
+ "sl.people":["승인","Approval"], skippedS5:["판아시아 추천으로 나머지를 채웠습니다 · 경로 {route} · 프로그램 {n}개.","Filled the rest with Panasia's recommendation · route {route} · {n} programs."], "sl.weights":["선정 기준","Criteria"], "sl.layer":["레이어","Layers"], "sl.pins":["관련 사례","Pinned"], "sl.adjacent":["인접 실적","Adjacent record"], "sl.home":["운영 시장","Market"],
  "fn.yours":["입력값 · 귀사가 고른 값","Your input · values you chose"], "fn.view":["판아시아 관점 · 데스크 기본값이며 확정이 아닙니다","Panasia view · desk defaults, not confirmed"],
  "fn.reported":["공개 실적 · panasia.io 게시, 기준 {d}","Published · as on panasia.io, as of {d}"], "fn.public":["공개 자료 · 출처와 기준일 표기","Public source · with source and date"], "fn.sample":["예시 · 자리 표시용 값","Sample · placeholder values"],
- gatesNone:["이 페이지에 등록된 차단 조건 없음 · 규제 확인은 별도로 필요","No gate listed on this page · regulatory check still needed"], gatesSum:["차단 {c} · 확인 필요 {k}","closed {c} · to check {k}"], gatesUnv:[" [판아시아 관점 · 미검증]"," [Panasia view · unverified]"],
+ gatesNone:["이 페이지에 등록된 차단 조건 없음 · 규제 확인은 별도로 필요","No condition listed on this page · regulatory check still needed"], gatesSum:["차단 {c} · 확인 필요 {k}","closed {c} · to check {k}"], gatesUnv:[" [판아시아 관점 · 미검증]"," [Panasia view · unverified]"],
  "sl.sector":["분야","Sector"], "sl.stage":["단계","Stage"], "sl.obj":["목표","Objective"], "sl.channel":["현지어 채널","Local channel"], "sl.bstatus":["내부 조건","Internal"], andMore:["외 {n}건","+{n} more"],
  autoMark:["판아시아 기본값","Panasia default"], done:["완료","done"], ixNav:["섹션 목차","Sections"], cmpLeads:["앞섬","leads"], inProgress:["진행 중","In progress"],
  restoreDraft:["이전 초안 되돌리기","Restore previous draft"], switchedTrack:["출발점을 바꿔 새 초안을 시작했습니다.","You switched starting point and began a new draft."],
@@ -1370,40 +1471,40 @@ const STRING_PAIRS = {
  footNotAdvice:["법률·세무·투자 자문이 아닙니다. 규제 정보는 기준일 현재 공개 자료이며 확인이 필요합니다.","Not legal, tax or investment advice. Regulatory items are public information as of the stated date and need verification."],
  identity:["판아시아 · Panasia Inc. · 서울 · panasia.io","Panasia Inc. · Seoul · panasia.io"],
  noRoute:["모든 시장에서 필요한 경로가 막혀 있습니다. 상태 확인 답변을 검토해 주세요.","The route you need is closed in every market. Please review your status answers."],
- draftBanner:["초안 모드 · 운영자 확인 항목 {n}건","Draft mode · {n} items for the operator to check"], preflightTitle:["발송 전 점검","Pre-flight before any send"],
+ draftBanner:["운영자 확인 {n}","Operator check {n}"], preflightTitle:["발송 전 점검","Pre-flight before any send"],
  preflight:[["panasia.io에서 '$2M 30일 한국 TVL'과 '15K+ 커뮤니티 멤버' 옆의 고객사 표기를 확인하고 attribution을 정합니다. Bybit 1,200+ VIP 표기도 다시 확인합니다.","사례별 era와 role을 정합니다. 2026년 9월 15일 이전 작업은 '팀 실행 기록'으로 표기하고, 다른 곳에 공식 크레딧이 있는 행사는 주장하지 않습니다.","Mantra, Ondo, KuCoin의 market을 확인합니다 (현재 null).","KR KoFIU 조건과 최소 SG·HK 조건을 URL·기준일과 함께 검증한 뒤 verified:true로 바꿉니다.","실제 요율 범위를 넣거나(rates.status:\"range\") 가격을 비워 둡니다.","번역한 국문 라벨·단서와 h1·리드 문구를 사이트 국문 원문으로 바꿉니다 (koStatus).","market.view 문구를 승인하거나 2단계를 잠근 채로 둡니다.","논문 제목과 URL을 넣습니다.","people@panasia.io가 사업 문의 창구인지 확인합니다 (현재 확인된 것은 언론·인터뷰 창구).","panasia.io 고객 로고 목록과 이해관계 공개 목록을 대조해, 로고에는 있지만 사례 항목이 없는 고객사를 반영합니다.","live 전에 panasia.io에서 모든 수치·라벨·단서를 원문 그대로 대조합니다 (현재 수치는 검색 요약에서 수집).","거래소 사례 문구는 법률 검토를 받습니다.","mode:\"live\"로 바꿔 게시하고, canonicalUrl에 게시 URL을 넣어 한 번 더 게시합니다."],["Confirm the client label next to '$2M Korean TVL in 30 days' and '15K+ community members' on panasia.io and set attribution. Re-check Bybit's label next to 1,200+ VIP.","Set era and role per case. Work before 15 Sep 2026 is 'team track record'. Never claim events credited to others.","Confirm market for Mantra, Ondo and KuCoin (currently null).","Verify the KR KoFIU condition, and at least SG and HK, with a URL and as-of date, then set verified:true.","Enter real rate ranges (rates.status:\"range\"), or leave pricing dark.","Replace translated KO labels, qualifiers and the KO h1/lede with the site's Korean copy (koStatus).","Approve market.view texts, or leave layer 2 locked.","Add research paper titles and URLs.","Confirm people@panasia.io handles business inquiries (it is confirmed only as the media and interview address).","Cross-check the panasia.io client logo row against the COI list and add any logo client that has no case entry.","Before live, check every figure, label and qualifier verbatim on panasia.io (current figures were gathered from search summaries).","Have exchange-case wording reviewed by counsel.","Set mode:\"live\", publish, set canonicalUrl to the published URL, and publish again."]],
  jump:["§{n} {name} 이동","Go to §{n} {name}"], skipMain:["본문으로 건너뛰기","Skip to content"],
  "em.greet":["판아시아 담당자님, 안녕하세요.","Dear Panasia team,"],
- "em.intro":[["판아시아 스코프 룸에서 아래 초안을 작성했습니다. 이 초안을 바탕으로 30분 스코프 콜을 부탁드립니다.","판아시아 스코프 룸에서 아래 초안을 작성했습니다. 이 초안을 바탕으로 {r2} 진행을 바로 논의하고 싶습니다.","판아시아 스코프 룸에서 아래 초안을 작성했습니다. 이 초안을 바탕으로 {r3} 착수를 논의하고 싶습니다.","판아시아 스코프 룸에서 작성한 초안을 참고로 공유드립니다. 지금은 회신하지 않으셔도 됩니다."],["I drafted the scope below in the Panasia Scope Room and would like a 30-minute Scope Call on it.","I drafted the scope below in the Panasia Scope Room and would like to discuss starting the {r2} right away.","I drafted the scope below in the Panasia Scope Room and would like to discuss starting {r3} on this basis.","Sharing the draft I built in the Panasia Scope Room for reference; no reply needed yet."]],
+ "em.intro":[["판아시아 스코프 룸에서 아래 초안을 작성했습니다. 이 초안을 바탕으로 30분 무료 상담을 부탁드립니다.","판아시아 스코프 룸에서 아래 초안을 작성했습니다. 이 초안을 바탕으로 {r2} 진행을 바로 논의하고 싶습니다.","판아시아 스코프 룸에서 아래 초안을 작성했습니다. 이 초안을 바탕으로 {r3} 착수를 논의하고 싶습니다.","판아시아 스코프 룸에서 작성한 초안을 참고로 공유드립니다. 지금은 회신하지 않으셔도 됩니다."],["I drafted the scope below in the Panasia Scope Room and would like a free 30-min intro call on it.","I drafted the scope below in the Panasia Scope Room and would like to discuss starting the {r2} right away.","I drafted the scope below in the Panasia Scope Room and would like to discuss starting {r3} on this basis.","Sharing the draft I built in the Panasia Scope Room for reference; no reply needed yet."]],
  "em.r3":["런칭 프로그램","a launch program"], "em.r3B":["파일럿 조율","pilot coordination"], "em.r3Subj":["[런칭 프로그램 문의]","[Launch program inquiry]"], "em.r3SubjB":["[파일럿 조율 문의]","[Pilot coordination inquiry]"],
- "em.intro2":["Plan ID(또는 아래 링크)로 같은 화면을 보실 수 있습니다.","The Plan ID (or the link below) opens the same view."], "em.intro2n":["Plan ID로 같은 화면을 보실 수 있습니다.","The Plan ID opens the same view."],
+ "em.intro2":["플랜 코드(또는 아래 링크)로 같은 화면을 보실 수 있습니다.","The plan code (or the link below) opens the same view."], "em.intro2n":["플랜 코드로 같은 화면을 보실 수 있습니다.","The plan code opens the same view."],
  "em.res.p":["[판아시아 확인]","[Panasia to confirm]"], "em.res.you":["[저희 확인]","[We confirm]"], "em.res.both":["[함께]","[Together]"], "em.res.call":["[판아시아 답변]","[Panasia answers]"],
  "em.link":["링크","Link"], "em.added":["저희가 추가","we added"], "em.removed":["저희가 제외","we removed"], "sl.pending":["확인 중 실적","Label pending"], "em.companyPh":["[회사명]","[Company]"], "em.default":["(판아시아 기본값)","(Panasia default)"], "em.propTag":["[판아시아 제안]","[Panasia's proposal]"],
  "em.sample":["[예시 기업 · SAMPLE PROSPECT] ","[SAMPLE PROSPECT] "], "em.layer":["레이어 유형 순서","Layer category order"], "em.coi":["이해관계 공개","Conflict of interest"], "em.market":["운영 시장","Home market"],
  "em.coiLine":["판아시아 공개 고객사: {list}. 이 밖에 거래소 고객 2곳, 고객사 표기를 확인 중인 공개 실적 {p}건, 사이트 로고 목록의 다른 고객사가 있습니다. 이 중 공급자 후보에 오르는 곳이 있으면 먼저 알려 주시기 바랍니다.","Panasia's published clients: {list}; plus two exchange clients, {p} published results whose client label is still being confirmed, and any other client in the site's logo list. Please flag any that becomes a provider candidate."],
  "em.research":["요청 자료","Materials requested"], "em.researchTxt":["판아시아의 결제·토큰화 자산 비교 논문 4편 가운데 스테이블코인 결제를 다룬 논문을 국문 요약과 함께 콜 전에 받아 볼 수 있을까요?","Could you share the stablecoin-payments paper from your four payments and tokenized-asset comparisons, with its Korean summary, before the call?"],
  "em.researchAsk":["판아시아의 결제·토큰화 자산 비교 논문 4편 가운데 저희 과제({problem})와 가장 가까운 논문을 콜 전에 받아 볼 수 있을까요?","Could you share whichever of your four payments and tokenized-asset papers is closest to our {problem} work before the call?"],
- "em.subjPre":[["[스코프 콜]","[{r2} 문의]","[프로그램 문의]","[참고 공유]"],["[Scope Call]","[{r2} inquiry]","[Program inquiry]","[For reference]"]],
+ "em.subjPre":[["[30분 무료 상담]","[{r2} 문의]","[프로그램 문의]","[참고 공유]"],["[30-min intro call]","[{r2} inquiry]","[Program inquiry]","[For reference]"]],
  "em.ref":["참조","Reference"], "em.company":["회사","Company"], "em.role":["작성자:","Drafted by:"], "em.appr":["승인:","Sign-off:"], "em.profile":["프로필","Profile"],
  "em.aud":["대상:","audience:"], "em.kpi":["성공 기준","Success metric"], "em.target":["목표","target"], "em.notSet":["미설정","not set"], "em.nearest":["가장 가까운 공개 실적","nearest published record"], "em.nearestCap":["가장 가까운 공개 실적","Nearest published record"],
  "em.nearestPending":["고객사 표기 확인 중","client label pending"], "em.route":["경로","Route"],
- "em.evid":["근거: {t}개 구간(시장×모듈) 중 같은 시장 공개 사례 {a} · 시장 미표기 사례 {b}","evidence across {t} legs (market × module): {a} same-market cases, {b} cases with no market stated"],
- "em.modules":["모듈","Modules"], "em.gates":["게이트","Gates"], "em.budget":["예산대","Budget band"], "em.timing":["시점:","timing:"], "em.range":["범위","range"], "em.rangeNote":["판아시아 공개 요율 기준","per Panasia's published rates"],
+ "em.evid":["근거: {t}개 구간(시장×프로그램) 중 같은 시장 공개 사례 {a} · 시장 미표기 사례 {b}","evidence across {t} legs (market × program): {a} same-market cases, {b} cases with no market stated"],
+ "em.modules":["프로그램","Programs"], "em.gates":["시장 조건","Market conditions"], "em.budget":["예산대","Budget band"], "em.timing":["시점:","timing:"], "em.range":["범위","range"], "em.rangeNote":["판아시아 공개 요율 기준","per Panasia's published rates"],
  "em.diff":["판아시아 제안에서 바뀐 점","Changes from Panasia's proposal"], "em.facts":["사실 정정","Fact corrections"], "em.hs":["첫 협업 카드","First collaboration card"], "em.hsCp":["상대","Counterpart"], "em.hsMy":["우리 쪽 필요","Our need"], "em.hsTheir":["상대 쪽 필요","Their need"],
  "em.status":["현황","Status"], "em.bstatus":["내부 조건","Internal conditions"], "em.alt":["경로 B","Route B"],
  "em.agenda":["확인할 것 (우선순위)","What needs checking (by priority)"], "em.times":["희망 시간","Preferred times"], "em.mytz":["제 시간대","my time zone"], "em.next":["다음 단계","Next step"],
  "em.pins":["관련 있다고 표시한 사례","Cases we marked relevant"], "em.ai":["AI 초안 (판아시아의 답변이 아님)","AI draft (not Panasia's reply)"], "em.pilotGoal":["파일럿 목표","Pilot goal"], "em.weights":["선정 기준 비중 (0–3)","Criteria weights (0–3)"],
- "em.rung":[["스코프 콜 요청","Entry Review 바로 진행","런칭 프로그램 바로 진행","참고 공유 (회신 불필요)"],["Request a Scope Call","Start the Entry Review now","Start a launch program now","For reference (no reply needed)"]],
- "em.rungB":[["스코프 콜 요청","도입 진단 바로 진행","파일럿 조율 바로 진행","참고 공유 (회신 불필요)"],["Request a Scope Call","Start the Adoption Diagnostic now","Start pilot coordination now","For reference (no reply needed)"]],
+ "em.rung":[["30분 무료 상담 요청","진입 진단 바로 진행","런칭 프로그램 바로 진행","참고 공유 (회신 불필요)"],["Request a 30-min intro call","Start the Entry Diagnostic now","Start a launch program now","For reference (no reply needed)"]],
+ "em.rungB":[["30분 무료 상담 요청","도입 진단 바로 진행","파일럿 조율 바로 진행","참고 공유 (회신 불필요)"],["Request a 30-min intro call","Start the Adoption Diagnostic now","Start pilot coordination now","For reference (no reply needed)"]],
  "em.budgetNone":["미정","not set"], "em.gatesNone":["스코프 룸에 등록된 시장 조건 없음 · 규제 확인은 별도 필요","No market condition listed in the Scope Room · regulatory check still needed"],
  "em.legend":["표기: [공개 실적]은 panasia.io 게시 수치, [판아시아 관점]은 의견·기본값, [입력값]은 저희가 입력한 값입니다. [판아시아 제안]은 판아시아가 제안한 값(관점), (판아시아 기본값)은 비워 둔 항목을 판아시아 추천으로 채운 값입니다.","Legend: [Published] = figures published on panasia.io; [Panasia view] = opinions or defaults; [Your input] = values we entered; [Panasia's proposal] = values Panasia proposed (view); (Panasia default) = blanks filled with Panasia's recommendation."],
  "em.close":["감사합니다.\n[이름 · 직함 · 연락처]","Best regards,\n[Name · Title · Phone]"],
  "em.sign":["— 스코프 룸에서 작성한 초안 · {identity}","— Drafted in the Scope Room · {identity}"], "em.subject":["{pre} {who} · {route} · {ref}","{pre} {who} · {route} · {ref}"],
  diffLineEm:["{field} — 판아시아 제안 {p} → 저희 조정 {y}","{field} — Panasia proposed {p}; we changed it to {y}"],
  "em.tagR":["[공개 실적]","[Published]"], "em.tagV":["[판아시아 관점]","[Panasia view]"], "em.tagY":["[입력값]","[Your input]"],
- "mm.subject":["[검토 요청] 판아시아 · 아시아 진출 스코프 초안 (첫 시장: {first}) — {ref}","[Review] Panasia · Asia entry scope draft, {first} first — {ref}"],
- "mm.subjectB":["[검토 요청] 판아시아 · {problem} 도입 스코프 초안 ({market}) — {ref}","[Review] Panasia · {problem} adoption scope draft ({market}) — {ref}"],
- "mm.subjectP":["[검토 요청] 판아시아 · {first} 파트너 발굴 스코프 초안 — {ref}","[Review] Panasia · Partner search scope draft, {first} first — {ref}"],
+ "mm.subject":["[검토 요청] 판아시아 · 아시아 진출 브리프 (첫 시장: {first}) — {ref}","[Review] Panasia · Asia entry brief, {first} first — {ref}"],
+ "mm.subjectB":["[검토 요청] 판아시아 · {problem} 도입 브리프 ({market}) — {ref}","[Review] Panasia · {problem} adoption brief ({market}) — {ref}"],
+ "mm.subjectP":["[검토 요청] 판아시아 · {first} 파트너 발굴 브리프 — {ref}","[Review] Panasia · Partner search brief, {first} first — {ref}"],
  "mm.0":["판아시아(서울)는 블록체인 기업과 아시아 기업·기관을 연결하는 전략적 파트너십 개발과 아시아 GTM을 전문으로 합니다. 아래는 판아시아 스코프 룸에서 작성한 당사 초안입니다.","Panasia (Seoul) specializes in strategic partnership development and Asia GTM, connecting blockchain companies with businesses and institutions across Asia. We built the draft below in its Scope Room."],
  "mm.0B":["판아시아(서울)는 아시아 GTM과 기관 블록체인 컨설팅을 하는 회사로, 기업·기관에 맞는 블록체인 공급자를 찾고 적합성을 검토해 첫 협업을 설계합니다. 아래는 판아시아 스코프 룸에서 작성한 당사 초안입니다.","Panasia (Seoul) provides Asia GTM and institutional blockchain consulting: it finds the providers that fit a business, assesses mutual fit and helps define the first collaboration. We built the draft below in its Scope Room."],
  "mm.1":["1. 배경: {objective} 단계의 성공 기준은 {kpi}{target}입니다. 이를 위해 {aud}에 닿을 첫 경로가 필요합니다.","1. Why: in the {objective} phase our success metric is {kpi}{target}; we need a first route to {aud}."],
@@ -1430,19 +1531,61 @@ const STRING_PAIRS = {
  "mm.4none":["4. 비용: {r2Topic} 정액(금액은 판아시아 확인 필요)이며, 이후 프로그램 비용 범위는 {r2}에서 확정됩니다. {band}.","4. Cost: the {r2} is a fixed fee (amount to confirm with Panasia); program cost ranges are set in the {r2}. {band}."],
  "mm.band":["당사 예산대: {b}","Our budget band: {b}"], "mm.bandNone":[["예산대 미정","","","","","","예산대 비공개"],["Budget band not set","","","","","","Budget band undisclosed"]],
  "mm.5":["5. 리스크·확인 사항: {risks}","5. Risks and checks: {risks}"],
- "mm.6":["6. 필요한 결정: 판아시아와의 30분 무료 스코프 콜 진행 여부. 비용이 드는 결정은 콜 이후에 내립니다 (최종 승인: {approvers} · 착수 희망 시점: {timing}).","6. Decision needed: whether to take a free 30-minute Scope Call with Panasia. Nothing is spent before that call. Final sign-off: {approvers}; target start: {timing}."],
+ "mm.6":["6. 필요한 결정: 판아시아와의 30분 무료 상담 진행 여부. 비용이 드는 결정은 콜 이후에 내립니다 (최종 승인: {approvers} · 착수 희망 시점: {timing}).","6. Decision needed: whether to take a free 30-min intro call with Panasia. Nothing is spent before that call. Final sign-off: {approvers}; target start: {timing}."],
  "mm.6go":["6. 필요한 결정: {rung} 착수 여부 (승인: {approvers} · 희망 시점: {timing}).","6. Decision needed: whether to start {rung} (sign-off: {approvers}; target start: {timing})."],
  "mm.6none":["6. 필요한 결정: 지금은 없습니다. 내부 공유용 초안입니다.","6. Decision needed: none yet; this draft is for internal reference."],
  "mm.rung":[["","{r2}","{r3}",""],["","the {r2}","{r3}",""]],
  "mm.timing":[["미정","30일 이내","이번 분기","미정(탐색 단계)"],["not set","within 30 days","this quarter","not set (exploring)"]],
- "mm.link":["링크: {link}","Link: {link}"], "mm.pid":["링크로 플랜이 열리지 않으면 스코프 룸의 'Plan ID 붙여넣기' 칸에 Plan ID {id}를 입력하세요.","If the link doesn't open the plan, paste Plan ID {id} into 'Paste a Plan ID' in the Scope Room."], "mm.disclaim":["판아시아(Panasia Inc., 서울, panasia.io)는 영문명이 같은 부산 소재 기업과 무관합니다.","Panasia (Panasia Inc., Seoul, panasia.io) is unrelated to PANASIA Co., Ltd. of Busan, which shares the name."],
+ "mm.link":["링크: {link}","Link: {link}"], "mm.pid":["링크로 플랜이 열리지 않으면 스코프 룸의 '플랜 코드 붙여넣기' 칸에 플랜 코드 {id}를 입력하세요.","If the link doesn't open the plan, paste plan code {id} into 'Paste a plan code' in the Scope Room."], "mm.disclaim":["판아시아(Panasia Inc., 서울, panasia.io)는 영문명이 같은 부산 소재 기업과 무관합니다.","Panasia (Panasia Inc., Seoul, panasia.io) is unrelated to PANASIA Co., Ltd. of Busan, which shares the name."],
  "mm.approversNone":["미정","not set"], "mm.timingNone":["미정","not set"],
  memoNone:["없음","none"], factState:[["","맞음","오래됨","틀림"],["","correct","outdated","wrong"]],
  diffLine:["{field} — 판아시아 제안: {p} · 귀사 조정: {y}","{field} — Panasia's proposal: {p} · your adjustment: {y}"],
  "df.track":["출발점","Starting point"], "df.facts":["사실 표시","Facts marked"],
  kst:["KST","KST"], local:["현지","local"], counterNote:["숫자는 고를 때마다 다시 계산됩니다.","Counts recalculate on every tap."],
  recFill:["엔진 추천","engine pick"], skipped:["추천으로 채웠습니다. 아래 초안을 확인해 주세요.","Filled with recommendations. Review the draft below."],
- storageNote:["이 브라우저에만 초안이 남습니다.","Your draft stays in this browser only."]
+ storageNote:["이 브라우저에만 초안이 남습니다.","Your draft stays in this browser only."],
+ // ── v4: the 3-minute path (three questions → one-page Entry Brief) ──
+ startLabel:["출발점","Starting point"], qkKicker:["1분 · 세 가지 질문","One minute · three questions"],
+ qkTitle:["세 가지만 알려 주세요","Three quick questions"], qkSub:["하나씩 누르면 됩니다. 누를 때마다 아래 미리보기가 바뀝니다.","One tap each. The preview below updates as you go."],
+ "qk.sector":["어느 분야인가요?","Which sector are you in?"], "qk.goal":["가장 원하는 결과는 무엇인가요?","What result matters most?"],
+ "qk.cp":["어떤 상대를 찾나요?","Who are you looking for?"], "qk.org":["어떤 기관인가요?","What kind of organization are you?"],
+ "qk.problem":["풀고 싶은 문제는 무엇인가요?","What problem do you want to solve?"], "qk.timing":["언제 시작하나요?","When do you want to start?"],
+ "opt.goal":[["기관 자금·파이프라인","사용자·거래량","개발자·생태계","기업·산업 파트너","인지도·포지셔닝"],["Institutional capital & pipeline","Users & trading volume","Developers & ecosystem","Enterprise & industry partners","Awareness & positioning"]],
+ qkPrevL:["미리보기","Preview"], qkPrevEmpty:["답할 때마다 여기에 미리보기가 나타납니다.","A preview appears here as you answer."],
+ qkPrev:["추천 첫 시장 {M} · 첫 프로그램 {p} · 가장 가까운 공개 사례 {n}건","Suggested first market {M} · first program {p} · {n} closest published cases"],
+ qkPrevB:["운영 시장 {M} · 첫 프로그램 {p} · 관련 공개 실적 {n}건","Home market {M} · first program {p} · {n} related published results"],
+ qkPrevNone:["지금 답으로는 열린 시장이 없습니다 · 30분 무료 상담에서 확인","No market opens on these answers · we check it on the 30-min intro call"],
+ qkPrevMore:[" · 질문 {n}개 남음"," · {n} to go"],
+ bfReady:["진입 브리프가 준비되었습니다.","Your Entry Brief is ready."],
+ bfKicker:["판아시아 서울 데스크 · 진입 브리프","Panasia Seoul desk · Entry Brief"],
+ bfH:["{sector} 프로젝트라면 {market}에서 {program} 시작하는 것이 판아시아의 출발점입니다.","For {sector} projects, Panasia starts in {market} with the {program} program."],
+ bfHP:["{sector} 기술이 필요한 {cp} 찾는다면, {market}에서 {program} 시작하는 것이 판아시아의 출발점입니다.","To find {cp} that needs your {sector} technology, Panasia starts in {market} with the {program} program."],
+ bfHB:["{org}의 {problem} 과제는 도입 진단으로 시작합니다.","For {org} working on {problem}, Panasia starts with the Adoption Diagnostic."],
+ bfHNone:["{sector} 프로젝트는 지금 답으로 열린 시장이 없습니다. 30분 무료 상담에서 상태부터 함께 확인합니다.","On these answers no market is open for {sector} projects yet. We check your status together on the 30-min intro call."],
+ "optb.orgNoun":[["은행","증권사","자산운용사","카드·결제·핀테크 기업","산업·모빌리티·IoT 기업","공공 기관","귀사"],["a bank","a securities firm","an asset manager","a card, payments or fintech company","an industrial, mobility or IoT company","a public-sector body","an organization like yours"]],
+ "optb.problemNoun":[["스테이블코인 결제·정산","토큰화 펀드·예금·증권","로열티·포인트","IoT·모빌리티 데이터","AI×데이터","파일럿 공급자 찾기"],["stablecoin payments and settlement","tokenized funds, deposits and securities","loyalty and points","IoT and mobility data","AI and data","finding a pilot provider"]],
+ "bf.market":["첫 시장","First market"], "bf.marketB":["운영 시장","Home market"], "bf.next":["다음 후보","Next candidates"], "bf.route":["경로","Route"],
+ bfNoCase:["{M}에는 판아시아 공개 사례가 아직 없습니다.","Panasia has no published case in {M} yet."],
+ bfClear:["지금 알려진 차단 조건은 없습니다.","No blocking condition is known."], bfCheck:["확인이 필요한 조건이 {n}건 있습니다.","{n} conditions still need checking."], bfCheck1:["확인이 필요한 조건이 1건 있습니다.","One condition still needs checking."],
+ bfHomeWhy:["선택한 운영 시장 기준으로 공급자와 규제 질문을 정리합니다.","Providers and regulatory questions are framed for this home market."],
+ "bf.cases":["가장 가까운 공개 사례","Closest published cases"], "bf.casesB":["관련 공개 실적","Related published work"],
+ "bf.programs":["추천 프로그램","Recommended programs"], bfWeeks:["약 {n}주","about {n} wks"], bfPriceCall:["가격은 30분 상담에서 안내합니다.","Pricing is covered on the 30-min call."],
+ "bf.check":["판아시아가 먼저 확인할 것","What Panasia checks first"], "bf.timeline":["일정","Timeline"],
+ bfTimeline:["30분 무료 상담 → {r2} {w}주 → 첫 시장 런칭 약 90일","30-min intro call → {r2}, {w} wks → first-market launch in about 90 days"],
+ bfTimelineB:["30분 무료 상담 → {r2} {w}주 → 파일럿 약 {p}주","30-min intro call → {r2}, {w} wks → pilot in about {p} wks"],
+ bfBook:["30분 무료 상담 잡기","Book a free 30-min intro call"],
+ bfBookSub:["아래 이메일을 복사해 {addr}로 보내 주세요. 이 페이지는 아무것도 전송하지 않습니다.","Copy the email below and send it to {addr}. This page sends nothing."],
+ bfBookSubSend:["판아시아에 바로 보내거나, 이메일을 복사해 {addr}로 보내 주세요.","Send it to Panasia directly, or copy the email and send it to {addr}."],
+ bfCopyEmail:["상담 요청 이메일 복사","Copy the intro-call email"], bfSend:["판아시아에 보내기","Send to Panasia"], bfToLabel:["받는 사람","To"],
+ bfDeep:["더 깊이 보기","Explore in depth"], bfDeepSub:["시장 경로·일정·스코프 표·희망 시간까지 직접 조정합니다.","Adjust the route, timeline, scope table and preferred times yourself."],
+ bfRedo:["다시 답하기","Answer again"],
+ bfFoot:["숫자는 panasia.io 공개 실적이며 귀사 결과를 예측하지 않습니다. 기간·순서는 판아시아 기본값입니다.","Figures are Panasia's published results on panasia.io and do not predict yours. Durations and order are Panasia defaults."],
+ toBrief:["← 브리프로 돌아가기","← Back to the brief"], toBriefShort:["← 브리프","← Brief"], browseFoot:["panasia.io 실적 전체 보기","See every published result"],
+ "pb.route":["제안 경로","Proposed route"], "pb.progs":["제안 프로그램","Proposed programs"],
+ "pb.sealed":["실명 숏리스트 {n}건은 진입 진단에서 공개됩니다.","The named shortlist ({n}) opens in the Entry Diagnostic."], "pb.sealed0":["실명 숏리스트는 진입 진단에서 공개됩니다.","The named shortlist opens in the Entry Diagnostic."],
+ "pb.sealedB":["실명 숏리스트 {n}건은 도입 진단에서 공개됩니다.","The named shortlist ({n}) opens in the Adoption Diagnostic."], "pb.sealedB0":["실명 숏리스트는 도입 진단에서 공개됩니다.","The named shortlist opens in the Adoption Diagnostic."],
+ "pb.book":["30분 상담 잡기 · 이메일 복사","Book a 30-min call · copy email"], "pb.adjust":["제안 직접 조정해 보기","Adjust the proposal yourself"],
+ "pb.changed":["판아시아 제안에서 {n}곳을 바꾸셨습니다 · 이메일에 함께 담깁니다.","You changed {n} item(s) in Panasia's proposal · they travel with the email."]
 };
 const STRINGS = { ko:{}, en:{} };
 for (const k in STRING_PAIRS) { STRINGS.ko[k] = STRING_PAIRS[k][0]; STRINGS.en[k] = STRING_PAIRS[k][1]; }
@@ -2039,13 +2182,13 @@ function validate() {
   const nv = CONFIG.markets.filter(m => m.view && m.view.approved === false).map(m => m.code);
   if (nv.length) add("warn", "markets[].view.approved", "운영 맥락 문구 미승인: " + nv.join(", "), "Market views not approved: " + nv.join(", "));
   if (CONFIG.meta.rates.status === "unset") add("warn", "meta.rates.status", "요율 미설정 · 가격은 표시하지 않습니다", "Rates unset · no prices render");
-  if (CONFIG.meta.canonicalUrl == null) add("warn", "meta.canonicalUrl", "canonicalUrl 미설정 · 공유 링크 대신 Plan ID 안내문을 복사합니다", "canonicalUrl null · share link copies Plan ID instructions");
+  if (CONFIG.meta.canonicalUrl == null) add("warn", "meta.canonicalUrl", "canonicalUrl 미설정 · 공유 링크 대신 플랜 코드 안내문을 복사합니다", "canonicalUrl null · share link copies plan-code instructions");
   if (CONFIG.research.titles.some(x => x == null)) add("warn", "research.titles", "논문 제목 미입력", "Research titles missing");
   CONFIG.cases.filter(c => c.legalReview === "pending").forEach(c => add("warn", "cases." + c.id + ".legalReview", "거래소 사례 문구 법률 검토 대기", "Exchange-case wording awaiting legal review"));
   CONFIG.activities.filter(a => !a.verified).forEach(a => add("warn", "activities." + a.id, "활동 미검증 · 표시하지 않습니다", "Activity unverified · not shown"));
-  if (CONFIG.offers.entryReview.fee.some(x => x == null)) add("warn", "offers.entryReview.fee", "Entry Review 고정 비용 미설정", "Entry Review fee not set");
+  if (CONFIG.offers.entryReview.fee.some(x => x == null)) add("warn", "offers.entryReview.fee", "진입 진단 고정 비용 미설정", "Entry Diagnostic fee not set");
   if (CONFIG.offers.adoptionDiagnostic.fee.some(x => x == null)) add("warn", "offers.adoptionDiagnostic.fee", "도입 진단 고정 비용 미설정", "Adoption Diagnostic fee not set");
-  // real rates with a missing R2 fee would silently price the Entry Review at $0: show no price at all
+  // real rates with a missing R2 fee would silently price the Entry Diagnostic at $0: show no price at all
   if (CONFIG.meta.rates.status === "range" && [CONFIG.offers.entryReview.fee, CONFIG.offers.adoptionDiagnostic.fee].some(f => f.some(x => x == null))) { add("block", "offers.fee", "요율 범위가 켜져 있지만 출발점 고정 비용이 비어 있습니다 · 가격을 표시하지 않습니다", "Rates are on but an R2 fee is missing · no price renders"); HIDE.price = true; }
   return F;
 }
@@ -2101,9 +2244,9 @@ function readRoute(r) { const len = r.r(3), out = []; for (let i = 0; i < 4; i++
 // Bit layout exactly as in spec §7.1 (Track B profile 39 bits, ending with homeMarket 4), with two documented additions that both
 // trail qState, so a decoder built from the spec reads them as padding (codeVersion stays 2):
 //   · a 5-bit "filled by Panasia" mask (Skip-to-draft and door defaults read as VIEW, not YOURS):
-//     Track A bit0 objective, bit1 audiences, bit2 kpi · Track B bit0 stage, bit1 needs, bit2 weights, bit3 pilotGoal, bit4 homeMarket
+//     Track A bit0 objective, bit1 audiences, bit2 kpi, bit3 stage (v4: the 3-question path leaves stage to Panasia) · Track B bit0 stage, bit1 needs, bit2 weights, bit3 pilotGoal, bit4 homeMarket
 //   · Track B only: pilotGoal 3
-const AUTO_BITS = { A: ["a.objective", "a.audiences", "a.kpi"], B: ["b.stage", "b.needs", "b.weights", "b.pilotGoal", "b.homeMarket"] };
+const AUTO_BITS = { A: ["a.objective", "a.audiences", "a.kpi", "a.stage"], B: ["b.stage", "b.needs", "b.weights", "b.pilotGoal", "b.homeMarket"] };
 const autoMaskOf = (set, track) => (AUTO_BITS[track < 2 ? "A" : "B"]).reduce((m, f, i) => m | (set && set.has(f) ? 1 << i : 0), 0);
 const autoSetOf = (mask, track) => new Set((AUTO_BITS[track < 2 ? "A" : "B"]).filter((f, i) => (mask >> i) & 1));
 function encodeData(S, D) {
@@ -2306,7 +2449,7 @@ function emailText(lang) {
   const list = arr => lang === "en" ? joinL(arr, lang) : arr.join(", ");
   if (MODE.kind === "demo") L2.push(T("em.sample").trim(), "");
   L2.push(T("em.greet"), "", tt(lang, "em.intro")[S.rung].replace("{r2}", r2Name(lang)).replace("{r3}", r3Name(lang)) + " " + T(CONFIG.meta.canonicalUrl ? "em.intro2" : "em.intro2n"), "");
-  line("em.ref", PLAN.ref + " · Plan ID " + PLAN.id);
+  line("em.ref", PLAN.ref + " · " + T("planId") + " " + PLAN.id);
   const appr = maskLabels("opt.approvers", S.approvers, lang);
   line("em.company", (companyName() || T("em.companyPh")) + " · " + T("em.role") + " " + (roleL(S.role, lang) || dash) + " · " + T("em.appr") + " " + (appr.length ? list(appr) : dash));
   line("em.profile", taggedParts(profileParts(lang), lang));
@@ -2367,7 +2510,9 @@ function emailText(lang) {
     const fc = (P.facts || []).map((f, i) => (S.facts[i] && !HIDE.facts.has(i)) ? Lg(f, lang) + (f.prov === "sample" ? "" : " (" + f.v + ")") + ": " + tt(lang, "factState")[S.facts[i]] + (S.free.factNotes[i] ? " — " + S.free.factNotes[i] : "") : null).filter(Boolean);
     line("em.facts", fc.length ? fc.join(" / ") : dash);
   }
-  if (S.track === 1) { const h = D.hs; if (h) line("em.hs", T("em.hsCp") + ": " + Lg(h.cp.name, lang) + " · " + T("em.hsMy") + ": " + lc(Lg(h.my, lang), lang) + " · " + T("em.hsTheir") + ": " + lc(Lg(h.their, lang), lang) + " · " + Lg(h.pf, lang) + " · " + T("hs.success") + ": " + Lg(h.successCheck, lang)); }
+  if (S.track === 1) { const h = D.hs, cp0 = byN(CONFIG.counterparts, S.handshake.cp);
+    if (h) line("em.hs", T("em.hsCp") + ": " + Lg(h.cp.name, lang) + " · " + T("em.hsMy") + ": " + lc(Lg(h.my, lang), lang) + " · " + T("em.hsTheir") + ": " + lc(Lg(h.their, lang), lang) + " · " + Lg(h.pf, lang) + " · " + T("hs.success") + ": " + Lg(h.successCheck, lang));
+    else if (cp0) line("em.hsCp", Lg(cp0.name, lang) + " " + T("em.tagY")); }     // v4: the 3-question path names the counterpart before the card is complete
   if (S.alt) line("em.alt", altLine(S.alt, lang));
   const q = outQuestions().slice(0, 6);
   L2.push(B + T("em.agenda"));
@@ -2405,7 +2550,7 @@ function memoText(lang) {
     out.push(stage && goal ? T("mm.1b", { stage, problem, goal, needs: josa(needs, "이/가", lang) }) : T("mm.1b0", { problem, needs: josa(needs, "이/가", lang) }));
   }
   // Panasia's skip-to-draft defaults never travel to a CEO as the company's own goals
-  const dfl = (A ? [["a.objective", "q.objective"], ["a.audiences", "sl.aud"], ["a.kpi", "em.kpi"]] : [["b.stage", "qb.stage"], ["b.needs", "qb.needs"], ["b.pilotGoal", "pilotGoal"]]).filter(([f]) => autoF(f)).map(([, k]) => lc(T(k).replace(/\s*\(.*\)$/, ""), lang));
+  const dfl = (A ? [["a.stage", "q.stage"], ["a.objective", "q.objective"], ["a.audiences", "sl.aud"], ["a.kpi", "em.kpi"]] : [["b.stage", "qb.stage"], ["b.needs", "qb.needs"], ["b.pilotGoal", "pilotGoal"]]).filter(([f]) => autoF(f)).map(([, k]) => lc(T(k).replace(/\s*\(.*\)$/, ""), lang));
   if (dfl.length) out[out.length - 1] += T("mm.dflt", { list: dfl.join(lang === "ko" ? "·" : ", ") });
   const progL = progMods(D).map(id => modName(id, lang));
   if (A) {
@@ -2457,8 +2602,8 @@ function radios(name, act, k, opts, val, o) {
   }).join("") + `</div>`;
 }
 // exclusive choice that can be cleared again (tap the pressed one): pressed buttons in a named group, not radios
-function pressGroup(name, act, k, opts, val, label) {
-  return `<div class="opts" role="group" aria-label="${esc(label || "")}">` + opts.map(x => `<button type="button" class="opt sm" aria-pressed="${x.v === val}" id="${name}-${x.v}" data-act="${act}" data-k="${k}" data-v="${x.v}">${esc(x.label)}</button>`).join("") + `</div>`;
+function pressGroup(name, act, k, opts, val, label, cls) {
+  return `<div class="opts" role="group" aria-label="${esc(label || "")}">` + opts.map(x => `<button type="button" class="${cls || "opt sm"}" aria-pressed="${x.v === val}" id="${name}-${x.v}" data-act="${act}" data-k="${k}" data-v="${x.v}">${esc(x.label)}</button>`).join("") + `</div>`;
 }
 function toggles(name, act, k, opts, mask, max) {
   const cnt = popcount(mask);
@@ -2561,7 +2706,7 @@ function ganttHTML(sch) {
     rows += `<div class="g-row">${lab(t("ms.scope"), "SC")}<div class="g-track">${dia(0, t("ms.scope"))}</div></div>`;
     sch.phases.forEach((p, i) => { rows += `<div class="g-row">${lab(L(p.p), L(p.p))}<div class="g-track">${bar(phCls[i] || "g-launch", p.start, p.end, L(p.p))}</div></div>`; said.push(L(p.p) + " " + p.start + "–" + (p.p.weeks ? p.end : "") + (LANG === "ko" ? "주" : " wks")); });
   } else {
-    rows += `<div class="g-row">${lab(t("ms.er"), "ER")}<div class="g-track">${dia(0, t("ms.scope"))}${bar("g-er", sch.erStart, sch.erEnd, t("ms.er"))}</div></div>`;
+    rows += `<div class="g-row">${lab(t("ms.er"), "ED")}<div class="g-track">${dia(0, t("ms.scope"))}${bar("g-er", sch.erStart, sch.erEnd, t("ms.er"))}</div></div>`;
     said.push(t("ms.er") + " " + sch.erStart + "–" + sch.erEnd + (LANG === "ko" ? "주" : " wks"));
     const wks = (a, b) => a + "–" + b + (LANG === "ko" ? "주" : " wks");
     sch.markets.forEach(x => {
@@ -2583,8 +2728,11 @@ function ganttHTML(sch) {
 // ═══════════════════════════════════════════════════════════════════════════
 const SEC_IDS = ["s0", "s1", "s2", "s3", "s4", "s5"];
 function revealed() { if (UI.reveal || UI.skipped || MODE.prospect) return true; return S.track < 2 ? (S.a.sector > 0 && S.a.stage > 0) : (S.b.org > 0 && S.b.problem > 0); }
+// v4: the default view is cover → three questions → Entry Brief; deep mode is the full §0–§5 tool as before
+const V4_IDS = ["qk", "bf"];
 function visibleSections() {
   if (UI.view === "review") return [];
+  if (!UI.deep) return MODE.prospect || !UI.started ? ["s0"] : briefReady() ? ["s0", "qk", "bf"] : ["s0", "qk"];
   if (!UI.started) return UI.browse ? ["s0", "s2"] : ["s0"];
   return revealed() ? SEC_IDS.slice() : ["s0", "s1"];
 }
@@ -2609,9 +2757,12 @@ function renderHeader() {
   const vis = visibleSections();
   const ribbon = MODE.kind === "demo" ? `<div class="ribbon" role="note"><span>${esc(t("demoRibbon"))}</span></div>` : "";
   const idx = SEC_IDS.map((id, i) => `<button type="button" id="ix-${id}" data-act="jump" data-v="${id}" aria-current="${UI.cur === id}"${vis.includes(id) ? "" : " disabled"} aria-label="${esc(ixLabel(id, i))}"><span class="tick${secDone(id) ? " on" : ""}" aria-hidden="true">${secDone(id) ? "✓" : ""}</span><span class="mono">§${i}</span>${esc(secShort(id))}</button>`).join("");
+  // v4: the §0–§5 index belongs to deep mode, led by the way back to the brief
+  const showIdx = UI.view !== "review" && UI.deep;
+  const back = UI.started ? `<button type="button" class="back" id="ix-back" data-act="toBrief" aria-label="${esc(t("toBrief"))}"><span class="long" aria-hidden="true">${esc(t("toBrief"))}</span><span class="short" aria-hidden="true">${esc(t("toBriefShort"))}</span></button>` : "";
   const th = ["auto", "light", "dark"].map(k => `<button type="button" id="th-${k}" data-act="theme" data-v="${k}" aria-pressed="${S.theme === k}">${esc(t("theme." + k))}</button>`).join("");
   $("#hdr").innerHTML = `${ribbon}<a class="skip" href="#app" data-act="skipMain">${esc(t("skipMain"))}</a><div class="hdr-in"><div class="brand">${identityHTML()}</div>
-    <nav class="idx" id="idxNav" aria-label="${esc(t("ixNav"))}"${UI.view === "review" ? " hidden" : ""}>${UI.view === "review" ? "" : idx}</nav>
+    <nav class="idx" id="idxNav" aria-label="${esc(t("ixNav"))}"${showIdx ? "" : " hidden"}>${showIdx ? back + idx : ""}</nav>
     <div class="tools"><button type="button" class="xbtn" id="xr" data-act="xray" aria-pressed="${S.xray}" aria-label="${esc(t("xray"))}" aria-keyshortcuts="X"><span class="long" aria-hidden="true">${esc(t("xray"))}</span><span class="short" aria-hidden="true">${esc(t("xrayShort"))}${S.xray ? " ●" : ""}</span> <kbd aria-hidden="true">X</kbd></button>
     <div class="seg" role="group" aria-label="${esc(t("langLabel"))}"><button type="button" id="lg-ko" data-act="lang" data-v="ko" aria-pressed="${LANG === "ko"}" lang="ko">KO</button><button type="button" id="lg-en" data-act="lang" data-v="en" aria-pressed="${LANG === "en"}" lang="en">EN</button></div>
     <div class="seg th-seg" role="group" aria-label="${esc(t("themeLabel"))}">${th}</div><button type="button" class="xbtn th-cyc" id="th-cyc" data-act="themeCycle" aria-label="${esc(t("themeLabel"))}: ${esc(t("theme." + S.theme))}">${esc(t("theme." + S.theme))}</button></div></div>`;
@@ -2638,7 +2789,7 @@ function renderBanner() {
   el.hidden = false;
   const items = FINDINGS.map(f => `<li><span class="lvl ${f.level}">${f.level}</span><span><span class="mono tiny">${esc(f.path)}</span><br>${esc(L(f.msg))}</span></li>`).join("");
   const pf = tt(LANG, "preflight").map(x => `<li>${esc(x)}</li>`).join("");
-  el.innerHTML = `<details id="d-banner"${isOpen("d-banner") ? " open" : ""}><summary>⚑ ${esc(t("draftBanner", { n: FINDINGS.length }))}</summary><div class="bd"><ul>${items}</ul><h4>${esc(t("preflightTitle"))}</h4><ol class="nums">${pf}</ol></div></details>`;
+  el.innerHTML = `<details id="d-banner"${isOpen("d-banner") ? " open" : ""}><summary><span aria-hidden="true">⚑</span> ${esc(t("draftBanner", { n: FINDINGS.length }))}</summary><div class="bd"><ul>${items}</ul><h4>${esc(t("preflightTitle"))}</h4><ol class="nums">${pf}</ol></div></details>`;
 }
 function proofDrawer(c) {
   if (!c) return "";
@@ -2651,7 +2802,8 @@ function proofDrawer(c) {
 }
 function legendHTML(collapsible) {
   const ex = { r: t("legendR"), p: t("asOf", { d: CONFIG.meta.asOf }), v: t("weeks", { n: 4 }), y: t("targetVal"), s: t("sampleEx") };
-  const list = `<ul class="legend">${["r", "p", "v", "y", "s"].map(k => `<li><span>${pv(k, esc(ex[k]))}</span><span class="d">${esc(t(PVK[k] + "D"))}</span></li>`).join("")}</ul>`;
+  // v4: by default only REPORTED and SAMPLE are marked; X-ray brings back all five marks, and the legend follows
+  const list = `<ul class="legend">${(S.xray ? ["r", "p", "v", "y", "s"] : ["r", "s"]).map(k => `<li><span>${pv(k, esc(ex[k]))}</span><span class="d">${esc(t(PVK[k] + "D"))}</span></li>`).join("")}</ul>`;
   if (collapsible) return `<details class="dis legend-dis" id="d-legend"${isOpen("d-legend") ? " open" : ""}><summary>${esc(t("legendTitle"))}</summary><div class="dbody">${list}</div></details>`;
   return `<div><h2 class="caps" style="margin-top:28px">${esc(t("legendTitle"))}</h2>${list}</div>`;
 }
@@ -2662,34 +2814,30 @@ function stripCases() {
   if (hideEx) (CONFIG.proofStripBackfill || []).forEach(id => { if (ids.length < 6 && !ids.includes(id)) ids.push(id); });
   return ids.map(id => CASES[id]).filter(c => c && c.display && !HIDE.cases.has(c.id));
 }
-const conditionsSourced = () => CONFIG.conditions.filter(c => c.kind !== "desk-note").every(condTrusted);
 function renderS0() {
   const P = prospectCtx(), el = $("#s0");
   const notice = UI.notice ? `<p class="notice" id="s0-notice">${esc(t(UI.notice))}</p>` : "";     // announced once through #alert, not on every re-render
   const eyebrow = `<div class="eyebrow"><span>${esc(t("product"))}</span><span aria-hidden="true">·</span><span class="mono">${esc(CONFIG.meta.asOf)}</span></div>`;
-  if (P) { el.innerHTML = renderCover(P, eyebrow, notice); return; }
+  if (P) { el.innerHTML = UI.deep ? renderCover(P, eyebrow, notice) : renderProspectBrief(P, eyebrow, notice); return; }
+  const h1 = t("h1").split(/(?<=,)\s+/).map(x => `<span class="h1c">${esc(x)}</span>`).join(" ");
+  // v4 default path, after a door: the cover folds into one row of three compact doors (the chosen one is current)
+  if (UI.started && !UI.deep) {
+    const mini = [0, 1, 2].map(v => `<button type="button" class="door" id="door-${v}" data-act="door" data-v="${v}"${S.track === v ? ' aria-current="true"' : ""}><span class="k mono" aria-hidden="true">0${v + 1}</span><span class="t">${esc(t("track." + v))}</span></button>`).join("");
+    el.innerHTML = `<div class="cover mini"><h1 id="s0h" class="sr" tabindex="-1">${esc(t("h1"))}</h1><p class="caps" id="doorsQ">${esc(t("startLabel"))}</p><div class="doors mini" role="group" aria-labelledby="doorsQ">${mini}</div>${notice}</div>`;
+    return;
+  }
   // the active door is "current", not a pressed toggle: pressing it again goes to §1 and never wipes the draft
   const doors = [["01", 0, "doorA", "doorASub"], ["02", 1, "doorP", "doorPSub"], ["03", 2, "doorB", "doorBSub"]].map(([k, v, ti, su]) => { const cur = UI.started && S.track === v;
     return `<button type="button" class="door" id="door-${v}" data-act="door" data-v="${v}"${cur ? ' aria-current="true"' : ""}><span class="k" aria-hidden="true">${k}</span><span class="t">${esc(t(ti))}</span><span class="go" aria-hidden="true">${esc(t(cur ? "inProgress" : "doorGo"))} →</span><span class="s">${esc(t(su))}</span></button>`; }).join("");
   const strip = stripCases().map(c =>
     `<button type="button" class="metric${c.attribution !== "confirmed" ? " pending" : ""}" id="pm-${c.id}" data-act="proof" data-id="${c.id}" aria-expanded="${UI.proofOpen === c.id}"${UI.proofOpen === c.id ? ' aria-controls="proofDrawer"' : ""}><span class="fig">${pv("r", esc(c.display))}</span><span class="who">${esc(c.attribution === "confirmed" ? c.client : t("pending"))}</span><span class="lb">${esc(L(c.label))}</span>${c.qualifier ? `<span class="mq">${esc(L(c.qualifier))}</span>${LANG === "ko" ? `<span class="mq orig" lang="en">${esc(t("original"))}: ${esc(c.qualifier.en)}</span>` : ""}` : ""}</button>`).join("");
   const act = CONFIG.activities.filter(a => a.verified).map(a => `<p class="note" style="margin-top:12px">${pv("p", esc(L(a)))}</p>`).join("");
-  const resume = UI.resumeId && !UI.started ? `<button type="button" class="link" id="q-resume" data-act="resume">${esc(t("resume"))}</button>` : "";
-  const pasteOpen = isOpen("d-paste", !!UI.notice), tag = t(conditionsSourced() ? "taglineSourced" : "tagline");
-  el.innerHTML = `<div class="cover">${eyebrow}<h1 id="s0h" tabindex="-1">${t("h1").split(/(?<=,)\s+/).map(x => `<span class="h1c">${esc(x)}</span>`).join(" ")}</h1><p class="lede">${esc(t("lede"))}</p><p class="tagline">${esc(tag)}</p>${ghostSheetHTML()}
+  // v4 cover: masthead, three doors, published results. Browse / resume / paste / press live in the footer; the legend in deep mode
+  el.innerHTML = `<div class="cover">${eyebrow}<h1 id="s0h" tabindex="-1">${h1}</h1><p class="lede">${esc(t("lede"))}</p>
     <p class="caps doors-q" id="doorsQ">${esc(t("doorsTitle"))}</p><div class="doors" role="group" aria-labelledby="doorsQ">${doors}</div>
     <div class="strip-h"><h2 class="caps">${esc(t("proofTitle"))}</h2><span class="note">${esc(t("proofHint"))}</span></div>
-    <div class="strip">${strip}</div><p class="note strip-note-m">${esc(t("proofHint"))}</p>${UI.proofOpen ? proofDrawer(CASES[UI.proofOpen]) : ""}${act}<p class="tagline m">${esc(tag)}</p>
-    <div class="quiet"><button type="button" class="link" id="q-browse" data-act="browse">${esc(t("browse"))}</button>${resume}
-      <details class="paste-dis" id="d-paste"${pasteOpen ? " open" : ""}><summary class="link">${esc(t("pasteOpen"))}</summary><div class="paste"><label for="paste0" class="small">${esc(t("pasteLabel"))}</label><input id="paste0" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="${esc(t("pastePh"))}" data-act="pasteKey" data-src="paste0"><button type="button" class="btn sm" id="paste0-go" data-act="paste" data-src="paste0">${esc(t("pasteBtn"))}</button></div></details>
-      <button type="button" class="link" id="q-press" data-act="jump" data-v="pressH">${esc(t("press"))}</button></div>
-    ${notice}${legendHTML(!UI.started)}</div>`;
-}
-// the signature artifact, previewed on the cover: real line keys, hairline blanks, no values
-function ghostSheetHTML() {
-  const keys = ["sl.track", "sl.sector", "sl.stage", "sl.obj", "sl.aud", "sl.route", "sl.modules", "sl.cases"];
-  return `<div class="cover-ghost" aria-hidden="true"><div class="sheet ghost-sheet"><div class="lh"><span class="t" lang="en">SCOPE DRAFT</span><span class="r">PA-······</span></div>
-    <div class="slines">${keys.map(k => `<div class="sl"><span class="k">${esc(t(k))}</span><span class="blank"></span></div>`).join("")}</div><p class="cap">${esc(t("ghostCap"))}</p></div></div>`;
+    <div class="strip">${strip}</div><p class="note strip-note-m">${esc(t("proofHint"))}</p>${UI.proofOpen ? proofDrawer(CASES[UI.proofOpen]) : ""}${act}
+    ${notice}</div>`;
 }
 function proposalState(P) { const st = blankState(); st.entry = S.entry; applyProposal(P, st); return st; }
 function renderCover(P, eyebrow, notice) {
@@ -2740,6 +2888,190 @@ function sealedHTML() {
     return `<div class="env"><div class="top"></div><div class="bd">${lock}<div><div>${cnt}${esc(L(s))}</div><div class="tiny muted">${esc(opened)}${MODS[s.module] && !MODS[s.module].r2 ? " · " + esc(modName(s.module)) : ""}</div></div></div></div>`; }).join("")}</div>`;
   const items = []; D.mods.forEach(id => (MODS[id].namedInER || []).forEach(n => items.push({ n, id })));
   return `<div class="sealed">${items.map(x => `<div class="env"><div class="top"></div><div class="bd">${lock}<div><div>${esc(L(x.n))}</div><div class="tiny muted">${esc(opened)}${MODS[x.id].r2 ? "" : " · " + esc(modName(x.id))}</div></div></div></div>`).join("")}</div>`;
+}
+// ═══════════════════════════════════════════════════════════════════════════
+// v4 default path: cover → three questions → one-page Entry Brief (+ booking).
+// Every answer writes the existing state fields, so derive(), the Plan ID codec and deep mode (§1–§5) read it unchanged.
+// ═══════════════════════════════════════════════════════════════════════════
+// Q2 "what result matters most" (A-GTM) → audiences + KPI; the KPI follows the sector where the spec says "as fits"
+const GOAL_MAP = sec => ({ 1: [1, 1], 2: [4 | 8, sec === "exchange" ? 4 : 6], 3: [2, sec === "defi" || sec === "l1l2" ? 3 : 7], 4: [16, 8], 5: [8, 9] });
+function goalOf() {
+  const a = S.a; if (S.track !== 0 || !a.kpi || autoF("a.kpi")) return 0;
+  if (a.audiences === 1 && a.kpi === 1) return 1;
+  if (a.audiences === 12 && (a.kpi === 4 || a.kpi === 6)) return 2;
+  if (a.audiences === 2 && (a.kpi === 3 || a.kpi === 7)) return 3;
+  if (a.audiences === 16 && a.kpi === 8) return 4;
+  if (a.audiences === 8 && a.kpi === 9) return 5;
+  return 0;     // answered in deep mode with another combination: answered, no chip pressed
+}
+function setGoal(g) {
+  const m = GOAL_MAP((sectorN(S.a.sector) || {}).id)[g]; if (!m) return;
+  if (S.a.kpi !== m[1]) { S.target = 0; S.window = 0; }
+  S.a.audiences = m[0]; S.a.kpi = m[1]; UI.autoFilled.delete("a.audiences"); UI.autoFilled.delete("a.kpi");
+}
+// which of the three questions the visitor has answered (a Panasia default never counts as an answer)
+function quickAnswered() {
+  if (S.track === 2) return [S.b.org > 0, S.b.problem > 0, S.timing > 0];
+  return [S.a.sector > 0, S.track === 1 ? S.handshake.cp > 0 : (S.a.kpi > 0 && !autoF("a.kpi")), S.timing > 0];
+}
+const briefReady = () => quickAnswered().every(Boolean);
+// unanswered profile fields take Panasia's defaults (VIEW in copied text), and are recomputed while they are still defaults
+function applyQuickDefaults(st, mark) {
+  const open = (path, v) => !v || autoF(path);
+  const fill = (path, v) => { const [h, f] = path.split("."); st[h][f] = v; mark(path); };
+  if (st.track < 2) {
+    const a = st.a, sec = (sectorN(a.sector) || {}).id, stageOpen = open("a.stage", a.stage);
+    if (stageOpen) fill("a.stage", 2);
+    if (open("a.objective", a.objective)) fill("a.objective", stageOpen || a.stage === 1 ? 1 : 2);     // launch while the stage is pre-token or unknown
+    if (open("a.audiences", a.audiences)) fill("a.audiences", { rwa: 1 | 8, defi: 2 | 8, l1l2: 2 | 16, exchange: 4 | 8, ai: 2 | 16, depin: 16 | 8, wallet: 8 }[sec] || 8);
+    if (open("a.kpi", a.kpi)) fill("a.kpi", st.track === 1 ? 8 : ({ rwa: 2, defi: 3, l1l2: 3, exchange: 5, ai: 7, depin: 8, wallet: 6 }[sec] || 9));
+  } else {
+    const b = st.b;
+    if (open("b.stage", b.stage)) fill("b.stage", 1);
+    if (open("b.needs", b.needs)) fill("b.needs", { 1: 1 | 2, 2: 1 | 4, 3: 1 | 2, 4: 1 | 16, 5: 1 | 4, 6: 1 | 16 }[b.problem] || 1);
+    if (!b.weights.some(Boolean) || autoF("b.weights")) { b.weights = (CONFIG.institution.seedWeights[b.problem] || [3, 2, 2, 1, 2, 1]).slice(); mark("b.weights"); }
+    if (open("b.pilotGoal", b.pilotGoal)) fill("b.pilotGoal", 1);
+  }
+}
+// the preview before the defaults are written (e.g. a campaign link with only the sector set): a throwaway copy, never S
+function quickState() { const st = JSON.parse(JSON.stringify(S)); applyQuickDefaults(st, () => {}); return st; }
+function quickAnswer(q, v) {
+  if (S.lockedRoute) S.lockedRoute = null;
+  if (q === 1 && S.track < 2) { const g = goalOf(); S.a.sector = v; UI.autoFilled.delete("a.sector"); prunePins(); if (g) setGoal(g); UI.lastKey = "sec"; }
+  else if (q === 1) { S.b.org = v; UI.autoFilled.delete("b.org"); }
+  else if (q === 2 && S.track === 0) setGoal(v);
+  else if (q === 2 && S.track === 1) { S.handshake.cp = v; S.handshake.their = 0; }
+  else if (q === 2) { S.b.problem = v; UI.autoFilled.delete("b.problem"); }
+  else if (q === 3) S.timing = v;
+  applyQuickDefaults(S, p => UI.autoFilled.add(p));
+  commit();
+}
+function previewText() {
+  const ans = quickAnswered(); if (!ans[0] && !ans[1]) return t("qkPrevEmpty");
+  const d = derive(quickState()), left = ans.filter(x => !x).length, more = left ? t("qkPrevMore", { n: left }) : "";
+  const pg = briefProgs(d)[0], p = pg ? modName(pg) : r2Name();
+  if (S.track === 2) { const h = homeCode(S); return t("qkPrevB", { M: h + " " + mName(h), n: Math.min(2, d.cases.length), p }) + more; }
+  if (!d.route.length) return t("qkPrevNone") + more;
+  return t("qkPrev", { M: d.route[0] + " " + mName(d.route[0]), n: Math.min(3, d.matched.length), p }) + more;
+}
+function renderQuick() {
+  const el = $("#qk"), tr = S.track, A = tr < 2;
+  const q1 = A ? radios("qa1", "qa", "1", CONFIG.sectors.map(x => ({ v: x.n, label: L(x) })), S.a.sector) : radios("qa1", "qa", "1", arrOpts("optb.org"), S.b.org);
+  const q2 = tr === 0 ? radios("qa2", "qa", "2", arrOpts("opt.goal"), goalOf())
+    : tr === 1 ? radios("qa2", "qa", "2", CONFIG.counterparts.map(c => ({ v: c.n, label: L(c.name) })), S.handshake.cp)
+    : radios("qa2", "qa", "2", arrOpts("optb.problem"), S.b.problem);
+  const q3 = radios("qa3", "qa", "3", tt(LANG, "opt.timing").slice(1).map((label, i) => ({ v: i + 1, label })), S.timing);
+  const lab = [A ? "qk.sector" : "qk.org", tr === 0 ? "qk.goal" : tr === 1 ? "qk.cp" : "qk.problem", "qk.timing"];
+  el.innerHTML = `<div class="qk-h"><p class="caps">${esc(t("qkKicker"))}</p><h2 id="qkh" tabindex="-1">${esc(t("qkTitle"))}</h2><p class="sub">${esc(t("qkSub"))}</p></div>
+    ${qrow("qa1", t(lab[0]), q1, "1/3")}${qrow("qa2", t(lab[1]), q2, "2/3")}${qrow("qa3", t(lab[2]), q3, "3/3")}
+    <p class="qk-prev" id="qkPrev"><span class="caps">${esc(t("qkPrevL"))}</span> <span>${esc(previewText())}</span></p>`;
+}
+// the first market's one-sentence why: published cases there (or none), then whether a blocking condition is known
+function marketWhy(code) {
+  const d = D.desks[code], m = MKT[code]; if (!d || !m) return "";
+  const why = d.evidence ? (m.whyFit ? L(m.whyFit) : t("fitCases", { n: d.evidence, x: "" })) : t("bfNoCase", { M: mName(code) });
+  const n = d.checkCount + d.closedCount;
+  return why + " " + (d.status === "clear" ? t("bfClear") : n === 1 ? t("bfCheck1") : t("bfCheck", { n }));
+}
+function routeChipsHTML() {
+  const chip = (c, cls) => `<span class="rc${cls ? " " + cls : ""}"><span class="mono">${c}</span> ${esc(mName(c))}</span>`, arrow = `<span class="rc-sep" aria-hidden="true">→</span>`;
+  if (!D.route.length) return "";
+  if (D.route.length > 1) return `<p class="rchips" aria-label="${esc(t("bf.route") + ": " + D.route.join(" → "))}">${D.route.map((c, i) => chip(c, i ? "" : "on")).join(arrow)}</p>`;
+  const cand = D.ranked.filter(c => c !== D.route[0] && D.desks[c].closedCount === 0).slice(0, 2);
+  return `<p class="rchips">${chip(D.route[0], "on")}${cand.length ? arrow + `<span class="caps rc-l">${esc(t("bf.next"))}</span>` + cand.map(c => chip(c, "cand")).join("") : ""}</p>`;
+}
+// one compact row per published case: figure · client (never on a pending case) · what it measures · qualifier verbatim
+const cap1 = x => x ? x[0].toUpperCase() + x.slice(1) : x;
+function briefCaseRow(c) {
+  const conf = c.attribution === "confirmed";
+  const qual = c.qualifier ? `<span class="cq">${esc(L(c.qualifier))}${LANG === "ko" ? ` <span class="orig">${esc(t("original"))}: ${enOrig(c)}</span>` : ""}</span>` : "";
+  return `<li><span class="fig">${c.display ? pv("r", esc(c.display)) : `<span class="nofig">${esc(t("noFigure"))}</span>`}</span><span class="cx"><b class="${conf ? "who" : "who pend"}">${esc(conf ? c.client : t("pending"))}</b><span class="lb">${esc(cap1(conf ? caseLabel(c, LANG) : L(c.label)))}</span>${qual}</span></li>`;
+}
+// the brief's programs in recommendation order (the engine's rule order), anything blocked in the first market last
+function briefProgs(d) {
+  const x = d || D, rec = x.rec.ids, first = x.route[0], blocked = first && x.desks[first] ? x.desks[first].blockedModules : [];     // d = a preview derivation
+  const key = id => (blocked.includes(id) ? 1000 : 0) + (rec.includes(id) ? rec.indexOf(id) : 100);
+  return progMods(x).slice().sort((a, b) => key(a) - key(b));
+}
+const progWeeks = id => { const w = MODS[id].weeks; return w.prep + Math.round((w.run[0] + w.run[1]) / 2); };
+function bookingHTML(prospect) {
+  const send = !!PanasiaAdapter.canSubmit, addr = CONFIG.meta.contact;
+  const email = (cls, key) => `<button type="button" class="${cls}" id="bk-email" data-act="copy" data-kind="email">${esc(t(key))}</button>`;
+  const primary = send ? `<button type="button" class="btn acc" id="bk-send" data-act="send">${esc(t("bfSend"))}</button>` : email("btn pri", prospect ? "pb.book" : "bfCopyEmail");
+  const co = prospect ? "" : `<label class="field" for="bk-company">${esc(t("company"))}<input type="text" id="bk-company" data-act="company" autocomplete="organization" value="${esc(S.free.company)}"><span class="tiny muted">${esc(t("companyNote"))}</span></label>`;
+  return `<div class="book" id="book"><h2 class="h3" id="bookH">${esc(t("bfBook"))}</h2><p class="small">${esc(t(send ? "bfBookSubSend" : "bfBookSub", { addr }))}</p>${co}
+    <div class="row book-go">${primary}<span class="addr"><span class="sel-t" aria-label="${esc(t("bfToLabel") + " " + addr)}">${esc(addr)}</span><button type="button" class="btn sm" id="bk-addr" data-act="copy" data-kind="addr">${esc(t("copyAddr"))}</button></span></div>
+    <div class="row book-2">${send ? email("link", "bfCopyEmail") : ""}<button type="button" class="link" id="bk-link" data-act="copy" data-kind="link">${esc(t("copyLink"))}</button><button type="button" class="link" id="bk-memo" data-act="copy" data-kind="memo">${esc(t("copyMemo"))}</button></div>
+    ${UI.sendMsg ? `<p class="notice" role="status">${esc(UI.sendMsg)}</p>` : ""}</div>`;
+}
+function briefHeadline() {
+  const tr = S.track;
+  if (tr === 2) return t("bfHB", { org: optL("optb.orgNoun", S.b.org) || optL("optb.orgNoun", 7), problem: optL("optb.problemNoun", S.b.problem) || "" });
+  const s0 = sectorN(S.a.sector), sec = s0 ? (LANG === "en" && /^(Exchange|Wallet)/.test(L(s0)) ? L(s0).toLowerCase() : L(s0)) : t("track." + tr);
+  const first = D.route[0]; if (!first) return t("bfHNone", { sector: sec });
+  const pg = briefProgs()[0], name = pg ? modName(pg) : r2Name(), program = LANG === "ko" ? josa(name, "으로/로") : name;
+  const cp = tr === 1 ? byN(CONFIG.counterparts, S.handshake.cp) : null;
+  if (!cp) return t("bfH", { sector: sec, market: mName(first), program });
+  const cpN = L(cp.name), cpEn = cpN.replace(/^(Securities|Card|Enterprise)\b/, m => m.toLowerCase());
+  return t("bfHP", { sector: sec, market: mName(first), program, cp: LANG === "ko" ? josa(cpN, "을/를") : (/^[AEIOU]/i.test(cpEn) ? "an " : "a ") + cpEn });
+}
+function renderBrief() {
+  const el = $("#bf"), tr = S.track, B = tr === 2, first = B ? homeCode(S) : D.route[0];
+  const row = (k, html) => `<div class="bf-row"><h3 class="bf-k">${esc(t(k))}</h3><div class="bf-v">${html}</div></div>`;
+  // 2 · first market
+  const mk = first ? `<p class="bf-mk"><b class="mono">${first}</b> <span>${esc(mName(first))}</span></p><p class="small">${esc(B ? t("bfHomeWhy") : marketWhy(first))}</p>${B ? "" : routeChipsHTML()}` : `<p class="small">${esc(t("noRoute"))}</p>`;
+  // 3 · closest published cases (Track B: no adoption case yet, two adjacent results)
+  let cases;
+  if (B) cases = `<p class="small">${esc(t("bNoCaseShort"))}.</p><ul class="cs-list">${D.cases.slice(0, 2).map(x => briefCaseRow(x.c)).join("")}</ul>`;
+  else { const top = confirmedFirst(D.matched.slice(0, 3)).map(x => x.c); cases = top.length ? `<ul class="cs-list">${top.map(briefCaseRow).join("")}</ul>` : `<p class="small muted">${esc(t("matchedNone"))}</p>`; if (D.r14) cases += `<p class="tiny muted">${esc(t("r14Note"))}</p>`; }
+  // 4 · two recommended programs: name, ≤3 deliverables, about N weeks; a price only when real rates are set
+  const real = !!(D.price && D.price.mode === "real"), progs = briefProgs().slice(0, 2);
+  const pg = id => { const m = MODS[id]; return `<li class="pg"><div class="pg-h"><b>${esc(L(m.name))}</b><span class="mono small">${esc(t("bfWeeks", { n: progWeeks(id) }))}</span>${real ? `<span class="small">${modPriceHTML(id)}</span>` : ""}</div><ul class="dl">${m.deliverables.filter(x => x.o !== "you").slice(0, 3).map(x => `<li>${esc(L(x))}</li>`).join("")}</ul></li>`; };
+  const programs = (progs.length ? `<ul class="pg-list">${progs.map(pg).join("")}</ul>` : `<p class="small">${esc(L(MODS[r2Id(tr)].promise))}</p>`) + (real ? "" : `<p class="small muted">${esc(t("bfPriceCall"))}</p>`);
+  // 5 · top three questions, text only
+  const qs = outQuestions().slice(0, 3), checks = qs.length ? `<ol class="nums">${qs.map(q => `<li><span>${esc(qText(q, LANG))}</span></li>`).join("")}</ol>` : `<p class="small muted">—</p>`;
+  // 6 · one-line timeline
+  const tl = B ? t("bfTimelineB", { r2: r2Name(), w: CONFIG.offers.adoptionDiagnostic.weeks.join("–"), p: MODS["pilot-coord"].weeks.run.join("–") }) : t("bfTimeline", { r2: r2Name(), w: CONFIG.offers.entryReview.weeks.join("–") });
+  const timeline = `<ol class="tl">${tl.split(" → ").map(x => `<li>${esc(x)}</li>`).join("")}</ol>`;
+  const ans = [t("track." + tr), B ? optL("optb.org", S.b.org) : (sectorN(S.a.sector) ? L(sectorN(S.a.sector)) : null), tr === 0 ? optL("opt.goal", goalOf()) : tr === 1 ? (byN(CONFIG.counterparts, S.handshake.cp) ? L(byN(CONFIG.counterparts, S.handshake.cp).name) : null) : optL("optb.problem", S.b.problem), S.timing ? tt(LANG, "opt.timing")[S.timing] : null].filter(Boolean);
+  el.innerHTML = `<article class="memo"><div class="memo-lh"><span class="caps">${esc(t("bfKicker"))}</span><span class="mono r"><span data-plan="ref">${esc(PLAN.ref)}</span> · ${esc(isoFromOffset(S.dayOffset))}</span></div>
+      <p class="memo-re small">${esc((companyName() ? companyName() + " · " : "") + ans.join(" · "))}</p>
+      <h2 id="bfh" tabindex="-1" class="headline">${esc(briefHeadline())}</h2>
+      <div class="bf-rows">${row(B ? "bf.marketB" : "bf.market", mk)}${row(B ? "bf.casesB" : "bf.cases", cases)}${row("bf.programs", programs)}${row("bf.check", checks)}${row("bf.timeline", timeline)}</div>
+      <p class="memo-foot">${esc(t("bfFoot"))}</p></article>
+    ${bookingHTML(false)}
+    <div class="bf-more"><button type="button" class="btn ghost" id="bf-deep" data-act="deep">${esc(t("bfDeep"))} →</button><span class="small muted">${esc(t("bfDeepSub"))}</span><button type="button" class="link" id="bf-redo" data-act="redo">${esc(t("bfRedo"))}</button></div>`;
+}
+// #demo / prospect first screen: one page; the full proposal cover (map, summary, envelopes) is deep mode
+function renderProspectBrief(P, eyebrow, notice) {
+  const by = typeof P.preparedBy === "object" ? L(P.preparedBy) : P.preparedBy;
+  const stampLab = esc(t("stamp")) + (LANG === "ko" ? ' · <span lang="en">PREPARED FOR</span>' : "");
+  const facts = (P.facts || []).map((f, i) => ({ f, i })).filter(x => !HIDE.facts.has(x.i)).slice(0, 3).map(({ f, i }) => {
+    const shown = f.v === "0" ? t("noneVal") : f.v, v = f.prov === "sample" ? pv("s", esc(shown)) : pv("p", esc(shown));
+    const opts = [{ v: 1, label: t("factOk") }, { v: 2, label: t("factOld") }, { v: 3, label: t("factWrong") }];
+    const note = (S.facts[i] === 2 || S.facts[i] === 3) ? `<label class="sr" for="fn-${i}">${esc(t("factNote"))}</label><input id="fn-${i}" type="text" data-act="factNote" data-i="${i}" value="${esc(S.free.factNotes[i] || "")}" placeholder="${esc(t("factNote"))}">` : "";
+    const src = typeof f.source === "object" ? L(f.source) : (f.source || "");
+    return `<div class="fact${note ? " has-note" : ""}"><div class="v">${v}</div><div><div>${esc(L(f))}</div><div class="tiny muted mono">${esc(src)}${f.sourceUrl ? " ↗" : ""} · ${esc(t("asOf", { d: f.asOf || "—" }))}</div></div><div class="ctl">${pressGroup("fct" + i, "fact", String(i), opts, S.facts[i], L(f), "tb")}${note}</div></div>`;
+  }).join("");
+  const B = S.track === 2, first = B ? homeCode(S) : D.route[0];
+  const progs = briefProgs().slice(0, 2).map(id => `<li><b>${esc(modName(id))}</b><span class="small">${esc(L(MODS[id].promise))}</span></li>`).join("");
+  const counts = (P.sealed || []).map((x, i) => x.count != null && !HIDE.sealedCounts.has(i) && (P.fictional || x.prepared === true) ? x.count : null);
+  const n = counts.length && counts.every(c => c != null) ? counts.reduce((a, b) => a + b, 0) : null;
+  const sealed = n != null ? esc(t(B ? "pb.sealedB" : "pb.sealed", { n: "§N" })).replace("§N", pv(P.fictional ? "s" : "v", String(n))) : esc(t(B ? "pb.sealedB0" : "pb.sealed0"));
+  const lock = `<svg width="14" height="16" viewBox="0 0 18 20" aria-hidden="true"><rect x="2" y="9" width="14" height="10" rx="1.5" style="fill:none;stroke:var(--ink);stroke-width:1.6"/><path d="M5 9V6a4 4 0 0 1 8 0v3" style="fill:none;stroke:var(--ink);stroke-width:1.6"/></svg>`;
+  return `<div class="pbrief">${eyebrow}<h1 id="s0h" class="sr" tabindex="-1">${stampLab} ${esc(P.company)}</h1>
+    <div class="stamp${P.fictional ? " sampleblock" : ""}"${P.fictional ? ` data-tag="${esc(t("sampleTag"))}"` : ""}><span class="lab">${stampLab}</span><span class="co">${esc(P.company)}${P.fictional ? `<span class="xt">[${esc(t("pv.sample"))}]</span>` : ""}</span>
+      <span class="meta"><span>${esc(t("stampMeta", { date: P.date, by }))}</span><span>${esc(t("validUntil", { date: P.validUntil }))}</span><span data-plan="refLabel">${esc(t("refLabel", { ref: PLAN.ref }))}</span></span></div>
+    ${notice}
+    <div class="block"><h2 class="h3">${esc(t("readTitle"))}</h2><p class="read${P.fictional ? " sampleband" : ""}"${P.fictional ? ` data-tag="${esc(t("sampleTag"))}"` : ""}>${esc(L(P.read))}${P.fictional ? `<span class="xt">[${esc(t("pv.sample"))}]</span>` : ""}</p></div>
+    <div class="block"><h2 class="h3">${esc(t("factsTitle"))}</h2><p class="note">${esc(t("factsHint"))}</p><div class="facts pb-facts">${facts}</div></div>
+    <div class="block pb-two"><div><h2 class="h3">${esc(t("pb.route"))}</h2>${routeChipsHTML()}${first ? `<p class="small">${esc(B ? t("bfHomeWhy") : marketWhy(first))}</p>` : ""}</div>
+      <div><h2 class="h3">${esc(t("pb.progs"))}</h2><ul class="pb-progs">${progs}</ul></div></div>
+    ${D.diffs.length ? `<p class="small muted">${esc(t("pb.changed", { n: D.diffs.length }))}</p>` : ""}
+    <p class="pb-sealed">${lock}<span>${sealed}</span></p>
+    ${bookingHTML(true)}
+    <div class="bf-more"><button type="button" class="btn ghost" id="pb-adjust" data-act="deep" data-v="s3">${esc(t("pb.adjust"))} →</button></div>
+    <p class="note memo-foot">${esc(t("bfFoot"))}</p></div>`;
 }
 function renderS1() {
   const el = $("#s1"), A = S.track < 2;
@@ -2812,7 +3144,7 @@ function renderS2() {
     <div class="cards c3">${all.map(c => caseCard(c, { pin: "a" })).join("")}</div></div></details>`;
   let body = "";
   if (browse) {
-    body = `<p class="note">${esc(t("eraNote"))}</p>${ledger}<div class="row" style="margin-top:20px"><button type="button" class="btn pri" id="browse-go" data-act="jump" data-v="s0">${esc(t("browseCta"))} →</button></div>`;
+    body = `<p class="note">${esc(t("eraNote"))}</p>${ledger}<div class="row" style="margin-top:20px"><button type="button" class="btn pri" id="browse-go" data-act="browseDone">${esc(t("browseCta"))} →</button></div>`;
     el.innerHTML = secHead(2, "s2h", t("browseTitle")) + body; return;
   }
   if (A) {
@@ -3177,7 +3509,7 @@ function renderS5() {
       </div>
       ${UI.sendMsg ? `<p class="notice" role="status">${esc(UI.sendMsg)}</p>` : ""}
       <div class="outs2"><span class="small muted" style="width:100%">${esc(t("sendMore"))}</span><button type="button" class="btn sm" id="cp-memo" data-act="copy" data-kind="memo">${esc(t("copyMemo"))}</button><span class="row small muted">${esc(t("memoLang"))} ${memoSeg}</span><button type="button" class="btn sm" id="cp-link" data-act="copy" data-kind="link">${esc(t("copyLink"))}</button><button type="button" class="btn sm" id="cp-id" data-act="copy" data-kind="id">${esc(t("copyId"))}</button></div>
-      <p class="pid" style="margin-top:12px" data-plan="pid">Plan ID ${esc(PLAN.id)} · ${esc(PLAN.ref)}</p><p class="note">${esc(t("promise"))}</p></div>
+      <p class="pid" style="margin-top:12px" data-plan="pid">${esc(t("planId"))} ${esc(PLAN.id)} · ${esc(PLAN.ref)}</p><p class="note">${esc(t("promise"))}</p></div>
     <div id="aiSlot">${aiHTML()}</div>
     <div class="block"><div class="bh"><h3>${esc(t("ladder"))}</h3>${vtagH(t("ladderNote"))}</div><ol class="ladder" style="margin-top:10px">${ladder}</ol></div>
     <details class="dis block" id="d-deferred"${isOpen("d-deferred") ? " open" : ""}><summary>${esc(t("deferred"))} · ${CONFIG.deferred.length}</summary><div class="dbody"><ul class="cols small">${CONFIG.deferred.map(d => `<li>— ${esc(L(d))}</li>`).join("")}</ul></div></details>`;
@@ -3233,7 +3565,7 @@ function renderReview() {
     <h1 id="reviewH" tabindex="-1">${esc(h1)}<span class="h1-ref mono" data-plan="ref">${esc(PLAN.ref)}</span></h1>${by ? `<p>${esc(by)}</p>` : ""}${UI.reviewNote ? `<p class="notice" role="status">${esc(t(UI.reviewNote))}</p>` : ""}<p class="small">${esc(t(intro))}</p><p class="small muted">${esc(prof)} · ${chips || "—"}</p>
     <div class="row" style="margin-top:8px"><button type="button" class="btn pri" id="rv-edit" data-act="editPlan">${esc(t("editPlan"))}</button><button type="button" class="btn" id="rv-mine" data-act="copy" data-kind="mine">${esc(t("copyMine"))}</button><button type="button" class="btn" id="rv-email" data-act="copy" data-kind="email">${esc(t("copyEmail"))}</button>
     <span class="row small muted"><span id="rmlL">${esc(t("memoLang"))}</span> <span class="seg" role="group" aria-labelledby="rmlL"><button type="button" id="rml-ko" data-act="memoLang" data-v="ko" aria-pressed="${S.memoLang === "ko"}">KO</button><button type="button" id="rml-en" data-act="memoLang" data-v="en" aria-pressed="${S.memoLang === "en"}">EN</button></span></span></div>
-    <p class="pid">Plan ID ${esc(PLAN.id)}</p></div>
+    <p class="pid">${esc(t("planId"))} ${esc(PLAN.id)}</p></div>
     <div class="doc">
       <div class="sumbox"><div><span class="caps">${esc(t(S.track === 2 ? "em.market" : "rv.first"))}</span><strong>${esc(D.route[0] ? D.route[0] + " " + mName(D.route[0]) : "—")}</strong></div><div><span class="caps">${esc(t("rv.modules"))}</span><span>${esc(D.mods.map(id => modName(id)).join(", "))}</span></div>
         <div><span class="caps">${esc(t("rv.band"))}</span><span>${S.budget ? pv("y", esc(tt(LANG, "opt.budget")[S.budget])) : `<span class="muted">${esc(tt(LANG, "opt.budget")[0])}</span>`}</span></div><div><span class="caps">${esc(t("rv.range"))}</span><span>${range}</span></div><div><span class="caps">${esc(t("rv.rung"))}</span><span>${esc(rungL())}</span></div></div>
@@ -3309,23 +3641,25 @@ function sheetHTML(forDialog) {
     : `<button type="button" class="btn sm" id="${forDialog ? "dlg-go" : "sh-go"}" data-act="${forDialog ? "sheetGo" : "jump"}" data-v="s5">${esc(t("sheetGo"))} →</button>`;
   return `<div class="sheet"><div class="lh"><span class="t" lang="en">SCOPE DRAFT</span><span class="r" data-plan="ref">${esc(PLAN.ref)}</span></div>
     <h3${forDialog ? ' id="dlgTitle"' : ""}>${esc(t("sheetTitle"))}</h3><p class="co-line">${esc(P ? P.company + " · " : "")}${esc(CONFIG.meta.identity[LANG])}</p>${body}
-    ${hasFoot ? `<div class="foot">${fns}<p class="pid" data-plan="id">Plan ID ${esc(PLAN.id)}</p><div class="row">${cta}${canSkip ? `<button type="button" class="btn sm ghost" id="${forDialog ? "dlg-skip" : "sh-skip"}" data-act="skip">${esc(t("skip"))}</button>` : ""}</div></div>` : ""}</div>`;
+    ${hasFoot ? `<div class="foot">${fns}<p class="pid" data-plan="id">${esc(t("planId"))} ${esc(PLAN.id)}</p><div class="row">${cta}${canSkip ? `<button type="button" class="btn sm ghost" id="${forDialog ? "dlg-skip" : "sh-skip"}" data-act="skip">${esc(t("skip"))}</button>` : ""}</div></div>` : ""}</div>`;
 }
 function renderSheet() {
   if (UI.prevLang !== LANG) { UI.prevHTML = {}; UI.prevLang = LANG; }     // a language switch rewrites every line: that is not a change to flash
   const lines = sheetLines();
   $("#sheet").setAttribute("aria-label", t("sheetTitle"));
-  $("#sheet").innerHTML = UI.view === "review" ? "" : sheetHTML(false);
-  $("#sheet").hidden = UI.view === "review";
+  const show = UI.view !== "review" && UI.deep;      // v4: the Scope Draft sheet and the phone bar belong to deep mode
+  $("#sheet").innerHTML = show ? sheetHTML(false) : "";
+  $("#sheet").hidden = !show;
   const prev = UI.prevHTML || {}, hadPrev = Object.keys(prev).length > 0;
   const touched = hadPrev ? lines.filter(l => prev[l.key] !== l.html) : [];
   const bar = $("#sheetBar");
-  bar.hidden = UI.view === "review" || !UI.started;
+  bar.hidden = !show || !UI.started; if (!show) bar.innerHTML = "";
   const added0 = touched.filter(l => prev[l.key] === undefined);
   const tick = touched.length ? (touched.find(l => l.key === UI.lastKey) || touched[0]) : null;
   const plain = h => h.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'");
   const tickTxt = !tick ? "" : added0.length > 2 ? "＋ " + added0.length + (LANG === "ko" ? "줄 추가" : " lines added") : (prev[tick.key] === undefined ? "＋ " : "↻ ") + tick.k + " · " + plain(tick.html);
   UI.lastKey = null;
+  if (!show) { UI.prevHTML = Object.fromEntries(lines.map(l => [l.key, l.html])); return; }     // keep the baseline so entering deep mode flashes nothing
   bar.innerHTML = `<button type="button" id="barBtn" data-act="sheetOpen" aria-haspopup="dialog"><span>${esc(t("sheetBar", { n: lines.length, next: rungL() }))}</span><span class="mono">${tick ? `<span class="tick" aria-hidden="true">${esc(tickTxt)}</span>` : `<span data-plan="ref">${esc(PLAN.ref)}</span> <span aria-hidden="true">↑</span>`}</span></button>`;
   if (tick) { clearTimeout(UI.tickT); UI.tickT = setTimeout(() => { const s = $("#sheetBar .tick"); if (s) s.outerHTML = `<span data-plan="ref">${esc(PLAN.ref)}</span> <span aria-hidden="true">↑</span>`; }, 1800); }
   if (!$("#sheetDlg").hidden) $("#sheetDlg").innerHTML = `<div class="dlg-h"><span class="caps">${esc(t("sheetLines", { n: lines.length }))}</span><button type="button" class="btn sm" id="dlgClose" data-act="sheetClose">${esc(t("close"))}</button></div>${sheetHTML(true)}`;
@@ -3334,10 +3668,13 @@ function renderSheet() {
   UI.prevHTML = Object.fromEntries(lines.map(l => [l.key, l.html]));
 }
 function renderFooter() {
-  $("#foot").innerHTML = `<div class="ft"><div class="stack"><p class="id">${esc(CONFIG.meta.identity[LANG])}</p><p>${esc(t("promise"))}</p><p class="small muted">${esc(t("footNotAdvice"))}</p>${!UI.started && UI.view === "flow" ? "" : legendHTML()}</div>
+  // v4: the quiet links that used to sit on the cover (all results, resume) live here; the provenance legend shows in deep mode or with X-ray
+  const quiet = [!UI.started && UI.view === "flow" ? `<button type="button" class="link" id="q-browse" data-act="browse">${esc(t("browseFoot"))}</button>` : "",
+    UI.resumeId && !UI.started ? `<button type="button" class="link" id="q-resume" data-act="resume">${esc(t("resume"))}</button>` : ""].join("");
+  $("#foot").innerHTML = `<div class="ft"><div class="stack"><p class="id">${esc(CONFIG.meta.identity[LANG])}</p><p>${esc(t("promise"))}</p><p class="small muted">${esc(t("footNotAdvice"))}</p>${UI.started && UI.view === "flow" && (UI.deep || S.xray) ? legendHTML() : ""}</div>
     <div class="stack"><div><h3 class="caps" id="pressH" tabindex="-1">${esc(t("press"))}</h3><p class="small" style="margin-top:6px">${esc(t("pressLine"))}</p><div class="addr" style="margin-top:8px"><span class="sel-t">${esc(CONFIG.meta.contact)}</span><button type="button" class="btn sm" id="ft-addr" data-act="copy" data-kind="addr">${esc(t("copyAddr"))}</button></div></div>
     <div class="paste"><label for="paste1" class="small">${esc(t("pasteLabel"))}</label><input id="paste1" type="text" autocomplete="off" spellcheck="false" placeholder="${esc(t("pastePh"))}" data-act="pasteKey" data-src="paste1"><button type="button" class="btn sm" id="paste1-go" data-act="paste" data-src="paste1">${esc(t("pasteBtn"))}</button></div>
-    ${UI.footNotice ? `<p class="notice" id="foot-notice">${esc(t(UI.footNotice))}</p>` : ""}<p class="tiny muted mono">v${esc(CONFIG.meta.version)} · Plan ID v${CONFIG.meta.codeVersion}</p></div></div>`;
+    ${quiet ? `<div class="quiet">${quiet}</div>` : ""}${UI.footNotice ? `<p class="notice" id="foot-notice">${esc(t(UI.footNotice))}</p>` : ""}<p class="tiny muted mono">v${esc(CONFIG.meta.version)} · ${esc(t("planId"))} v${CONFIG.meta.codeVersion}</p></div></div>`;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -3354,7 +3691,7 @@ function blankState() {
     handshake: { cp: 0, my: 0, their: 0, format: 0 }, qMap: {}, facts: [0, 0, 0, 0, 0], auto: 0, lockedRoute: null, free: { company: "", factNotes: ["", "", "", "", ""] } };
 }
 const MODE = { kind: "self", prospect: null };
-const UI = { started: false, browse: false, reveal: false, skipped: false, view: "flow", notice: null, footNotice: null, proofOpen: null, desk: null,
+const UI = { started: false, deep: false, arrowing: false, browse: false, reveal: false, skipped: false, view: "flow", notice: null, footNotice: null, proofOpen: null, desk: null,
   caseFilter: { k: "", v: "" }, ghost: null, conseq: [], drawn: {}, fitChips: [], compareOpen: false, prevHTML: {}, tw: {}, open: {},
   cur: "s0", resumeId: null, sendMsg: null, lastFocus: null, autoFilled: new Set(), prevLayer: null, cfbOpener: null, tickT: null, lastKey: null, pinPlan: null, reviewNote: null,
   ai: { avail: false, text: "", state: "idle", include: false, flag: false, busy: false, disabledUntil: 0, ctl: null } };
@@ -3408,7 +3745,7 @@ async function SampleDiagnose(payload, { onText, signal }) {
   if (!sampleFn) return null;
   const lang = LANG === "ko" ? "Korean" : "English";
   let instr = "You are drafting, not advising. Use ONLY the JSON facts. Do not introduce any number, client name, regulator rule or market fact not present in the JSON. Never predict results. Never attach a client name to a figure whose client is null. Cite case ids in [brackets]. 150–220 words, 4 short paragraphs: situation, first route and why, what needs checking, the next decision. Plain text. Write in " + lang + ".";
-  if (LANG === "ko") instr += " Write in Korean, formal business register (합니다체). Always write the company name as 판아시아, never as the misspelt transliteration " + WRONG_BRAND + ". Address the reader as 귀사, never 당신. Keep 'Entry Review' in English and write 'Scope Call' as 스코프 콜. Quote any qualifier's English original verbatim in parentheses.";
+  if (LANG === "ko") instr += " Write in Korean, formal business register (합니다체). Always write the company name as 판아시아, never as the misspelt transliteration " + WRONG_BRAND + ". Address the reader as 귀사, never 당신. Write the paid Entry Diagnostic as 진입 진단 (the Adoption Diagnostic as 도입 진단) and the free intro call as 30분 무료 상담. Quote any qualifier's English original verbatim in parentheses.";
   const res = await sampleFn(instr + "\n\nJSON:\n" + payload, { onText, signal, modelTier: "default", cache: true });
   return res ? { text: res.text } : null;
 }
@@ -3467,7 +3804,7 @@ function resetFlow() {
   const keep = { lang: LANG, theme: S.theme, xray: S.xray };
   S = blankState(); Object.assign(S, keep); S.memoLang = LANG;
   MODE.kind = "self"; MODE.prospect = null;
-  Object.assign(UI, { started: false, browse: false, reveal: false, skipped: false, view: "flow", notice: null, footNotice: null, proofOpen: null, desk: null, ghost: null, conseq: [], fitChips: [], compareOpen: false, sendMsg: null, pinPlan: null, reviewNote: null, lastKey: null, undoDraft: null });
+  Object.assign(UI, { started: false, deep: false, browse: false, reveal: false, skipped: false, view: "flow", notice: null, footNotice: null, proofOpen: null, desk: null, ghost: null, conseq: [], fitChips: [], compareOpen: false, sendMsg: null, pinPlan: null, reviewNote: null, lastKey: null, undoDraft: null });
   UI.drawn = {}; UI.prevHTML = {}; UI.prevLayer = null; UI.autoFilled = new Set();
 }
 function startProspect(P, entry) {
@@ -3552,10 +3889,13 @@ const FOCUS_ALIAS = { "ai-stop": "ai-go", "ai-go": "ai-stop" };
 function render() {
   const ae = document.activeElement, fid = ae && ae !== document.body ? ae.id : "", fsec = ae && ae.closest ? ae.closest("section.sec, #review") : null;
   const r0 = fid && ae.getBoundingClientRect ? ae.getBoundingClientRect() : null, wasSeen = !!(r0 && r0.height && r0.bottom > 0 && r0.top < innerHeight);
-  applyPrefs(); document.body.classList.toggle("cover-only", !UI.started && UI.view === "flow"); document.body.classList.toggle("review-mode", UI.view === "review"); renderHeader(); renderBanner();
+  applyPrefs(); document.body.classList.toggle("cover-only", !UI.started && UI.view === "flow"); document.body.classList.toggle("review-mode", UI.view === "review");
+  document.body.classList.toggle("v-brief", UI.view === "flow" && !UI.deep); document.body.classList.toggle("v-deep", UI.view === "flow" && UI.deep); renderHeader(); renderBanner();
   const vis = visibleSections();
-  SEC_IDS.forEach(id => { const el = $("#" + id); const on = vis.includes(id); el.hidden = !on; if (!on) el.innerHTML = ""; });
+  SEC_IDS.concat(V4_IDS).forEach(id => { const el = $("#" + id); const on = vis.includes(id); el.hidden = !on; if (!on) el.innerHTML = ""; });
   if (vis.includes("s0")) renderS0();
+  if (vis.includes("qk")) renderQuick();
+  if (vis.includes("bf")) renderBrief();
   if (vis.includes("s1")) renderS1();
   if (vis.includes("s2")) renderS2();
   if (vis.includes("s3")) renderS3();
@@ -3589,7 +3929,7 @@ function tween() {
 function syncPlanRefs() {
   document.querySelectorAll("[data-plan]").forEach(el => {
     const k = el.dataset.plan;
-    const v = k === "id" ? "Plan ID " + PLAN.id : k === "pid" ? "Plan ID " + PLAN.id + " · " + PLAN.ref : k === "ref" ? PLAN.ref : k === "refLabel" ? t("refLabel", { ref: PLAN.ref }) : k === "subject" ? subjectText() : null;
+    const v = k === "id" ? t("planId") + " " + PLAN.id : k === "pid" ? t("planId") + " " + PLAN.id + " · " + PLAN.ref : k === "ref" ? PLAN.ref : k === "refLabel" ? t("refLabel", { ref: PLAN.ref }) : k === "subject" ? subjectText() : null;
     if (v != null && el.textContent !== v) el.textContent = v;
   });
 }
@@ -3733,6 +4073,11 @@ function maskValue(path) {
   return null;
 }
 function ensureOverride() { if (!S.routeOverridden) { if (!UI.ghost && !prospectCtx()) UI.ghost = D.route.slice(); S.route = D.route.slice(); S.routeOverridden = true; } }
+// v4: "Explore in depth" opens the full §0–§5 tool and the Scope Draft sheet on the same state; quiet = no scroll (tests, restores)
+function enterDeep(target, quiet) {
+  UI.deep = true; commit();
+  if (!quiet) jump(target || (UI.started ? "s1" : "s0"));
+}
 function skipToDraft() {
   // fill only what is unanswered; every filled field is remembered as a Panasia default (VIEW), never as the visitor's input
   const fill = (path, v) => { setPath(path, v); UI.autoFilled.add(path); };
@@ -3751,7 +4096,7 @@ function skipToDraft() {
   commit(); jump("s5"); announce(t("skippedS5", { route: D.route.join(" → ") || "—", n: progMods(D).length }));
 }
 // edits that can change the route release a decoded plan's locked route (derive then re-ranks from the edited profile)
-const ROUTE_ACTS = new Set(["door", "track", "set", "tog", "unlock", "node", "add", "rm", "up", "down", "pace", "horizon", "mod", "addMethod", "resetRec", "resetProp", "makeFit", "unfit", "kpiSel", "hs", "weight", "seedWeights", "saveB", "makeB", "skip"]);
+const ROUTE_ACTS = new Set(["door", "qa", "track", "set", "tog", "unlock", "node", "add", "rm", "up", "down", "pace", "horizon", "mod", "addMethod", "resetRec", "resetProp", "makeFit", "unfit", "kpiSel", "hs", "weight", "seedWeights", "saveB", "makeB", "skip"]);
 // which Scope Draft line a field writes, so the phone bar names the line the visitor just changed
 const LINE_OF = { "a.sector": "sec", "a.stage": "stg", "a.objective": "obj", "a.audiences": "aud", "a.kpi": "kpi", "a.krVasp": "st", "a.localEntity": "st", "a.audienceMode": "st", "a.localChannel": "st",
   "b.org": "sec", "b.problem": "prb", "b.stage": "stg", "b.needs": "aud", "b.constraints": "bst", "b.experts": "bst", "b.homeMarket": "route", budget: "bud", timing: "bud", role: "ppl", approvers: "ppl", rung: "next" };
@@ -3763,18 +4108,25 @@ function handleAct(act, el, ev) {
   switch (act) {
     case "door": {
       // the active door continues the draft; another door starts over, with a one-tap way back
-      if (UI.started && UI.view === "flow" && S.track === n) { jump("s1"); return; }
-      const undoId = UI.started && UI.view === "flow" ? PLAN.id : null;
+      if (UI.started && UI.view === "flow" && S.track === n) { jump(UI.deep ? "s1" : "qk"); return; }
+      const deep = UI.deep, undoId = deep && UI.started && UI.view === "flow" ? PLAN.id : null;     // v4: the default path keeps its own door; deep mode keeps §1 with its undo
       // a campaign link keeps its attribution (entry + campaign n) and its preset answers when its own track is chosen
       const camp = MODE.kind === "campaign" ? CONFIG.campaigns.find(c => c.n === S.campaign) : null;
-      resetFlow(); S.track = n;
+      resetFlow(); UI.deep = deep; S.track = n;
       if (camp) { S.entry = 1; S.campaign = camp.n; MODE.kind = "campaign"; if (camp.track === n) { Object.assign(S.a, camp.a || {}); Object.assign(S.b, camp.b || {}); } }
       trackDefaults(); UI.undoDraft = undoId;
-      UI.started = true; emit("door", { track: n }); commit(); jump("s1"); return;
+      UI.started = true; emit("door", { track: n }); commit(); jump(deep ? "s1" : "qk"); return;
     }
-    case "restoreDraft": { const r = UI.undoDraft && decodePlan(UI.undoDraft); if (r && r.ok) { openPlan(r.state, "flow"); commit(); jump("s1"); } else { UI.undoDraft = null; commit(); } return; }
-    case "browse": UI.browse = true; commit(); jump("s2"); return;
-    case "resume": { const r = decodePlan(UI.resumeId); if (r.ok) { openPlan(r.state, "flow"); S.dayOffset = todayOffset(); commit(); jump("s1"); } else { UI.resumeId = null; commit(); } return; }
+    case "restoreDraft": { const r = UI.undoDraft && decodePlan(UI.undoDraft); if (r && r.ok) { openPlan(r.state, "flow"); UI.deep = true; commit(); jump("s1"); } else { UI.undoDraft = null; commit(); } return; }
+    case "browse": UI.browse = true; UI.deep = true; commit(); jump("s2"); return;      // the full ledger is §2 of the deep tool
+    case "browseDone": UI.browse = false; UI.deep = false; commit(); jump("s0"); return;
+    case "resume": { const r = decodePlan(UI.resumeId); if (r.ok) { openPlan(r.state, "flow"); S.dayOffset = todayOffset(); commit(); jump(briefReady() ? "bf" : "qk"); } else { UI.resumeId = null; commit(); } return; }
+    case "qa": { const was = briefReady(); quickAnswer(Number(k), n);
+      // the third answer reveals the brief and scrolls to it; an arrow key exploring a radiogroup only announces it (focus stays on the radio)
+      if (briefReady() && !was) { announce(t("bfReady")); if (!UI.arrowing) jump("bf"); } else announce(previewText()); return; }
+    case "deep": enterDeep(v || null); return;
+    case "toBrief": closeDialog(false); UI.deep = false; UI.browse = false; commit(); jump(MODE.prospect ? "s0" : briefReady() ? "bf" : "qk"); return;
+    case "redo": jump("qk"); return;
     case "paste": openPasted($("#" + el.dataset.src).value, el.dataset.src); return;
     case "jump": jump(v); return;
     case "sheetGo": closeDialog(false); jump(v || "s5"); return;
@@ -3846,7 +4198,7 @@ function handleAct(act, el, ev) {
     case "skip": closeDialog(false); skipToDraft(); return;
     case "openRoute": jump("s3"); return;
     case "summaryOnly": UI.view = "review"; commit(); window.scrollTo(0, 0); focusSoon("#reviewH"); return;
-    case "editPlan": UI.view = "flow"; UI.started = true; UI.reveal = true; UI.pinPlan = null; UI.reviewNote = null; S.dayOffset = todayOffset(); commit(); jump(MODE.prospect ? "s0" : "s1"); return;   // an edited plan is re-checked against today
+    case "editPlan": UI.view = "flow"; UI.deep = true; UI.started = true; UI.reveal = true; UI.pinPlan = null; UI.reviewNote = null; S.dayOffset = todayOffset(); commit(); jump(MODE.prospect ? "s0" : "s1"); return;   // an edited plan is re-checked against today
     case "sheetOpen": openDialog(); return;
     case "sheetClose": closeDialog(); return;
     case "cfbClose": closePre(); return;
@@ -3919,7 +4271,7 @@ function onKey(e) {
     e.preventDefault(); const j = (i + (e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : -1) + items.length) % items.length;
     // the track picker moves focus only (selecting a track clears work); other groups follow the select-on-arrow radio pattern
     if (rg.hasAttribute("data-manual")) { items.forEach((b, x) => b.tabIndex = x === j ? 0 : -1); items[j].focus(); return; }
-    const id = items[j].id; items[j].click();
+    const id = items[j].id; UI.arrowing = true; try { items[j].click(); } finally { UI.arrowing = false; }
     // render is synchronous: focus the re-rendered radio now so a second arrow press in the same task lands on it
     const now = document.getElementById(id); if (now) now.focus(); else focusSoon("#" + id);
   }
