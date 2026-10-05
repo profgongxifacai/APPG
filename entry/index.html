@@ -654,7 +654,7 @@ html[lang="ko"] .bf-k{text-transform:none;letter-spacing:.01em;word-spacing:-.32
 .rc-sep{color:var(--muted);font-family:var(--f-mono)}
 .rc-l{margin-right:2px}
 .cs-list{display:grid;gap:0}
-.cs-list li{display:grid;grid-template-columns:minmax(76px,max-content) minmax(0,1fr);gap:2px 14px;padding:8px 0;border-bottom:1px dashed var(--rule)}
+.cs-list li{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:2px 14px;padding:8px 0;border-bottom:1px dashed var(--rule)}
 .cs-list li:last-child{border-bottom:0}
 .cs-list .fig{font-family:var(--f-mono);font-size:var(--step-1);font-weight:500;line-height:1.25;white-space:nowrap}
 .cs-list .nofig{font-family:var(--f-body);font-size:var(--step--2);color:var(--muted);white-space:normal}
@@ -758,6 +758,39 @@ html:not(.xray) .vblock{border-left:0;padding-left:0}
   .opt[aria-checked="true"],.opt[aria-pressed="true"],.seg button[aria-pressed="true"],.cell[aria-pressed="true"],.dot[aria-checked="true"],.toggle[aria-pressed="true"],.door[aria-current="true"],.xbtn[aria-pressed="true"],.pinbtn[aria-pressed="true"]{forced-color-adjust:none;background:Highlight;color:HighlightText;border-color:Highlight}
   .opt[aria-checked="true"]::before,.opt[aria-pressed="true"]::before{forced-color-adjust:none;background:HighlightText}
   .idx button[aria-current="true"]{border:2px solid Highlight}
+}
+
+/* ── mobile pass (v4.1) ── */
+.only-narrow{display:none}
+.case .orig,.cs-list .orig,.metric .mq.orig{font-family:var(--f-body);font-style:normal;letter-spacing:0;color:var(--muted)}
+.metric .mq.orig{font-size:11.5px}
+@media (max-width:599px){
+  /* header: brand + language only; X-ray and theme move to the footer */
+  .hdr .tools #xr,.hdr .tools .th-cyc,.hdr .tools .th-seg{display:none!important}
+  .only-narrow{display:flex}
+  .ft-view{flex-wrap:wrap;gap:8px}
+  .hdr .seg button{min-width:44px;padding-inline:10px}
+  /* chosen door: one even row of three */
+  .doors.mini{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .doors.mini .door{justify-content:center;text-align:center;padding:8px 6px;line-height:1.25}
+  .doors.mini .door .k{display:none}
+  .doors.mini .door .t{font-size:var(--step--2)}
+  /* bottom bar: one line */
+  .bar button>span:first-child{-webkit-line-clamp:1}
+  .bar button>.mono{display:none}
+  /* booking: full-width primary */
+  .book-go .btn.pri,.book-go .btn.acc{width:100%;justify-content:center}
+  .book .field{max-width:none}
+  /* brief and footer rhythm */
+  body.v-brief #bf.sec{padding-bottom:12px}
+  body.cover-only #s0.sec{padding-bottom:12px}
+  body.v-brief #s0 .strip-note-m{margin-bottom:0}
+  footer{margin-top:8px}
+  .ft{padding-block:22px 28px;gap:16px}
+  .ft .id{font-size:var(--step-0)}
+  .paste{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 8px;align-items:center}
+  .paste label{grid-column:1/-1}
+  .paste input{min-width:0;width:100%}
 }
 </style>
 </head>
@@ -964,11 +997,11 @@ const CONFIG = {
   { n:0, id:"entry-review", track:"A", r2:true, name:{ko:"진입 진단",en:"Entry Diagnostic"},
     promise:{ ko:"첫 시장, 채널 조합, 연락 대상까지 판단에 필요한 정보를 한 장의 브리프로 정리합니다.", en:"First market, channel mix and who to contact: the decision brief in one document." },
     deliverables:[ {o:"p",ko:"Panasia Intelligence 브리프",en:"Panasia Intelligence brief"}, {o:"p",ko:"시장별 스코프: 산출물·담당·예산",en:"Per-market scope: deliverables, owner, budget"},
-      {o:"p",ko:"실명 숏리스트: 맞는 이유·확인할 점",en:"Named shortlist: why it fits, what needs checking"}, {o:"partner",ko:"조율된 전문가와 계속·중단 기준 확인",en:"Continue/stop check with coordinated experts"},
+      {o:"p",ko:"실명 숏리스트: 맞는 이유·확인할 점",en:"Named shortlist: why it fits, what needs checking"}, {o:"partner",ko:"조율된 전문가와 규제·실행 조건 점검",en:"Regulatory and execution check with coordinated experts"},
       {o:"you",ko:"제품 자료·현재 지표·제약 공유",en:"Product materials, current metrics, constraints"} ],
     weeks:{ prep:0, run:[2,3] }, kpis:[{ko:"합의한 날짜에 결정 가능한 스코프",en:"Decision-ready scope on the agreed date"}], cases:[], requiresRoute:null,
     namedInER:[{ko:"숏리스트 대상의 실명",en:"Names on the shortlist"}], day90:[{ko:"Panasia Intelligence 브리프",en:"Panasia Intelligence brief"},{ko:"시장별 스코프 문서",en:"Per-market scope document"}],
-    gateDefault:{ ko:"계속: 첫 시장과 다음 결정이 합의됨 · 중단: 계속·중단 기준 확인에서 막힘", en:"Continue: first market and next decision agreed · Stop: blocked at the continue/stop check" } },
+    gateDefault:{ ko:"계속: 첫 시장과 다음 결정이 합의됨 · 중단: 규제·실행 조건 점검에서 막힘", en:"Continue: first market and next decision agreed · Stop: blocked at the regulatory and execution check" } },
   { n:1, id:"inst-bridge", track:"A", name:{ko:"기관 브리지",en:"Institutional Bridge"},
     promise:{ ko:"자산운용사·증권사와의 비공개 세미나와 1:1 미팅으로 기관 파이프라인을 만듭니다.", en:"Opens an institutional pipeline through closed seminars and 1:1 meetings with asset managers and brokers." },
     deliverables:[ {o:"p",ko:"자산운용사·증권사 대상 지도 (유형, 실명은 진입 진단)",en:"Target map of asset managers and brokers (types; names in the Entry Diagnostic)"},
@@ -1348,7 +1381,7 @@ const STRING_PAIRS = {
  fitCases:["공개 사례 {n}건이 이 시장에 있습니다{x}.","{n} published cases are in this market{x}."], fitNoGate:["이 플랜에 필요한 경로에 등록된 조건이 없습니다.","No listed condition on the routes this plan needs."],
  fitInRoute:["현재 경로의 {i} 번째 시장입니다.","It is #{i} on your current route."], ganttTitle:["일정 초안","Draft timeline"], msDetails:["이정표 목록","Milestones"], ganttBlocked:["막힘 · 진행할 프로그램 없음","blocked · no active program"], fitPrep:["데스크 기본 준비 기간이 {p}주로 짧은 편입니다.","Desk default prep is a short {p} weeks."],
  ganttNote:["데스크 기본 기간 · 확정 아님","Desk default durations · not confirmed"],
- "ms.scope":["30분 무료 상담","30-min intro call"], "ms.er":["진입 진단","Entry Diagnostic"], "ms.shortlist":["숏리스트","Shortlist"], "ms.meetings":["첫 미팅","First meetings"], "ms.review":["첫 캠페인 리뷰","First campaign review"], "ms.gate":["다음 시장 계속·중단 기준","Next-market continue/stop check"],
+ "ms.scope":["30분 무료 상담","30-min intro call"], "ms.er":["진입 진단","Entry Diagnostic"], "ms.shortlist":["숏리스트","Shortlist"], "ms.meetings":["첫 미팅","First meetings"], "ms.review":["첫 캠페인 리뷰","First campaign review"], "ms.gate":["다음 시장 진행 판단","Next-market go/no-go"],
  "g.prep":["준비","Prep"], "g.launch":["런칭","Launch"], "g.op":["운영","Operate"], "g.ms":["이정표","Milestone"],
  clipped:["기간 밖","Beyond horizon"], beyondH:["기간 밖","beyond horizon"], mktBeyond:["{M} 전체","all of {M}"], deskBtn:["데스크","Desk"], weekAt:["{n}주 차","wk {n}"],
  evidence:["공개 사례로 뒷받침되는 구간 {a}/{t} · 시장 미표기 사례로 뒷받침 {b}/{t}","Legs backed by a published case in that market {a}/{t} · by a case with no market stated {b}/{t}"], legDef:["구간 = 경로 시장 × 선택한 프로그램","leg = route market × selected program"],
@@ -1436,7 +1469,7 @@ const STRING_PAIRS = {
  ladderNote:["기간은 데스크 기본값입니다","Durations are desk defaults"],
  "ladder.3":["런칭 프로그램 · 1개 시장 · 약 90일 — 스코프에 산출물·담당·예산이 명시됩니다.","Launch program · one market · ~90 days — your scope names the deliverables, owner and budget."],
  "ladder.4B":["확장 · 월 단위 — 첫 미팅에 함께하고 다음 합의 단계를 추적합니다. 운영 전환은 파일럿 기준 충족 후.","Scale · monthly — we join the first meetings and track the next agreed step; production follows once the pilot criteria are met."],
- "ladder.4":["운영·확장 · 월 단위 — 첫 미팅에 함께하고 다음 합의 단계를 추적합니다. 다음 시장은 계속·중단 기준 확인 후.","Operate & expand · monthly — we join the first meetings and track the next agreed step; the next market opens after its continue/stop check."],
+ "ladder.4":["운영·확장 · 월 단위 — 첫 미팅에 함께하고 다음 합의 단계를 추적합니다. 다음 시장은 진행 조건을 확인한 뒤 엽니다.","Operate & expand · monthly — we join the first meetings and track the next agreed step; the next market opens after its continue/stop check."],
  creditLine:["{d}일 안에 프로그램을 계약하면 비용이 프로그램에 반영됩니다.","Credited against a program signed within {d} days."],
  deferred:["상세 협의로 남겨 둔 것","Left for detailed talks"],
  aiTitle:["AI 진단 초안","AI-drafted diagnosis"], aiBtn:["AI 진단 초안 받기","Get an AI-drafted diagnosis"],
@@ -1874,7 +1907,7 @@ function schedule(S, route, mods, desks) {
 function ratesMode() {
   if (HIDE.price) return "none";
   if (CONFIG.meta.rates.status === "range") return "real";
-  if (CONFIG.meta.mode === "draft" && CONFIG.sampleRates && !HIDE.sampleRates) return "sample";
+  if (CONFIG.meta.mode === "draft" && CONFIG.sampleRates && !HIDE.sampleRates && typeof S !== "undefined" && S && S.xray) return "sample";
   return "none";
 }
 function price(S, route, mods, sched) {
@@ -3674,7 +3707,7 @@ function renderFooter() {
   $("#foot").innerHTML = `<div class="ft"><div class="stack"><p class="id">${esc(CONFIG.meta.identity[LANG])}</p><p>${esc(t("promise"))}</p><p class="small muted">${esc(t("footNotAdvice"))}</p>${UI.started && UI.view === "flow" && (UI.deep || S.xray) ? legendHTML() : ""}</div>
     <div class="stack"><div><h3 class="caps" id="pressH" tabindex="-1">${esc(t("press"))}</h3><p class="small" style="margin-top:6px">${esc(t("pressLine"))}</p><div class="addr" style="margin-top:8px"><span class="sel-t">${esc(CONFIG.meta.contact)}</span><button type="button" class="btn sm" id="ft-addr" data-act="copy" data-kind="addr">${esc(t("copyAddr"))}</button></div></div>
     <div class="paste"><label for="paste1" class="small">${esc(t("pasteLabel"))}</label><input id="paste1" type="text" autocomplete="off" spellcheck="false" placeholder="${esc(t("pastePh"))}" data-act="pasteKey" data-src="paste1"><button type="button" class="btn sm" id="paste1-go" data-act="paste" data-src="paste1">${esc(t("pasteBtn"))}</button></div>
-    ${quiet ? `<div class="quiet">${quiet}</div>` : ""}${UI.footNotice ? `<p class="notice" id="foot-notice">${esc(t(UI.footNotice))}</p>` : ""}<p class="tiny muted mono">v${esc(CONFIG.meta.version)} · ${esc(t("planId"))} v${CONFIG.meta.codeVersion}</p></div></div>`;
+    ${quiet ? `<div class="quiet">${quiet}</div>` : ""}${UI.footNotice ? `<p class="notice" id="foot-notice">${esc(t(UI.footNotice))}</p>` : ""}<div class="ft-view only-narrow" role="group" aria-label="${esc(t("themeLabel"))}"><button type="button" class="xbtn" id="xr-f" data-act="xray" aria-pressed="${S.xray}">${esc(t("xray"))}${S.xray ? " ●" : ""}</button><button type="button" class="xbtn" id="th-cyc-f" data-act="themeCycle" aria-label="${esc(t("themeLabel"))}: ${esc(t("theme." + S.theme))}">${esc(t("themeLabel"))}: ${esc(t("theme." + S.theme))}</button></div><p class="tiny muted mono">v${esc(CONFIG.meta.version)} · ${esc(t("planId"))} v${CONFIG.meta.codeVersion}</p></div></div>`;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
